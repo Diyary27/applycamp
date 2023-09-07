@@ -1,5 +1,5 @@
-import 'package:applycamp/ui/app_bar.dart';
-import 'package:applycamp/ui/drawer.dart';
+import 'package:applycamp/ui/components/app_bar.dart';
+import 'package:applycamp/ui/components/drawer.dart';
 import 'package:applycamp/ui/support/contact_us.dart';
 import 'package:flutter/material.dart';
 

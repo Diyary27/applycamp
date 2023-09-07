@@ -1,9 +1,11 @@
-import 'package:applycamp/ui/app_bar.dart';
-import 'package:applycamp/ui/drawer.dart';
+import 'package:applycamp/ui/components/app_bar.dart';
+import 'package:applycamp/ui/components/drawer.dart';
+import 'package:applycamp/ui/search/bloc/search_bloc.dart';
 import 'package:applycamp/ui/search/programs_search_form.dart';
 import 'package:applycamp/ui/search/university_search_form.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -55,39 +57,44 @@ class _SearchPageState extends State<SearchPage> {
       drawer: AppDrawer(),
       body: DefaultTabController(
         length: 2,
-        child: Scaffold(
-          appBar: TabBar(
-            tabs: [
-              Tab(
-                  child: Text(
-                'Programs',
-                style: Theme.of(context).textTheme.titleSmall,
-              )),
-              Tab(
-                  child: Text(
-                'Universities',
-                style: Theme.of(context).textTheme.titleSmall,
-              )),
-            ],
-          ),
-          body: TabBarView(
-            children: [
-              ProgramsSearchForm(
-                  levelController: _levelController,
-                  dummyList: dummyList,
-                  languageController: _languageController,
-                  uniTypeController: _uniTypeController,
-                  cityController: _cityController,
-                  uniNameController: _uniNameController,
-                  minPriceController: _minPriceController,
-                  maxPriceController: _maxPriceController,
-                  dummyPrograms: dummyPrograms),
-              UniversitySearchForm(
-                  uniTypeController: _uniTypeController,
-                  dummyList: dummyList,
-                  cityController: _cityController,
-                  dummyPrograms: dummyPrograms)
-            ],
+        child: BlocProvider(
+          create: (context) {
+            return SearchBloc();
+          },
+          child: Scaffold(
+            appBar: TabBar(
+              tabs: [
+                Tab(
+                    child: Text(
+                  'Programs',
+                  style: Theme.of(context).textTheme.titleSmall,
+                )),
+                Tab(
+                    child: Text(
+                  'Universities',
+                  style: Theme.of(context).textTheme.titleSmall,
+                )),
+              ],
+            ),
+            body: TabBarView(
+              children: [
+                ProgramsSearchForm(
+                    levelController: _levelController,
+                    dummyList: dummyList,
+                    languageController: _languageController,
+                    uniTypeController: _uniTypeController,
+                    cityController: _cityController,
+                    uniNameController: _uniNameController,
+                    minPriceController: _minPriceController,
+                    maxPriceController: _maxPriceController,
+                    dummyPrograms: dummyPrograms),
+                UniversitySearchForm(
+                    uniTypeController: _uniTypeController,
+                    dummyList: dummyList,
+                    cityController: _cityController,
+                    dummyPrograms: dummyPrograms)
+              ],
+            ),
           ),
         ),
       ),

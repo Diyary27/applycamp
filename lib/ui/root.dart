@@ -1,5 +1,5 @@
-import 'package:applycamp/ui/app_bar.dart';
-import 'package:applycamp/ui/drawer.dart';
+import 'package:applycamp/ui/components/app_bar.dart';
+import 'package:applycamp/ui/components/drawer.dart';
 import 'package:applycamp/ui/home/home_page.dart';
 import 'package:applycamp/ui/profile/profile_page.dart';
 import 'package:applycamp/ui/search/search_page.dart';
@@ -59,10 +59,10 @@ class _RootScreenState extends State<RootScreen> {
         body: IndexedStack(
           index: selectedScreenIndex,
           children: [
-            _navigator(_homeKey, homeIndex, const HomePage()),
-            _navigator(_searchKey, searchIndex, const SearchPage()),
-            _navigator(_supportKey, supportIndex, const SupportPage()),
-            _navigator(_profileKey, profileIndex, const ProfilePage()),
+            _navigator(_homeKey, homeIndex, HomePage()),
+            _navigator(_searchKey, searchIndex, SearchPage()),
+            _navigator(_supportKey, supportIndex, SupportPage()),
+            _navigator(_profileKey, profileIndex, ProfilePage()),
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
