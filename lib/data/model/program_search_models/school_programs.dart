@@ -9,19 +9,19 @@ class SchoolPrograms {
     required this.paginationInfo,
     required this.schoolPrograms,
   });
-  late final PaginationInfo paginationInfo;
-  late final List<SchoolPrograms> schoolPrograms;
+  late final PaginationInfo? paginationInfo;
+  late final List<SchoolProgram> schoolPrograms;
 
   SchoolPrograms.fromJson(Map<String, dynamic> json) {
-    paginationInfo = PaginationInfo.fromJson(json['paginationInfo']);
+    paginationInfo = PaginationInfo?.fromJson(json['paginationInfo']);
     schoolPrograms = List.from(json['schoolPrograms'])
-        .map((e) => SchoolPrograms.fromJson(e))
+        .map((e) => SchoolProgram.fromJson(e))
         .toList();
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
-    _data['paginationInfo'] = paginationInfo.toJson();
+    _data['paginationInfo'] = paginationInfo?.toJson();
     _data['schoolPrograms'] = schoolPrograms.map((e) => e.toJson()).toList();
     return _data;
   }

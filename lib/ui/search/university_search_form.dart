@@ -1,20 +1,15 @@
-import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:applycamp/ui/search/bloc/search_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:multi_dropdown/multiselect_dropdown.dart';
 
 class UniversitySearchForm extends StatelessWidget {
-  const UniversitySearchForm({
-    super.key,
-    required MultiValueDropDownController uniTypeController,
-    required this.dummyList,
-    required MultiValueDropDownController cityController,
-    required this.dummyPrograms,
-  })  : _uniTypeController = uniTypeController,
-        _cityController = cityController;
+  UniversitySearchForm({super.key, required this.state});
 
-  final MultiValueDropDownController _uniTypeController;
-  final List<DropDownValueModel> dummyList;
-  final MultiValueDropDownController _cityController;
-  final List<String> dummyPrograms;
+  final SearchPageLoaded state;
+
+  final MultiSelectController _uniTypeController = MultiSelectController();
+  final MultiSelectController _cityController = MultiSelectController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,55 +17,25 @@ class UniversitySearchForm extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: Column(
         children: [
-          // university type field
-          DropDownTextField.multiSelection(
+          // Field : UniversityType
+          MultiSelectDropDown(
+            hint: "University Type",
             controller: _uniTypeController,
-            displayCompleteItem: true,
-            dropDownList: dummyList,
-            submitButtonColor: Theme.of(context).colorScheme.primary,
-            submitButtonTextStyle: Theme.of(context)
-                .textTheme
-                .labelLarge!
-                .copyWith(color: Colors.white),
-            textFieldDecoration: InputDecoration(
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              label: Text(
-                'University Type',
-                style: Theme.of(context)
-                    .textTheme
-                    .labelLarge!
-                    .copyWith(color: Theme.of(context).colorScheme.surface),
-              ),
-              filled: true,
-            ),
+            onOptionSelected: (options) {},
+            options: state.schoolTypes,
           ),
           SizedBox(height: 16),
-          // city field
-          DropDownTextField.multiSelection(
+          // Field : City
+          MultiSelectDropDown(
+            hint: "City",
             controller: _cityController,
-            displayCompleteItem: true,
-            dropDownList: dummyList,
-            submitButtonColor: Theme.of(context).colorScheme.primary,
-            submitButtonTextStyle: Theme.of(context)
-                .textTheme
-                .labelLarge!
-                .copyWith(color: Colors.white),
-            textFieldDecoration: InputDecoration(
-              floatingLabelBehavior: FloatingLabelBehavior.always,
-              label: Text(
-                'City',
-                style: Theme.of(context)
-                    .textTheme
-                    .labelLarge!
-                    .copyWith(color: Theme.of(context).colorScheme.surface),
-              ),
-              filled: true,
-            ),
+            onOptionSelected: (options) {},
+            options: state.cities,
           ),
           SizedBox(height: 16),
           Autocomplete(
             optionsBuilder: (optionsBuilder) {
-              return dummyPrograms.where((element) => element
+              return state.specialities.where((element) => element
                   .toLowerCase()
                   .startsWith(optionsBuilder.text.toLowerCase()));
             },
@@ -100,7 +65,9 @@ class UniversitySearchForm extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16))),
                 backgroundColor: MaterialStatePropertyAll(Colors.green),
                 fixedSize: MaterialStatePropertyAll(Size(120, 40))),
-            onPressed: () {},
+            onPressed: () {
+              context.read<SearchBloc>().add(SearchUniBtnClicked());
+            },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

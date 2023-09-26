@@ -1,35 +1,22 @@
-import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:applycamp/ui/search/bloc/search_bloc.dart';
+import 'package:applycamp/ui/search/programs_list_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:multi_dropdown/multiselect_dropdown.dart';
 
 class ProgramsSearchForm extends StatelessWidget {
-  const ProgramsSearchForm({
-    super.key,
-    required MultiValueDropDownController levelController,
-    required this.dummyList,
-    required MultiValueDropDownController languageController,
-    required MultiValueDropDownController uniTypeController,
-    required MultiValueDropDownController cityController,
-    required MultiValueDropDownController uniNameController,
-    required TextEditingController minPriceController,
-    required TextEditingController maxPriceController,
-    required this.dummyPrograms,
-  })  : _levelController = levelController,
-        _languageController = languageController,
-        _uniTypeController = uniTypeController,
-        _cityController = cityController,
-        _uniNameController = uniNameController,
-        _minPriceController = minPriceController,
-        _maxPriceController = maxPriceController;
+  ProgramsSearchForm({super.key, required this.state});
 
-  final MultiValueDropDownController _levelController;
-  final List<DropDownValueModel> dummyList;
-  final MultiValueDropDownController _languageController;
-  final MultiValueDropDownController _uniTypeController;
-  final MultiValueDropDownController _cityController;
-  final MultiValueDropDownController _uniNameController;
-  final TextEditingController _minPriceController;
-  final TextEditingController _maxPriceController;
-  final List<String> dummyPrograms;
+  final SearchPageLoaded state;
+
+  final MultiSelectController _degreeController = MultiSelectController();
+  final MultiSelectController _languageController = MultiSelectController();
+  final MultiSelectController _uniTypeController = MultiSelectController();
+  final MultiSelectController _cityController = MultiSelectController();
+  final MultiSelectController _uniNameController = MultiSelectController();
+  final TextEditingController _minPriceController = TextEditingController();
+  final TextEditingController _maxPriceController = TextEditingController();
+  final TextEditingController _keyWordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -38,125 +25,50 @@ class ProgramsSearchForm extends StatelessWidget {
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
-            // Field 1
-            DropDownTextField.multiSelection(
-              controller: _levelController,
-              displayCompleteItem: true,
-              dropDownList: dummyList,
-              submitButtonColor: Theme.of(context).colorScheme.primary,
-              submitButtonTextStyle: Theme.of(context)
-                  .textTheme
-                  .labelLarge!
-                  .copyWith(color: Colors.white),
-              textFieldDecoration: InputDecoration(
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: Text(
-                  'Education Level',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge!
-                      .copyWith(color: Theme.of(context).colorScheme.surface),
-                ),
-                filled: true,
-              ),
+            // Field : Education Level
+            MultiSelectDropDown(
+              hint: "Education Level",
+              controller: _degreeController,
+              onOptionSelected: (options) {},
+              options: state.degrees,
             ),
             SizedBox(height: 16),
-            // Field 2
-            DropDownTextField.multiSelection(
+            // Field : Education Language
+            MultiSelectDropDown(
+              hint: "Education Language",
               controller: _languageController,
-              displayCompleteItem: true,
-              dropDownList: dummyList,
-              submitButtonColor: Theme.of(context).colorScheme.primary,
-              submitButtonTextStyle: Theme.of(context)
-                  .textTheme
-                  .labelLarge!
-                  .copyWith(color: Colors.white),
-              textFieldDecoration: InputDecoration(
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: Text(
-                  'Education Language',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge!
-                      .copyWith(color: Theme.of(context).colorScheme.surface),
-                ),
-                filled: true,
-              ),
+              onOptionSelected: (options) {},
+              options: state.languages,
             ),
             SizedBox(height: 16),
-            // Field 3
-            DropDownTextField.multiSelection(
+            // Field : UniversityType
+            MultiSelectDropDown(
+              hint: "University Type",
               controller: _uniTypeController,
-              displayCompleteItem: true,
-              dropDownList: dummyList,
-              submitButtonColor: Theme.of(context).colorScheme.primary,
-              submitButtonTextStyle: Theme.of(context)
-                  .textTheme
-                  .labelLarge!
-                  .copyWith(color: Colors.white),
-              textFieldDecoration: InputDecoration(
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: Text(
-                  'University Type',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge!
-                      .copyWith(color: Theme.of(context).colorScheme.surface),
-                ),
-                filled: true,
-              ),
+              onOptionSelected: (options) {},
+              options: state.schoolTypes,
             ),
             SizedBox(height: 16),
-            // Field 4
-            DropDownTextField.multiSelection(
+            // Field : City
+            MultiSelectDropDown(
+              hint: "City",
               controller: _cityController,
-              displayCompleteItem: true,
-              dropDownList: dummyList,
-              submitButtonColor: Theme.of(context).colorScheme.primary,
-              submitButtonTextStyle: Theme.of(context)
-                  .textTheme
-                  .labelLarge!
-                  .copyWith(color: Colors.white),
-              textFieldDecoration: InputDecoration(
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: Text(
-                  'City',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge!
-                      .copyWith(color: Theme.of(context).colorScheme.surface),
-                ),
-                filled: true,
-              ),
+              onOptionSelected: (options) {},
+              options: state.cities,
             ),
             SizedBox(height: 16),
-            // Field 5
-            DropDownTextField.multiSelection(
+            // Field : University
+            MultiSelectDropDown(
+              hint: "University",
               controller: _uniNameController,
-              displayCompleteItem: true,
-              dropDownList: dummyList,
-              submitButtonColor: Theme.of(context).colorScheme.primary,
-              submitButtonTextStyle: Theme.of(context)
-                  .textTheme
-                  .labelLarge!
-                  .copyWith(color: Colors.white),
-              textFieldDecoration: InputDecoration(
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                label: Text(
-                  'University',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge!
-                      .copyWith(color: Theme.of(context).colorScheme.surface),
-                ),
-                filled: true,
-              ),
+              onOptionSelected: (options) {},
+              options: state.universities,
             ),
             SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Field 6
+                // Field : Min Price
                 SizedBox(
                   width: 180,
                   child: TextField(
@@ -174,7 +86,7 @@ class ProgramsSearchForm extends StatelessWidget {
                     ),
                   ),
                 ),
-                // Field 7
+                // Field : Max Price
                 SizedBox(
                   width: 180,
                   child: TextField(
@@ -195,17 +107,17 @@ class ProgramsSearchForm extends StatelessWidget {
               ],
             ),
             SizedBox(height: 16),
-            // Field 8
+            // Field : Programs
             Autocomplete(
               optionsBuilder: (optionsBuilder) {
-                return dummyPrograms.where((element) => element
+                return state.specialities.where((element) => element
                     .toLowerCase()
                     .startsWith(optionsBuilder.text.toLowerCase()));
               },
-              fieldViewBuilder: (context, programTextEditingController,
-                  focusNode, onFieldSubmitted) {
+              fieldViewBuilder: (context, _specialityController, focusNode,
+                  onFieldSubmitted) {
                 return TextField(
-                  controller: programTextEditingController,
+                  controller: _specialityController,
                   focusNode: focusNode,
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -226,7 +138,18 @@ class ProgramsSearchForm extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16))),
                   backgroundColor: MaterialStatePropertyAll(Colors.green),
                   fixedSize: MaterialStatePropertyAll(Size(120, 40))),
-              onPressed: () {},
+              onPressed: () {
+                context.read<SearchBloc>().add(SearchProgramBtnClicked(
+                      degrees: _degreeController.selectedOptions,
+                      languages: _languageController.selectedOptions,
+                      schoolTypes: _uniTypeController.selectedOptions,
+                      cities: _cityController.selectedOptions,
+                      universities: _uniNameController.selectedOptions,
+                      minPrice: int.tryParse(_minPriceController.text),
+                      maxPrice: int.tryParse(_maxPriceController.text),
+                      keyWords: _keyWordController.text,
+                    ));
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

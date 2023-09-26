@@ -18,7 +18,7 @@ class StudentAuthDataSourceImpl implements StudentAuthDataSource {
 
   @override
   Future<StudentAuthResponse> login(String email, String password) async {
-    final response = await dioConsumer.post(PortalRemoteConstants.login,
+    final response = await dioConsumer.post(PortalRemoteConstants.studentLogin,
         body: {"email": email, "password": password});
 
     final authResponse = StudentAuthResponse.fromJson(response.data);

@@ -22,8 +22,8 @@ class ProgramSearchFields {
     required this.lowestTuitionFee,
     required this.highestTuitionFee,
   });
-  late final List<SchoolTypes> schoolTypes;
-  late final List<StudyLanguages> studyLanguages;
+  late final List<SchoolType> schoolTypes;
+  late final List<StudyLanguage> studyLanguages;
   late final List<StudyField> studyFields;
   late final List<Specialities> specialities;
   late final List<Degrees> degrees;
@@ -36,10 +36,10 @@ class ProgramSearchFields {
 
   ProgramSearchFields.fromJson(Map<String, dynamic> json) {
     schoolTypes = List.from(json['schoolTypes'])
-        .map((e) => SchoolTypes.fromJson(e))
+        .map((e) => SchoolType.fromJson(e))
         .toList();
     studyLanguages = List.from(json['studyLanguages'])
-        .map((e) => StudyLanguages.fromJson(e))
+        .map((e) => StudyLanguage.fromJson(e))
         .toList();
     studyFields = List.from(json['studyFields'])
         .map((e) => StudyField.fromJson(e))

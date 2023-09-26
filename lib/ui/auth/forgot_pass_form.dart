@@ -39,9 +39,8 @@ class ForgotPassForm extends StatelessWidget {
                   fixedSize: MaterialStatePropertyAll(Size(200, 50))),
               child: Text('Send Email'),
               onPressed: () async {
-                context
-                    .read<AuthBloc>()
-                    .add(AuthForgotPassBtnClicked(_emailController.text));
+                context.read<AuthBloc>().add(
+                    StudentAuthForgotPassBtnClicked(_emailController.text));
               },
             ),
             SizedBox(height: 16),
@@ -52,8 +51,8 @@ class ForgotPassForm extends StatelessWidget {
                 SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
-                    context.read<AuthBloc>().add(
-                        AuthStarted(isLoginMode: false, isForgotPass: false));
+                    context.read<AuthBloc>().add(StudentAuthStarted(
+                        isLoginMode: false, isForgotPass: false));
                   },
                   child: Text('Sign Up'),
                 ),

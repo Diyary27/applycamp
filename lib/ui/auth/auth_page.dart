@@ -22,18 +22,28 @@ class _AuthPageState extends State<AuthPage> {
         body: BlocProvider(
           create: (context) {
             final bloc = AuthBloc(instance<StudentAuthRepository>());
-            bloc.add(AuthStarted(isLoginMode: true, isForgotPass: false));
+            bloc.add(
+                StudentAuthStarted(isLoginMode: true, isForgotPass: false));
             bloc.stream.listen((state) {
-              if (state is AuthRegisterSuccess) {
+              if (state is StudentAuthRegisterSuccess) {
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.registerResponse.message)));
-              } else if (state is AuthLoginSuccess) {
+              } else if (state is AgentAuthRegisterSuccess) {
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(state.registerResponse.message)));
+              } else if (state is StudentAuthLoginSuccess) {
                 Navigator.of(context).pop();
                 ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text(state.loginResponse.message)));
-              } else if (state is AuthForgotPassEmailSent) {
-                bloc.add(AuthStarted(isLoginMode: true, isForgotPass: false));
+              } else if (state is AgentAuthLoginSuccess) {
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(state.loginResponse.message)));
+              } else if (state is StudentAuthForgotPassEmailSent) {
+                bloc.add(
+                    StudentAuthStarted(isLoginMode: true, isForgotPass: false));
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text(state.response)));
               }
@@ -47,11 +57,15 @@ class _AuthPageState extends State<AuthPage> {
                   width: MediaQuery.of(context).size.width,
                   child: Center(child: CircularProgressIndicator()),
                 );
-              } else if (state is AuthRegisterLoaded) {
-                return RegisterForm();
-              } else if (state is AuthLoginLoaded) {
-                return LoginForm();
-              } else if (state is AuthForgotPassLoaded) {
+              } else if (state is StudentAuthRegisterLoaded) {
+                return RegisterForm(isAgent: false);
+              } else if (state is AgentAuthRegisterLoaded) {
+                return RegisterForm(isAgent: true);
+              } else if (state is StudentAuthLoginLoaded) {
+                return LoginForm(isAgent: false);
+              } else if (state is AgentAuthLoginLoaded) {
+                return LoginForm(isAgent: true);
+              } else if (state is StudentAuthForgotPassLoaded) {
                 return ForgotPassForm();
               } else if (state is AuthError) {
                 return Text(state.error);

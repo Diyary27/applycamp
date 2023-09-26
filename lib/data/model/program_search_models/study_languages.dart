@@ -1,7 +1,7 @@
 import 'package:applycamp/data/model/program_search_models/abilities.dart';
 
-class StudyLanguages {
-  StudyLanguages({
+class StudyLanguage {
+  StudyLanguage({
     required this.id,
     required this.title,
     required this.order,
@@ -12,7 +12,7 @@ class StudyLanguages {
   late final int order;
   late final Can can;
 
-  StudyLanguages.fromJson(Map<String, dynamic> json) {
+  StudyLanguage.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     order = json['order'];

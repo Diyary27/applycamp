@@ -2,9 +2,12 @@ class PortalRemoteConstants {
   static const String baseUrl = "https://fhzapi.sedevs.com";
 
   // Authentication
+  // minimal registeration is only for students
   static const String minimalRegisteration =
       "/api/v1/student-panel/minimal-register";
-  static const String login = "/api/v1/student-panel/login";
+  static const String agentRegisteration = "/api/v1/auth/register";
+  static const String studentLogin = "/api/v1/student-panel/login";
+  static const String agentLogin = "/api/v1/auth/login";
   static const String sendForgotPasswordEmail =
       "/api/v1/student-panel/send-forgot-password-email";
 

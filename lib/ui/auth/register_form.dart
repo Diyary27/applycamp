@@ -1,9 +1,11 @@
+import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/ui/auth/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterForm extends StatefulWidget {
-  RegisterForm({super.key});
+  bool isAgent;
+  RegisterForm({super.key, this.isAgent = true});
 
   @override
   State<RegisterForm> createState() => _RegisterFormState();
@@ -20,6 +22,8 @@ class _RegisterFormState extends State<RegisterForm> {
 
   final TextEditingController _phoneController = TextEditingController();
 
+  final TextEditingController _organizationController = TextEditingController();
+
   var _genderController = "male";
 
   List<DropdownMenuItem> genders = [
@@ -34,7 +38,44 @@ class _RegisterFormState extends State<RegisterForm> {
         padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
         child: Column(
           children: [
-            Image.asset("assets/img/applycamp_logo.png", width: 170),
+            Image.asset("assets/img/applycamp_logo.png", width: 160),
+            // if student or agent
+            widget.isAgent
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Agent Register |",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontSize: 20)),
+                      TextButton(
+                          onPressed: () {
+                            setState(() {
+                              widget.isAgent = !widget.isAgent;
+                            });
+                          },
+                          child: Text("Register as Studnent"))
+                    ],
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Student Register |",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleMedium!
+                              .copyWith(fontSize: 20)),
+                      TextButton(
+                          onPressed: () {
+                            setState(() {
+                              widget.isAgent = !widget.isAgent;
+                            });
+                          },
+                          child: Text("Register as Agent"))
+                    ],
+                  ),
+            SizedBox(height: 24),
             TextField(
               controller: _firstNameController,
               decoration: InputDecoration(
@@ -65,22 +106,40 @@ class _RegisterFormState extends State<RegisterForm> {
               ),
             ),
             SizedBox(height: 16),
-            DropdownButtonFormField(
-                value: _genderController,
-                items: genders,
+            // if student dont show it
+            if (widget.isAgent == false)
+              DropdownButtonFormField(
+                  value: _genderController,
+                  items: genders,
+                  decoration: InputDecoration(
+                      label: Text(
+                    'Gender',
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(color: Theme.of(context).colorScheme.surface),
+                  )),
+                  onChanged: (dynamic) {
+                    setState(() {
+                      _genderController = dynamic;
+                    });
+                  }),
+            // if agent show the organization
+            if (widget.isAgent)
+              TextField(
+                controller: _organizationController,
                 decoration: InputDecoration(
-                    label: Text(
-                  'Gender',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelLarge!
-                      .copyWith(color: Theme.of(context).colorScheme.surface),
-                )),
-                onChanged: (dynamic) {
-                  setState(() {
-                    _genderController = dynamic;
-                  });
-                }),
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  label: Text(
+                    'Organization',
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelLarge!
+                        .copyWith(color: Theme.of(context).colorScheme.surface),
+                  ),
+                  filled: true,
+                ),
+              ),
             SizedBox(height: 16),
             TextField(
               controller: _emailController,
@@ -139,12 +198,24 @@ class _RegisterFormState extends State<RegisterForm> {
               onPressed: () async {
                 var _fullName =
                     _firstNameController.text + " " + _lastNameController.text;
-                context.read<AuthBloc>().add(AuthRegisterBtnClicked(
-                    _emailController.text,
-                    _passwordController.text,
-                    _fullName,
-                    _genderController,
-                    _phoneController.text));
+
+                if (widget.isAgent) {
+                  context.read<AuthBloc>().add(AgentAuthRegisterBtnClicked(
+                        email: _emailController.text,
+                        fullName: _fullName,
+                        organization: _organizationController.text,
+                        password: _passwordController.text,
+                        phone: _phoneController.text,
+                      ));
+                } else {
+                  context.read<AuthBloc>().add(StudentAuthRegisterBtnClicked(
+                        email: _emailController.text,
+                        fullName: _fullName,
+                        gender: _genderController,
+                        password: _passwordController.text,
+                        phone: _phoneController.text,
+                      ));
+                }
               },
             ),
             SizedBox(height: 16),
@@ -155,8 +226,13 @@ class _RegisterFormState extends State<RegisterForm> {
                 SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
-                    context.read<AuthBloc>().add(
-                        AuthStarted(isLoginMode: true, isForgotPass: false));
+                    if (widget.isAgent) {
+                      context.read<AuthBloc>().add(AgentAuthStarted(
+                          isLoginMode: true, isForgotPass: false));
+                    } else {
+                      context.read<AuthBloc>().add(StudentAuthStarted(
+                          isLoginMode: true, isForgotPass: false));
+                    }
                   },
                   child: Text('Sign In'),
                 ),

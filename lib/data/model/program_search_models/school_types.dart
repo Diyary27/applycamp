@@ -1,5 +1,5 @@
-class SchoolTypes {
-  SchoolTypes({
+class SchoolType {
+  SchoolType({
     required this.id,
     required this.title,
     required this.order,
@@ -8,7 +8,7 @@ class SchoolTypes {
   late final String title;
   late final int order;
 
-  SchoolTypes.fromJson(Map<String, dynamic> json) {
+  SchoolType.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     order = json['order'];

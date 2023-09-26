@@ -57,7 +57,7 @@ class Student {
   late final String email;
   late final String fullName;
   late final String name;
-  late final String passportNumber;
+  late final String? passportNumber;
   late final passportDateOfIssue;
   late final passportDateOfExpiry;
   late final phone;
@@ -79,7 +79,7 @@ class Student {
   late final statusSlug;
   late final bool canHaveApplications;
   late final bool isSelfRegistered;
-  late final bool isProfileFilled;
+  late final bool? isProfileFilled;
   late final abilities;
   late final StudentCan can;
   late final String createdAt;
@@ -90,7 +90,7 @@ class Student {
   late final List<dynamic> degree;
   late final List<dynamic> highSchoolCountry;
   late final List<dynamic> image;
-  late final List<dynamic> status;
+  late final Map<dynamic, dynamic> status;
 
   Student.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -138,7 +138,7 @@ class Student {
     highSchoolCountry =
         List.castFrom<dynamic, dynamic>(json['highSchoolCountry']);
     image = List.castFrom<dynamic, dynamic>(json['image']);
-    status = List.castFrom<dynamic, dynamic>(json['status']);
+    status = json['status'];
   }
 
   Map<String, dynamic> toJson() {

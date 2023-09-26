@@ -12,7 +12,7 @@ class HomePageUtilsList extends StatelessWidget {
       height: 130,
       child: ListView.builder(
           padding: const EdgeInsets.fromLTRB(6, 12, 6, 2),
-          itemCount: 4,
+          itemCount: 2,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             final List<String> titles = [

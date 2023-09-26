@@ -13,14 +13,16 @@ class Country {
   late final String title;
   late final int order;
   late final Can can;
-  late final List<City> cities;
+  late final List<City>? cities;
 
   Country.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     order = json['order'];
     can = Can.fromJson(json['can']);
-    cities = List.from(json['cities']).map((e) => City.fromJson(e)).toList();
+    cities = json['cities'] != null
+        ? List.from(json['cities']).map((e) => City.fromJson(e)).toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -29,7 +31,7 @@ class Country {
     _data['title'] = title;
     _data['order'] = order;
     _data['can'] = can.toJson();
-    _data['cities'] = cities.map((e) => e.toJson()).toList();
+    _data['cities'] = cities?.map((e) => e.toJson()).toList();
     return _data;
   }
 }

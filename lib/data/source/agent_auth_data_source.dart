@@ -1,36 +1,51 @@
+import 'package:applycamp/core/common/dio_consumer.dart';
+import 'package:applycamp/core/constant/remote_constant.dart';
+import 'package:applycamp/data/model/user_model/user_auth_response.dart';
+
 abstract class AgentAuthDataSource {
-  Future register(String email, String password, String name,
-      String organization, String phone);
+  Future register(
+      {required String email,
+      required String password,
+      required String name,
+      required String organization,
+      required String phone});
   Future login(String email, String password);
   Future sendForgotPassEmail(String email);
-  Future logout();
-  Future loadAuth();
 }
 
 class AgentAuthDataSourceImpl implements AgentAuthDataSource {
+  final PortalDioConsumer dioConsumer;
+
+  AgentAuthDataSourceImpl(this.dioConsumer);
+
   @override
-  Future loadAuth() {
-    // TODO: implement loadAuth
-    throw UnimplementedError();
+  Future login(String email, String password) async {
+    final response = await dioConsumer.post(PortalRemoteConstants.agentLogin,
+        body: {"email": email, "password": password});
+
+    final authResponse = UserAuthResponse.fromJson(response.data);
+
+    return authResponse;
   }
 
   @override
-  Future login(String email, String password) {
-    // TODO: implement login
-    throw UnimplementedError();
-  }
+  Future register(
+      {required String email,
+      required String password,
+      required String name,
+      required String organization,
+      required String phone}) async {
+    final response = await dioConsumer
+        .post(PortalRemoteConstants.agentRegisteration, queryParameters: {
+      "name": name,
+      "email": email,
+      "password": password,
+      "organization": organization,
+      "phone": phone,
+    });
 
-  @override
-  Future logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
-  }
-
-  @override
-  Future register(String email, String password, String name,
-      String organization, String phone) {
-    // TODO: implement register
-    throw UnimplementedError();
+    final authResponse = UserAuthResponse.fromJson(response.data);
+    return authResponse;
   }
 
   @override

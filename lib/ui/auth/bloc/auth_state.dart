@@ -5,28 +5,54 @@ abstract class AuthState {}
 
 class AuthInitial extends AuthState {}
 
-class AuthRegisterLoaded extends AuthState {}
+class StudentAuthRegisterLoaded extends AuthState {}
 
-class AuthLoginLoaded extends AuthState {}
+class StudentAuthLoginLoaded extends AuthState {}
 
-class AuthForgotPassLoaded extends AuthState {}
+class StudentAuthForgotPassLoaded extends AuthState {}
 
-class AuthForgotPassEmailSent extends AuthState {
+class StudentAuthForgotPassEmailSent extends AuthState {
   final String response;
 
-  AuthForgotPassEmailSent(this.response);
+  StudentAuthForgotPassEmailSent(this.response);
 }
 
-class AuthLoginSuccess extends AuthState {
+class StudentAuthLoginSuccess extends AuthState {
   final StudentAuthResponse loginResponse;
 
-  AuthLoginSuccess(this.loginResponse);
+  StudentAuthLoginSuccess(this.loginResponse);
 }
 
-class AuthRegisterSuccess extends AuthState {
+class StudentAuthRegisterSuccess extends AuthState {
   final StudentAuthResponse registerResponse;
 
-  AuthRegisterSuccess(this.registerResponse);
+  StudentAuthRegisterSuccess(this.registerResponse);
+}
+
+class AgentAuthInitial extends AuthState {}
+
+class AgentAuthRegisterLoaded extends AuthState {}
+
+class AgentAuthLoginLoaded extends AuthState {}
+
+class AgentAuthForgotPassLoaded extends AuthState {}
+
+class AgentAuthForgotPassEmailSent extends AuthState {
+  final String response;
+
+  AgentAuthForgotPassEmailSent(this.response);
+}
+
+class AgentAuthLoginSuccess extends AuthState {
+  final UserAuthResponse loginResponse;
+
+  AgentAuthLoginSuccess(this.loginResponse);
+}
+
+class AgentAuthRegisterSuccess extends AuthState {
+  final UserAuthResponse registerResponse;
+
+  AgentAuthRegisterSuccess(this.registerResponse);
 }
 
 class AuthError extends AuthState {

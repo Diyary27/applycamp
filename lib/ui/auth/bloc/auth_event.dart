@@ -3,33 +3,72 @@ part of 'auth_bloc.dart';
 @immutable
 abstract class AuthEvent {}
 
-class AuthStarted extends AuthEvent {
+class StudentAuthStarted extends AuthEvent {
   final bool isLoginMode;
   final bool isForgotPass;
 
-  AuthStarted({required this.isLoginMode, required this.isForgotPass});
+  StudentAuthStarted({required this.isLoginMode, required this.isForgotPass});
 }
 
-class AuthLoginBtnClicked extends AuthEvent {
+class StudentAuthLoginBtnClicked extends AuthEvent {
   final String email;
   final String password;
 
-  AuthLoginBtnClicked(this.email, this.password);
+  StudentAuthLoginBtnClicked(this.email, this.password);
 }
 
-class AuthRegisterBtnClicked extends AuthEvent {
+class StudentAuthRegisterBtnClicked extends AuthEvent {
   final String fullName;
   final String email;
   final String gender;
   final String phone;
   final String password;
 
-  AuthRegisterBtnClicked(
-      this.email, this.password, this.fullName, this.gender, this.phone);
+  StudentAuthRegisterBtnClicked(
+      {required this.email,
+      required this.password,
+      required this.fullName,
+      required this.gender,
+      required this.phone});
 }
 
-class AuthForgotPassBtnClicked extends AuthEvent {
+class StudentAuthForgotPassBtnClicked extends AuthEvent {
   final String email;
 
-  AuthForgotPassBtnClicked(this.email);
+  StudentAuthForgotPassBtnClicked(this.email);
+}
+
+class AgentAuthStarted extends AuthEvent {
+  final bool isLoginMode;
+  final bool isForgotPass;
+
+  AgentAuthStarted({required this.isLoginMode, required this.isForgotPass});
+}
+
+class AgentAuthLoginBtnClicked extends AuthEvent {
+  final String email;
+  final String password;
+
+  AgentAuthLoginBtnClicked(this.email, this.password);
+}
+
+class AgentAuthRegisterBtnClicked extends AuthEvent {
+  final String fullName;
+  final String email;
+  final String organization;
+  final String phone;
+  final String password;
+
+  AgentAuthRegisterBtnClicked(
+      {required this.fullName,
+      required this.email,
+      required this.password,
+      required this.organization,
+      required this.phone});
+}
+
+class AgentAuthForgotPassBtnClicked extends AuthEvent {
+  final String email;
+
+  AgentAuthForgotPassBtnClicked(this.email);
 }
