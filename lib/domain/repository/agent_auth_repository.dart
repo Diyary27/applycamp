@@ -9,4 +9,6 @@ abstract class AgentAuthRepository {
   Future sendForgotPassEmail(String email);
   Future logout();
   Future loadAuth();
+  Future getProfile();
+  Future editProfile();
 }

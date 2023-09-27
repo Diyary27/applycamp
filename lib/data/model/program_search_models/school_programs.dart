@@ -1,7 +1,7 @@
 import 'package:applycamp/data/model/program_search_models/currency.dart';
 import 'package:applycamp/data/model/program_search_models/pagination_info.dart';
 import 'package:applycamp/data/model/program_search_models/program.dart';
-import 'package:applycamp/data/model/program_search_models/schools.dart';
+import 'package:applycamp/data/model/program_search_models/school.dart';
 import 'package:applycamp/data/model/program_search_models/tuition_units.dart';
 
 class SchoolPrograms {
@@ -66,9 +66,9 @@ class SchoolProgram {
   late final int? depositAmount;
   late final int commission;
   late final int studyYears;
-  late final Null description;
-  late final Null admissionRequirements;
-  late final Null careerPath;
+  late final description;
+  late final admissionRequirements;
+  late final careerPath;
   late final bool isActiveInSearch;
   late final bool isActiveInNewApps;
   late final bool hasArticle;

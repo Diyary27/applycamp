@@ -2,13 +2,19 @@ import 'package:applycamp/data/model/program_search_models/school_programs.dart'
 import 'package:flutter/material.dart';
 
 class ProgramDetails extends StatelessWidget {
-  const ProgramDetails({super.key, required this.schoolProgram});
+  ProgramDetails({super.key, required this.schoolProgram});
 
+  TabController? tabController;
   final SchoolProgram schoolProgram;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton.extended(
+        foregroundColor: Colors.white,
+        onPressed: () {},
+        label: Text('Apply Now'),
+      ),
       appBar: AppBar(
         title: Text('Program Details'),
         centerTitle: false,
@@ -65,7 +71,7 @@ class ProgramDetails extends StatelessWidget {
                 SizedBox(height: 8),
                 // program name
                 SizedBox(
-                  width: 300,
+                  width: MediaQuery.of(context).size.width - 12,
                   child: Text(
                     schoolProgram.program.title,
                     overflow: TextOverflow.clip,
@@ -141,7 +147,7 @@ class ProgramDetails extends StatelessWidget {
           // other details under banner
           Container(
             padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
-            color: Colors.grey,
+            color: Colors.grey.shade300,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -190,11 +196,77 @@ class ProgramDetails extends StatelessWidget {
               ],
             ),
           ),
-          // details tabs
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(schoolProgram.school.aboutSchool.toString()),
-          )
+          Expanded(
+            child: DefaultTabController(
+              length: 3,
+              child: Scaffold(
+                appBar: TabBar(
+                  isScrollable: true,
+                  labelColor: Colors.black,
+                  tabs: [
+                    Tab(
+                      child: Text('Program Details'),
+                    ),
+                    Tab(
+                      child: Text('University Details'),
+                    ),
+                    Tab(
+                      child: Text('Admission Requirements'),
+                    ),
+                  ],
+                ),
+                body: TabBarView(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: schoolProgram.careerPath != null
+                          ? Text(schoolProgram.careerPath.toString())
+                          : Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.info, size: 38),
+                                  SizedBox(height: 10),
+                                  Text('No Information Found')
+                                ],
+                              ),
+                            ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: schoolProgram.school.aboutSchool != null
+                          ? Text(schoolProgram.school.aboutSchool.toString())
+                          : Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.info, size: 38),
+                                  SizedBox(height: 10),
+                                  Text('No Information Found')
+                                ],
+                              ),
+                            ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: schoolProgram.admissionRequirements != null
+                          ? Text(schoolProgram.admissionRequirements.toString())
+                          : Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(Icons.info, size: 38),
+                                  SizedBox(height: 10),
+                                  Text('No Information Found')
+                                ],
+                              ),
+                            ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

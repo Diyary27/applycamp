@@ -1,6 +1,6 @@
-import 'package:applycamp/data/model/program_search_models/cities.dart';
+import 'package:applycamp/data/model/program_search_models/city.dart';
 import 'package:applycamp/data/model/program_search_models/school_programs.dart';
-import 'package:applycamp/data/model/program_search_models/schools.dart';
+import 'package:applycamp/data/model/program_search_models/school.dart';
 import 'package:applycamp/data/model/program_search_models/study_fields.dart';
 import 'package:applycamp/data/source/search_data_source.dart';
 import 'package:applycamp/domain/entity/program_search_params.dart';
@@ -24,7 +24,12 @@ class SearchRepositoryImpl implements SearchRepository {
   Future getFieldsToSearch() async => dataSource.getFieldsToSearch();
 
   @override
-  Future searchPrograms(ProgramSearchParams programSearchParams) async {
-    return dataSource.searchPrograms(programSearchParams.toJson());
+  Future searchPrograms(SearchParams searchParams) async {
+    return dataSource.searchPrograms(searchParams.toJson());
+  }
+
+  @override
+  Future searchSchools(SearchParams searchParams) {
+    return dataSource.searchSchools(searchParams.toJson());
   }
 }

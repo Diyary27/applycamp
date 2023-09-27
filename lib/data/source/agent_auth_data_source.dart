@@ -1,5 +1,6 @@
 import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/constant/remote_constant.dart';
+import 'package:applycamp/data/model/user_model/user.dart';
 import 'package:applycamp/data/model/user_model/user_auth_response.dart';
 
 abstract class AgentAuthDataSource {
@@ -11,6 +12,8 @@ abstract class AgentAuthDataSource {
       required String phone});
   Future login(String email, String password);
   Future sendForgotPassEmail(String email);
+  Future getProfile();
+  Future editProfile();
 }
 
 class AgentAuthDataSourceImpl implements AgentAuthDataSource {
@@ -52,5 +55,20 @@ class AgentAuthDataSourceImpl implements AgentAuthDataSource {
   Future sendForgotPassEmail(String email) {
     // TODO: implement sendForgotPassEmail
     throw UnimplementedError();
+  }
+
+  @override
+  Future editProfile() {
+    // TODO: implement editProfile
+    throw UnimplementedError();
+  }
+
+  @override
+  Future getProfile() async {
+    final response = await dioConsumer.get(PortalRemoteConstants.userProfile);
+
+    final userProfile = User.fromJson(response.data);
+
+    return userProfile;
   }
 }

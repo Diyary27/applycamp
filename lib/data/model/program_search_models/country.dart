@@ -1,5 +1,5 @@
 import 'package:applycamp/data/model/program_search_models/abilities.dart';
-import 'package:applycamp/data/model/program_search_models/cities.dart';
+import 'package:applycamp/data/model/program_search_models/city.dart';
 
 class Country {
   Country({

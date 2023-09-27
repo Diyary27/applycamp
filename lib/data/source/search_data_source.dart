@@ -2,11 +2,11 @@ import 'dart:math';
 
 import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/constant/remote_constant.dart';
-import 'package:applycamp/data/model/program_search_models/cities.dart';
-import 'package:applycamp/data/model/program_search_models/countries.dart';
+import 'package:applycamp/data/model/program_search_models/city.dart';
+import 'package:applycamp/data/model/program_search_models/country.dart';
 import 'package:applycamp/data/model/program_search_models/programs_search_fields.dart';
 import 'package:applycamp/data/model/program_search_models/school_programs.dart';
-import 'package:applycamp/data/model/program_search_models/schools.dart';
+import 'package:applycamp/data/model/program_search_models/school.dart';
 import 'package:applycamp/data/model/program_search_models/study_fields.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +16,7 @@ abstract class SearchDataSource {
   Future<List<StudyField>> getAllStudyFields();
   Future getFieldsToSearch();
   Future searchPrograms(Map<String, dynamic> searchParams);
+  Future searchSchools(Map<String, dynamic> searchParams);
 }
 
 class SearchDataSourceImpl implements SearchDataSource {
@@ -86,8 +87,21 @@ class SearchDataSourceImpl implements SearchDataSource {
         queryParameters: searchParams);
 
     final schoolPrograms = SchoolPrograms.fromJson(response.data);
-    debugPrint(schoolPrograms.toString());
 
     return schoolPrograms;
+  }
+
+  @override
+  Future searchSchools(Map<String, dynamic> searchParams) async {
+    final response = await dioConsumer.get(
+        PortalRemoteConstants.getSchoolsNormalUser,
+        queryParameters: searchParams);
+
+    final List<School> schools = [];
+    (response.data['schools'] as List).forEach((element) {
+      schools.add(School.fromJson(element));
+    });
+
+    return schools;
   }
 }

@@ -1,3 +1,4 @@
+import 'package:applycamp/data/model/user_model/profile_image.dart';
 import 'package:applycamp/data/model/user_model/role.dart';
 import 'package:applycamp/data/model/user_model/status.dart';
 import 'package:applycamp/data/model/user_model/user_abilities.dart';
@@ -22,7 +23,7 @@ class User {
     required this.createdAt,
     required this.updatedAt,
     required this.role,
-    required this.profileImage,
+    this.profileImage,
     required this.parent,
     required this.status,
   });
@@ -44,7 +45,7 @@ class User {
   late final String createdAt;
   late final String updatedAt;
   late final Role role;
-  late final List<dynamic> profileImage;
+  late final ProfileImage? profileImage;
   late final List<dynamic> parent;
   late final Status status;
 
@@ -67,7 +68,9 @@ class User {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     role = Role.fromJson(json['role']);
-    profileImage = List.castFrom<dynamic, dynamic>(json['profileImage']);
+    profileImage = json['profileImage'].runtimeType != List
+        ? ProfileImage.fromJson(json['profileImage'])
+        : null;
     parent = List.castFrom<dynamic, dynamic>(json['parent']);
     status = Status.fromJson(json['status']);
   }
@@ -92,7 +95,7 @@ class User {
     _data['createdAt'] = createdAt;
     _data['updatedAt'] = updatedAt;
     _data['role'] = role.toJson();
-    _data['profileImage'] = profileImage;
+    _data['profileImage'] = profileImage?.toJson();
     _data['parent'] = parent;
     _data['status'] = status.toJson();
     return _data;

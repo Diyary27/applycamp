@@ -1,8 +1,8 @@
-import 'package:applycamp/data/model/program_search_models/cities.dart';
-import 'package:applycamp/data/model/program_search_models/countries.dart';
+import 'package:applycamp/data/model/program_search_models/city.dart';
+import 'package:applycamp/data/model/program_search_models/country.dart';
 import 'package:applycamp/data/model/program_search_models/degrees.dart';
 import 'package:applycamp/data/model/program_search_models/school_types.dart';
-import 'package:applycamp/data/model/program_search_models/schools.dart';
+import 'package:applycamp/data/model/program_search_models/school.dart';
 import 'package:applycamp/data/model/program_search_models/specialities.dart';
 import 'package:applycamp/data/model/program_search_models/study_fields.dart';
 import 'package:applycamp/data/model/program_search_models/study_languages.dart';

@@ -1,5 +1,5 @@
-import 'package:applycamp/data/model/program_search_models/cities.dart';
-import 'package:applycamp/data/model/program_search_models/schools.dart';
+import 'package:applycamp/data/model/program_search_models/city.dart';
+import 'package:applycamp/data/model/program_search_models/school.dart';
 import 'package:applycamp/ui/home/cities/bloc/cities_bloc.dart';
 import 'package:applycamp/ui/universities/bloc/universities_bloc.dart';
 import 'package:applycamp/ui/universities/universities_list_page.dart';

@@ -1,4 +1,4 @@
-import 'package:applycamp/data/model/program_search_models/cities.dart';
+import 'package:applycamp/data/model/program_search_models/city.dart';
 import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/domain/repository/search_repository.dart';
 import 'package:bloc/bloc.dart';

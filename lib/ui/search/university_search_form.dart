@@ -66,7 +66,11 @@ class UniversitySearchForm extends StatelessWidget {
                 backgroundColor: MaterialStatePropertyAll(Colors.green),
                 fixedSize: MaterialStatePropertyAll(Size(120, 40))),
             onPressed: () {
-              context.read<SearchBloc>().add(SearchUniBtnClicked());
+              context.read<SearchBloc>().add(SearchUniBtnClicked(
+                    cities: _cityController.selectedOptions,
+                    keyWords: '',
+                    schoolTypes: _uniTypeController.selectedOptions,
+                  ));
             },
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,

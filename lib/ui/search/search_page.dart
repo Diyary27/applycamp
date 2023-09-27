@@ -3,6 +3,7 @@ import 'package:applycamp/ui/components/drawer.dart';
 import 'package:applycamp/ui/search/bloc/search_bloc.dart';
 import 'package:applycamp/ui/search/programs_list_page.dart';
 import 'package:applycamp/ui/search/programs_search_form.dart';
+import 'package:applycamp/ui/search/university_list_page.dart';
 import 'package:applycamp/ui/search/university_search_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -70,7 +71,8 @@ class _SearchPageState extends State<SearchPage> {
                   schoolPrograms: state.schoolPrograms,
                 );
               } else if (state is SearchUniSuccess) {
-                return Scaffold();
+                return UniversityListPage(
+                    cities: state.cities, schools: state.schools);
               } else {
                 return Center(child: Text(state.toString()));
               }

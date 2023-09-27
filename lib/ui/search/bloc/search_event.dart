@@ -25,4 +25,13 @@ class SearchProgramBtnClicked extends SearchEvent {
       required this.keyWords});
 }
 
-class SearchUniBtnClicked extends SearchEvent {}
+class SearchUniBtnClicked extends SearchEvent {
+  final List<ValueItem> schoolTypes;
+  final List<ValueItem> cities;
+  final String keyWords;
+
+  SearchUniBtnClicked(
+      {required this.schoolTypes,
+      required this.cities,
+      required this.keyWords});
+}

@@ -28,6 +28,11 @@ class SearchProgramSuccess extends SearchState {
   SearchProgramSuccess(this.schoolPrograms);
 }
 
-class SearchUniSuccess extends SearchState {}
+class SearchUniSuccess extends SearchState {
+  final List<School> schools;
+  final List<City> cities;
+
+  SearchUniSuccess({required this.schools, required this.cities});
+}
 
 class SearchError extends SearchState {}

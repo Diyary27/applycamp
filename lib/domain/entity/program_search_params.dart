@@ -1,5 +1,5 @@
-class ProgramSearchParams {
-  ProgramSearchParams(
+class SearchParams {
+  SearchParams(
       {this.degreeIds,
       this.languageIds,
       this.schoolTypeIds,

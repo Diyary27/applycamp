@@ -1,3 +1,4 @@
+import 'package:applycamp/data/model/program_search_models/school.dart';
 import 'package:applycamp/ui/universities/bloc/universities_bloc.dart';
 import 'package:applycamp/ui/universities/universities_list.dart';
 import 'package:flutter/material.dart';

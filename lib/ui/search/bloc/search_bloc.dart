@@ -1,4 +1,6 @@
+import 'package:applycamp/data/model/program_search_models/city.dart';
 import 'package:applycamp/data/model/program_search_models/programs_search_fields.dart';
+import 'package:applycamp/data/model/program_search_models/school.dart';
 import 'package:applycamp/data/model/program_search_models/school_programs.dart';
 import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/domain/entity/program_search_params.dart';
@@ -86,7 +88,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           });
 
           // creating an instance of programSearchParams and passing the list items converted to string
-          final searchParams = ProgramSearchParams(
+          final searchParams = SearchParams(
               degreeIds: degreeIds.join(','),
               languageIds: languageIds.join(','),
               schoolTypeIds: schoolTypeIds.join(','),
@@ -100,7 +102,26 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
               await instance<SearchRepository>().searchPrograms(searchParams);
           emit(SearchProgramSuccess(schoolPrograms));
         } else if (event is SearchUniBtnClicked) {
-          //
+          List schoolTypeIds = [];
+          List cityIds = [];
+
+          event.schoolTypes.forEach((element) {
+            schoolTypeIds.add(element.value);
+          });
+          event.cities.forEach((element) {
+            cityIds.add(element.value);
+          });
+
+          final searhParams = SearchParams(
+            schoolTypeIds: schoolTypeIds.join(','),
+            cityIds: cityIds.join(','),
+          );
+
+          // pass it to repository and there convert it to json map
+          final schools =
+              await instance<SearchRepository>().searchSchools(searhParams);
+          final cities = await instance<SearchRepository>().getAllCities();
+          emit(SearchUniSuccess(schools: schools, cities: cities));
         }
       } catch (e) {
         emit(SearchError());

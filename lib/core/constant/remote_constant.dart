@@ -10,6 +10,7 @@ class PortalRemoteConstants {
   static const String agentLogin = "/api/v1/auth/login";
   static const String sendForgotPasswordEmail =
       "/api/v1/student-panel/send-forgot-password-email";
+  static const String userProfile = "/api/v1/auth/me";
 
   // Search Programs
   static const String getProgramSearchFields =
@@ -20,4 +21,5 @@ class PortalRemoteConstants {
   static const String getStudyFields = "/api/v1/content-items/study-fields";
   static const String getAllCities = "/api/v1/content-items/cities";
   static const String getAllStudyFields = "/api/v1/content-items/study-fields";
+  static const String getSchoolsNormalUser = "/api/v1/schools/normal-users";
 }

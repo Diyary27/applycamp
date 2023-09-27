@@ -62,4 +62,15 @@ class AgentAuthRepositoryImpl implements AgentAuthRepository {
     await appPreferences.setFullName(authResponse.user.name);
     loadAuth();
   }
+
+  @override
+  Future editProfile() {
+    // TODO: implement editProfile
+    throw UnimplementedError();
+  }
+
+  @override
+  Future getProfile() async {
+    return await dataSource.getProfile();
+  }
 }
