@@ -1,7 +1,4 @@
-import 'package:applycamp/data/source/search_data_source.dart';
-import 'package:applycamp/domain/repository/student_auth_repository.dart';
-import 'package:applycamp/domain/repository/search_repository.dart';
-import 'package:applycamp/ui/auth/auth_page.dart';
+import 'package:applycamp/domain/repository/agent_auth_repository.dart';
 import 'package:applycamp/ui/root.dart';
 import 'package:applycamp/ui/theme.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +7,7 @@ import 'di/service_locator.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initServices();
-  instance<StudentAuthRepository>().loadAuth();
+  instance<AgentAuthRepository>().loadAllAuthInfos();
   runApp(const MyApp());
 }
 

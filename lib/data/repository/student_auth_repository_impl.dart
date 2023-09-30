@@ -3,6 +3,7 @@ import 'package:applycamp/data/model/student_model/student_auth_response.dart';
 import 'package:applycamp/data/source/student_auth_data_source.dart';
 import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/domain/repository/student_auth_repository.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StudentAuthRepositoryImpl implements StudentAuthRepository {
@@ -38,23 +39,41 @@ class StudentAuthRepositoryImpl implements StudentAuthRepository {
       await dataSource.sendForgotPassEmail(email);
 
   @override
-  Future logout() async {
+  Future logout(String key) async {
+    userKeyNotifier.value = null;
     accessTokenNotifier.value = null;
     userFullNameNotifier.value = null;
-    await appPreferences.clear();
+    await appPreferences.clearUserAuthInfo(key);
+    loadAllAuthInfos();
   }
 
   Future persistAuth(StudentAuthResponse authResponse) async {
-    await appPreferences.saveAccessToken(authResponse.loginInfo.accessToken);
-    await appPreferences.setFullName(authResponse.student.fullName);
-    loadAuth();
+    final id = authResponse.student.id.toString();
+    final infos = [
+      authResponse.student.name,
+      authResponse.loginInfo.accessToken
+    ];
+    await appPreferences.setAuthInfos(id, infos);
+
+    loadAuthInfo(id);
+    loadAllAuthInfos();
   }
 
   @override
-  Future loadAuth() async {
-    final accessToken = await appPreferences.loadAccessToken();
-    final fullName = await appPreferences.getFullName();
-    accessTokenNotifier.value = accessToken;
-    userFullNameNotifier.value = fullName;
+  Future loadAuthInfo(String key) async {
+    final authInfos = await appPreferences.getAuthInfos(key);
+    // first one is name and second one is accessToken - key / stringlist
+    userFullNameNotifier.value = key;
+    userFullNameNotifier.value = authInfos[0];
+    accessTokenNotifier.value = authInfos[1];
+  }
+
+  @override
+  Future loadAllAuthInfos() async {
+    final loggedInStudents = await appPreferences.getAllAuthInfos();
+    loggedInUsersNotifier.value = loggedInStudents;
+    userKeyNotifier.value = loggedInStudents[0].key;
+    userFullNameNotifier.value = loggedInStudents[0].name;
+    accessTokenNotifier.value = loggedInStudents[0].accessToken;
   }
 }

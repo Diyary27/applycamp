@@ -221,18 +221,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                 color: Colors.red,
                               ),
                               SizedBox(width: 10),
-                              GestureDetector(
-                                onTap: () {
-                                  instance<StudentAuthRepository>().logout();
-                                },
-                                child: Text(
-                                  'Log Out',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleMedium!
-                                      .copyWith(color: Colors.red),
-                                ),
-                              ),
+                              ValueListenableBuilder(
+                                  valueListenable: userKeyNotifier,
+                                  builder: (context, key, child) {
+                                    return GestureDetector(
+                                      onTap: () {
+                                        instance<StudentAuthRepository>()
+                                            .logout(key);
+                                      },
+                                      child: Text(
+                                        'Log Out',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .copyWith(color: Colors.red),
+                                      ),
+                                    );
+                                  }),
                             ],
                           ),
                           SizedBox(height: 28),

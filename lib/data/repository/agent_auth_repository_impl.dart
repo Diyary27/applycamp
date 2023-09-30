@@ -11,26 +11,11 @@ class AgentAuthRepositoryImpl implements AgentAuthRepository {
   AgentAuthRepositoryImpl(this.dataSource, this.appPreferences);
 
   @override
-  Future loadAuth() async {
-    final accessToken = await appPreferences.loadAccessToken();
-    final fullName = await appPreferences.getFullName();
-    accessTokenNotifier.value = accessToken;
-    userFullNameNotifier.value = fullName;
-  }
-
-  @override
   Future login(String email, String password) async {
     final authResponse = await dataSource.login(email, password);
 
     await persistAuth(authResponse);
     return authResponse;
-  }
-
-  @override
-  Future logout() async {
-    accessTokenNotifier.value = null;
-    userFullNameNotifier.value = null;
-    await appPreferences.clear();
   }
 
   @override
@@ -52,15 +37,45 @@ class AgentAuthRepositoryImpl implements AgentAuthRepository {
   }
 
   @override
-  Future sendForgotPassEmail(String email) {
-    // TODO: implement sendForgotPassEmail
-    throw UnimplementedError();
+  Future logout(String key) async {
+    userKeyNotifier.value = null;
+    accessTokenNotifier.value = null;
+    userFullNameNotifier.value = null;
+    await appPreferences.clearUserAuthInfo(key);
+    loadAllAuthInfos();
   }
 
   Future persistAuth(UserAuthResponse authResponse) async {
-    await appPreferences.saveAccessToken(authResponse.loginInfo.accessToken);
-    await appPreferences.setFullName(authResponse.user.name);
-    loadAuth();
+    final id = authResponse.user.id.toString();
+    final infos = [authResponse.user.name, authResponse.loginInfo.accessToken];
+    await appPreferences.setAuthInfos(id, infos);
+
+    loadAuthInfo(id);
+    loadAllAuthInfos();
+  }
+
+  @override
+  Future loadAuthInfo(String key) async {
+    final authInfos = await appPreferences.getAuthInfos(key);
+    // first one is name and second one is accessToken - key / stringlist
+    userFullNameNotifier.value = key;
+    userFullNameNotifier.value = authInfos[0];
+    accessTokenNotifier.value = authInfos[1];
+  }
+
+  @override
+  Future loadAllAuthInfos() async {
+    final loggedInUsers = await appPreferences.getAllAuthInfos();
+    loggedInUsersNotifier.value = loggedInUsers;
+    userKeyNotifier.value = loggedInUsers[0].key;
+    userFullNameNotifier.value = loggedInUsers[0].name;
+    accessTokenNotifier.value = loggedInUsers[0].accessToken;
+  }
+
+  @override
+  Future sendForgotPassEmail(String email) {
+    // TODO: implement sendForgotPassEmail
+    throw UnimplementedError();
   }
 
   @override

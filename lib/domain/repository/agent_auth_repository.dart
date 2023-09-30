@@ -7,8 +7,9 @@ abstract class AgentAuthRepository {
       required String phone});
   Future login(String email, String password);
   Future sendForgotPassEmail(String email);
-  Future logout();
-  Future loadAuth();
+  Future logout(String key);
+  Future loadAllAuthInfos();
+  Future loadAuthInfo(String key);
   Future getProfile();
   Future editProfile();
 }

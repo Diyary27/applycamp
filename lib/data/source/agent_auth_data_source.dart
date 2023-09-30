@@ -67,7 +67,7 @@ class AgentAuthDataSourceImpl implements AgentAuthDataSource {
   Future getProfile() async {
     final response = await dioConsumer.get(PortalRemoteConstants.userProfile);
 
-    final userProfile = User.fromJson(response.data);
+    final userProfile = User.fromJson(response.data['user']);
 
     return userProfile;
   }

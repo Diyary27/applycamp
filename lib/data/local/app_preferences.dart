@@ -1,30 +1,59 @@
+import 'package:applycamp/domain/entity/auth_data.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppPreferences {
   final SharedPreferences _sharedPreferences;
 
-  static const String fullNameKey = "fullName";
-  static const String accessTokenKey = "accessToken";
-
   AppPreferences(this._sharedPreferences);
 
-  Future setFullName(String fullName) async {
-    return _sharedPreferences.setString(fullNameKey, fullName);
+  // Future setFullName(
+  //     {required String fullNameKey, required String fullName}) async {
+  //   return _sharedPreferences.setString(fullNameKey, fullName);
+  // }
+
+  // Future getFullName(fullNameKey) async {
+  //   return _sharedPreferences.getString(fullNameKey) ?? null;
+  // }
+
+  // Future saveAccessToken(
+  //     {required String accessTokenKey, required String accessToken}) async {
+  //   return _sharedPreferences.setString(accessTokenKey, accessToken);
+  // }
+
+  // Future loadAccessToken(accessTokenKey) async {
+  //   return _sharedPreferences.getString(accessTokenKey) ?? null;
+  // }
+
+  Future clearUserAuthInfo(String key) async {
+    return _sharedPreferences.remove(key);
   }
 
-  Future getFullName() async {
-    return _sharedPreferences.getString(fullNameKey) ?? null;
+  Future setAuthInfos(String id, List<String> infos) async {
+    final keyId = 'auth_' + id.toString();
+    return _sharedPreferences.setStringList(keyId, infos);
   }
 
-  Future saveAccessToken(String accessToken) async {
-    return _sharedPreferences.setString(accessTokenKey, accessToken);
+  Future getAuthInfos(String key) async {
+    // in the list first one is name and second one is accessToken
+    // we have a model like this "auth_id" -> [[0]name, [1]accessToken]
+    final authInfos = await _sharedPreferences.getStringList(key);
+
+    return authInfos;
   }
 
-  Future loadAccessToken() async {
-    return _sharedPreferences.getString(accessTokenKey) ?? null;
-  }
+  Future<List<AuthData>> getAllAuthInfos() async {
+    final authKeys = await _sharedPreferences
+        .getKeys()
+        .where((element) => element.contains('auth'));
+    final List<AuthData> authData = [];
+    authKeys.forEach((key) {
+      authData.add(AuthData(
+          key: key,
+          name: _sharedPreferences.getStringList(key)?[0],
+          accessToken: _sharedPreferences.getStringList(key)?[1]));
+    });
 
-  Future clear() async {
-    return _sharedPreferences.clear();
+    return authData;
   }
 }

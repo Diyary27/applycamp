@@ -7,6 +7,7 @@ import 'package:applycamp/data/repository/search_repository_impl.dart';
 import 'package:applycamp/data/source/agent_auth_data_source.dart';
 import 'package:applycamp/data/source/student_auth_data_source.dart';
 import 'package:applycamp/data/source/search_data_source.dart';
+import 'package:applycamp/domain/entity/auth_data.dart';
 import 'package:applycamp/domain/repository/agent_auth_repository.dart';
 import 'package:applycamp/domain/repository/student_auth_repository.dart';
 import 'package:applycamp/domain/repository/search_repository.dart';
@@ -18,8 +19,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 final instance = GetIt.instance;
 
 // an instance for all parts that need auth check
+ValueNotifier userKeyNotifier = ValueNotifier(null);
 ValueNotifier accessTokenNotifier = ValueNotifier(null);
 ValueNotifier userFullNameNotifier = ValueNotifier(null);
+ValueNotifier<List<AuthData>> loggedInUsersNotifier = ValueNotifier([]);
 
 Future<void> initServices() async {
   // dio instances

@@ -9,3 +9,7 @@ class UserProfilLoaded extends UserProfileState {
 
   UserProfilLoaded(this.user);
 }
+
+class UserProfileUpdateSuccess extends UserProfileState {}
+
+class UserProfileError extends UserProfileState {}
