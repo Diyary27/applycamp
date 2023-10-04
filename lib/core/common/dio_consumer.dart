@@ -33,8 +33,9 @@ class PortalDioConsumer implements ApiConsumer {
 
   @override
   Future put(String path,
-      {Map<String, dynamic>? body, Map<String, dynamic>? queryParameters}) {
-    // TODO: implement put
-    throw UnimplementedError();
+      {Map<String, dynamic>? body,
+      Map<String, dynamic>? queryParameters}) async {
+    final response = await httpClient.put(path, data: body);
+    return response;
   }
 }

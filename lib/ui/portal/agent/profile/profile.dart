@@ -18,12 +18,26 @@ class PortalProfilePage extends StatelessWidget {
         title: Text('My Profile'),
       ),
       drawer: AgentDrawer(),
-      body: BlocProvider(
-        create: (context) => UserProfileBloc()..add(UserProfileStarted()),
+      body: BlocProvider<UserProfileBloc>(
+        create: (context) {
+          final bloc = UserProfileBloc();
+          bloc.add(UserProfileStarted());
+          bloc.stream.listen(
+            (state) {
+              if (state is UserProfileUpdateSuccess) {
+                bloc.add(UserProfileStarted());
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Profile Updated Successfully')),
+                );
+              }
+            },
+          );
+          return bloc;
+        },
         child: BlocBuilder<UserProfileBloc, UserProfileState>(
           builder: (context, state) {
             if (state is UserProfileInitial) {
-              return Center();
+              return Center(child: CircularProgressIndicator());
             } else if (state is UserProfilLoaded) {
               _nameController.text = state.user.name;
               _organizationController.text = state.user.organization;
@@ -97,79 +111,6 @@ class PortalProfilePage extends StatelessWidget {
                                     phone: _phoneController.text,
                                     password: _passwordController.text));
                           },
-                          child: Text('Update'),
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStatePropertyAll(Colors.green),
-                            minimumSize: MaterialStatePropertyAll(
-                                Size(MediaQuery.of(context).size.width, 50)),
-                            shape: MaterialStatePropertyAll(
-                                RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8))),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // avatar
-                      Center(
-                        child: CircleAvatar(
-                          minRadius: 55,
-                          maxRadius: 55,
-                          backgroundImage: NetworkImage(
-                            'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 16),
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: Text('Upload Photo'),
-                        ),
-                      ),
-                      SizedBox(height: 24),
-                      TextField(
-                        decoration: InputDecoration(
-                          label: Text('Name'),
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      SizedBox(height: 16),
-                      TextField(
-                        decoration: InputDecoration(
-                          label: Text('Organization'),
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      SizedBox(height: 16),
-                      TextField(
-                        decoration: InputDecoration(
-                          label: Text('Phone'),
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      SizedBox(height: 16),
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          label: Text('Password'),
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                      SizedBox(height: 16),
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: () {},
                           child: Text('Update'),
                           style: ButtonStyle(
                             backgroundColor:

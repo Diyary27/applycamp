@@ -22,16 +22,18 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    accessTokenNotifier.addListener(authChangeNotifierListener);
+
+    loggedInUserNotifier.addListener(authChangeNotifierListener);
   }
 
   void authChangeNotifierListener() {
-    profileBloc?.add(ProfileAuthChangedInfo(accessTokenNotifier.value));
+    profileBloc
+        ?.add(ProfileAuthChangedInfo(loggedInUserNotifier.value.accessToken));
   }
 
   @override
   void dispose() {
-    accessTokenNotifier.removeListener(authChangeNotifierListener);
+    loggedInUserNotifier.removeListener(authChangeNotifierListener);
     profileBloc?.close();
     stateStreamSubscription?.cancel();
     super.dispose();
@@ -45,7 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
       body: BlocProvider<ProfileBloc>(
         create: (context) {
           final bloc = ProfileBloc();
-          bloc.add(ProfileStarted(accessTokenNotifier.value));
+          bloc.add(ProfileStarted(loggedInUserNotifier.value.accessToken));
           stateStreamSubscription = bloc.stream.listen((state) {
             if (state is ProfileAuthRequired) {
               Navigator.of(context, rootNavigator: true)
@@ -94,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                userFullNameNotifier.value,
+                                loggedInUserNotifier.value.name!,
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium!
@@ -222,12 +224,12 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               SizedBox(width: 10),
                               ValueListenableBuilder(
-                                  valueListenable: userKeyNotifier,
-                                  builder: (context, key, child) {
+                                  valueListenable: loggedInUserNotifier,
+                                  builder: (context, value, child) {
                                     return GestureDetector(
                                       onTap: () {
                                         instance<StudentAuthRepository>()
-                                            .logout(key);
+                                            .logout(value.key!);
                                       },
                                       child: Text(
                                         'Log Out',

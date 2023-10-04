@@ -18,7 +18,7 @@ class ProfileImage {
   late final String realPath;
   late final String mime;
   late final String extension;
-  late final Null note;
+  late final String? note;
   late final String createdAt;
   late final String updatedAt;
 

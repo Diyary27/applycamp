@@ -1,4 +1,5 @@
 import 'package:applycamp/domain/repository/agent_auth_repository.dart';
+import 'package:applycamp/domain/repository/student_auth_repository.dart';
 import 'package:applycamp/ui/root.dart';
 import 'package:applycamp/ui/theme.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initServices();
   instance<AgentAuthRepository>().loadAllAuthInfos();
+  instance<StudentAuthRepository>().loadAllAuthInfos();
   runApp(const MyApp());
 }
 

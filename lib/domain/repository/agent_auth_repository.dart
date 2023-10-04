@@ -11,5 +11,6 @@ abstract class AgentAuthRepository {
   Future loadAllAuthInfos();
   Future loadAuthInfo(String key);
   Future getProfile();
-  Future editProfile();
+  Future editProfile(String name, String organization, String phone,
+      String? password, Map? profileImage);
 }

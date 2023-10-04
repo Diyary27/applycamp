@@ -25,7 +25,7 @@ class _AppDrawerState extends State<AppDrawer> {
       child:
           // profile container
           ValueListenableBuilder(
-              valueListenable: accessTokenNotifier,
+              valueListenable: loggedInUserNotifier,
               builder: (context, value, child) {
                 return Column(
                   children: [
@@ -43,7 +43,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                   Container(
                                     width: 80,
                                     height: 80,
-                                    child: value != null
+                                    child: value.key != null
                                         ? CircleAvatar(
                                             minRadius: 40,
                                             maxRadius: 40,
@@ -60,8 +60,8 @@ class _AppDrawerState extends State<AppDrawer> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Text(
-                                        value != null
-                                            ? userFullNameNotifier.value
+                                        value.key != null
+                                            ? value.name!
                                             : 'Guest',
                                         style: Theme.of(context)
                                             .textTheme
@@ -69,7 +69,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                             .copyWith(color: Colors.white),
                                       ),
                                       SizedBox(height: 4),
-                                      value != null
+                                      value.key != null
                                           ? GestureDetector(
                                               onTap: () {
                                                 Navigator.of(context).pop();
@@ -112,12 +112,12 @@ class _AppDrawerState extends State<AppDrawer> {
                             // Saved Accounts
                             // all added Agent accounts
                             ValueListenableBuilder(
-                              valueListenable: loggedInUsersNotifier,
-                              builder: (context, value, child) {
+                              valueListenable: AllloggedInUsersNotifier,
+                              builder: (context, accounts, child) {
                                 return ExpansionTile(
                                   title: Text('Accounts'),
                                   children: [
-                                    for (var account in value)
+                                    for (var account in accounts)
                                       TextButton(
                                           onPressed: () {
                                             // here wether it is agent or student repository both will do a thing
@@ -152,7 +152,7 @@ class _AppDrawerState extends State<AppDrawer> {
                               ],
                             ),
                             // for entering portal
-                            if (value != null)
+                            if (value.key != null)
                               GestureDetector(
                                 onTap: () {
                                   Navigator.of(context, rootNavigator: true)

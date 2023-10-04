@@ -18,9 +18,18 @@ class UserProfileBloc extends Bloc<UserProfileEvent, UserProfileState> {
           emit(UserProfilLoaded(userProfile));
         }
         if (event is UserProfileUpdateClicked) {
-          // final response = await instance<AgentAuthRepository>().editProfile();
+          Map profileImage = {};
+          final response = await instance<AgentAuthRepository>().editProfile(
+            event.name,
+            event.organization,
+            event.phone,
+            event.password,
+            profileImage,
+          );
 
-          // emit(UserProfileUpdateSuccess());
+          response == true
+              ? emit(UserProfileUpdateSuccess())
+              : UserProfileError();
         }
       } catch (e) {
         emit(UserProfileError());

@@ -25,19 +25,29 @@ class AppPreferences {
   //   return _sharedPreferences.getString(accessTokenKey) ?? null;
   // }
 
-  Future clearUserAuthInfo(String key) async {
-    return _sharedPreferences.remove(key);
-  }
-
   Future setAuthInfos(String id, List<String> infos) async {
     final keyId = 'auth_' + id.toString();
     return _sharedPreferences.setStringList(keyId, infos);
   }
 
+  // موقت
+  Future setLoginInfo(String id, List<String> infos) async {
+    final keyId = 'login_' + id.toString();
+    return _sharedPreferences.setStringList(keyId, infos);
+  }
+
+  Future getLoginInfo(String id) async {
+    final keyId = 'login_' + id.toString();
+
+    final loginInfo = await _sharedPreferences.getStringList(keyId);
+
+    return loginInfo;
+  }
+
   Future getAuthInfos(String key) async {
     // in the list first one is name and second one is accessToken
     // we have a model like this "auth_id" -> [[0]name, [1]accessToken]
-    final authInfos = await _sharedPreferences.getStringList(key);
+    final List? authInfos = await _sharedPreferences.getStringList(key);
 
     return authInfos;
   }
@@ -55,5 +65,9 @@ class AppPreferences {
     });
 
     return authData;
+  }
+
+  Future clearUserAuthInfo(String key) async {
+    return _sharedPreferences.remove(key);
   }
 }

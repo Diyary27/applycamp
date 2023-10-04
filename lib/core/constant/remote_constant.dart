@@ -11,6 +11,10 @@ class PortalRemoteConstants {
   static const String sendForgotPasswordEmail =
       "/api/v1/student-panel/send-forgot-password-email";
   static const String userProfile = "/api/v1/auth/me";
+  static const String editProfile = "/api/v1/user/edit-profile";
+
+  // subUsers
+  static const String getAllSubUsers = "/api/v1/user/sub-users";
 
   // Search Programs
   static const String getProgramSearchFields =

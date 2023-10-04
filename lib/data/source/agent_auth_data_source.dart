@@ -13,7 +13,8 @@ abstract class AgentAuthDataSource {
   Future login(String email, String password);
   Future sendForgotPassEmail(String email);
   Future getProfile();
-  Future editProfile();
+  Future editProfile(String name, String organization, String phone,
+      String? password, Map? profileImage);
 }
 
 class AgentAuthDataSourceImpl implements AgentAuthDataSource {
@@ -58,9 +59,24 @@ class AgentAuthDataSourceImpl implements AgentAuthDataSource {
   }
 
   @override
-  Future editProfile() {
-    // TODO: implement editProfile
-    throw UnimplementedError();
+  Future editProfile(String name, String organization, String phone,
+      String? password, Map? profileImage) async {
+    final response = await dioConsumer.put(
+      PortalRemoteConstants.editProfile,
+      body: {
+        "password": password,
+        "name": name,
+        "phone": phone,
+        "organization": organization,
+        "profileImage": {
+          "id": 3399,
+          "uuid": "e582cd5f-c129-4b20-9335-ce355d2617dc"
+        }
+      },
+    );
+    final bool updated = response.data['updated'];
+
+    return updated;
   }
 
   @override

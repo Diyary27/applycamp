@@ -19,10 +19,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 final instance = GetIt.instance;
 
 // an instance for all parts that need auth check
-ValueNotifier userKeyNotifier = ValueNotifier(null);
-ValueNotifier accessTokenNotifier = ValueNotifier(null);
-ValueNotifier userFullNameNotifier = ValueNotifier(null);
-ValueNotifier<List<AuthData>> loggedInUsersNotifier = ValueNotifier([]);
+ValueNotifier<AuthData> loggedInUserNotifier = ValueNotifier(AuthData());
+ValueNotifier<List<AuthData>> AllloggedInUsersNotifier = ValueNotifier([]);
 
 Future<void> initServices() async {
   // dio instances
