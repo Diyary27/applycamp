@@ -1,10 +1,9 @@
-import 'package:applycamp/data/model/user_model/profile_image.dart';
+import 'package:applycamp/data/model/program_search_models/abilities.dart';
 import 'package:applycamp/data/model/user_model/role.dart';
-import 'package:applycamp/data/model/user_model/status.dart';
 import 'package:applycamp/data/model/user_model/user_can.dart';
 
-class User {
-  User({
+class Maker {
+  Maker({
     required this.id,
     required this.roleId,
     required this.isSubUser,
@@ -19,13 +18,12 @@ class User {
     required this.canAddSubUsers,
     required this.subUserLevel,
     required this.isSelfRegisterResponsible,
+    required this.abilities,
     required this.can,
     required this.createdAt,
     required this.updatedAt,
     required this.role,
-    this.profileImage,
-    required this.parent,
-    required this.status,
+    required this.profileImage,
   });
   late final int id;
   late final int roleId;
@@ -41,15 +39,14 @@ class User {
   late final bool canAddSubUsers;
   late final int subUserLevel;
   late final bool isSelfRegisterResponsible;
-  late final UserCan can;
+  late final Abilities abilities;
+  late final Can can;
   late final String createdAt;
   late final String updatedAt;
   late final Role role;
-  late final ProfileImage? profileImage;
-  late final List<dynamic> parent;
-  late final Status status;
+  late final List<dynamic> profileImage;
 
-  User.fromJson(Map<String, dynamic> json) {
+  Maker.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     roleId = json['roleId'];
     isSubUser = json['isSubUser'];
@@ -64,15 +61,12 @@ class User {
     canAddSubUsers = json['canAddSubUsers'];
     subUserLevel = json['subUserLevel'];
     isSelfRegisterResponsible = json['isSelfRegisterResponsible'];
-    can = UserCan.fromJson(json['can']);
+    abilities = Abilities.fromJson(json['abilities']);
+    can = Can.fromJson(json['can']);
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     role = Role.fromJson(json['role']);
-    profileImage = json['profileImage'].runtimeType != List
-        ? ProfileImage.fromJson(json['profileImage'])
-        : null;
-    parent = List.castFrom<dynamic, dynamic>(json['parent']);
-    status = Status.fromJson(json['status']);
+    profileImage = List.castFrom<dynamic, dynamic>(json['profileImage']);
   }
 
   Map<String, dynamic> toJson() {
@@ -91,13 +85,12 @@ class User {
     _data['canAddSubUsers'] = canAddSubUsers;
     _data['subUserLevel'] = subUserLevel;
     _data['isSelfRegisterResponsible'] = isSelfRegisterResponsible;
+    _data['abilities'] = abilities.toJson();
     _data['can'] = can.toJson();
     _data['createdAt'] = createdAt;
     _data['updatedAt'] = updatedAt;
     _data['role'] = role.toJson();
-    _data['profileImage'] = profileImage?.toJson();
-    _data['parent'] = parent;
-    _data['status'] = status.toJson();
+    _data['profileImage'] = profileImage;
     return _data;
   }
 }

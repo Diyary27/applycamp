@@ -4,4 +4,14 @@ abstract class SubUsersEvent {}
 
 class SubUserStarted extends SubUsersEvent {}
 
-class SubUsersAddClicked extends SubUsersEvent {}
+class SubUsersAddClicked extends SubUsersEvent {
+  final SubUserEntity subUserEntity;
+
+  SubUsersAddClicked(this.subUserEntity);
+}
+
+class SubUsersUpdateClicked extends SubUsersEvent {
+  final SubUserEntity subUserEntity;
+
+  SubUsersUpdateClicked(this.subUserEntity);
+}

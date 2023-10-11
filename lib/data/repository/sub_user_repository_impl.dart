@@ -1,11 +1,14 @@
+import 'package:applycamp/data/source/sub_user_data_source.dart';
 import 'package:applycamp/domain/entity/sub_user.dart';
 import 'package:applycamp/domain/repository/sub_user_repository.dart';
 
 class SubUserRepositoryImpl implements SubUserRepository {
+  final SubUserDataSource dataSource;
+
+  SubUserRepositoryImpl(this.dataSource);
   @override
-  Future createSubUser(SubUserEntity subUser) {
-    // TODO: implement createSubUser
-    throw UnimplementedError();
+  Future createSubUser(SubUserEntity subUserEntity) async {
+    return await dataSource.createSubUser(subUserEntity);
   }
 
   @override
@@ -16,8 +19,7 @@ class SubUserRepositoryImpl implements SubUserRepository {
 
   @override
   Future getAllSubUsers() async {
-    // TODO: implement getAllSubUsers
-    throw UnimplementedError();
+    return await dataSource.getAllSubUsers();
   }
 
   @override

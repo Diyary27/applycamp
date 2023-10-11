@@ -26,7 +26,7 @@ class ProgramSearchFields {
   late final List<StudyLanguage> studyLanguages;
   late final List<StudyField> studyFields;
   late final List<Specialities> specialities;
-  late final List<Degrees> degrees;
+  late final List<Degree> degrees;
   late final List<Country> countries;
   late final List<City> cities;
   late final List<TuitionUnits> tuitionUnits;
@@ -48,7 +48,7 @@ class ProgramSearchFields {
         .map((e) => Specialities.fromJson(e))
         .toList();
     degrees =
-        List.from(json['degrees']).map((e) => Degrees.fromJson(e)).toList();
+        List.from(json['degrees']).map((e) => Degree.fromJson(e)).toList();
     countries =
         List.from(json['countries']).map((e) => Country.fromJson(e)).toList();
     cities = List.from(json['cities']).map((e) => City.fromJson(e)).toList();

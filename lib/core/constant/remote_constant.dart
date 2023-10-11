@@ -15,6 +15,16 @@ class PortalRemoteConstants {
 
   // subUsers
   static const String getAllSubUsers = "/api/v1/user/sub-users";
+  static const String createSubUser = "/api/v1/user/sub-user/create?";
+
+  // students
+  static const String getLoggedInUserStudents = "/api/v1/user/my-students";
+  static const String getFieldsToModifyStudent =
+      "/api/v1/student/get-fields-to-modify";
+  static const String getStudentDocumentTypes =
+      "/api/v1/student/document-types";
+
+  // applications
 
   // Search Programs
   static const String getProgramSearchFields =

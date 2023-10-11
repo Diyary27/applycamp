@@ -8,8 +8,13 @@ class PortalDioConsumer implements ApiConsumer {
   PortalDioConsumer(this.httpClient);
 
   @override
-  Future delete(String path, {Map<String, dynamic>? queryParameters}) {
-    throw UnimplementedError();
+  Future delete(String path, {Map<String, dynamic>? queryParameters}) async {
+    try {
+      final response =
+          await httpClient.delete(path, queryParameters: queryParameters);
+    } catch (e) {
+      debugPrint(e.toString());
+    }
   }
 
   @override
@@ -27,7 +32,11 @@ class PortalDioConsumer implements ApiConsumer {
   Future post(String path,
       {Map<String, dynamic>? body,
       Map<String, dynamic>? queryParameters}) async {
-    final response = await httpClient.post(path, data: body);
+    final response = await httpClient.post(
+      path,
+      data: body,
+      options: Options(headers: {"Content-Type": "application/json"}),
+    );
     return response;
   }
 
@@ -35,7 +44,11 @@ class PortalDioConsumer implements ApiConsumer {
   Future put(String path,
       {Map<String, dynamic>? body,
       Map<String, dynamic>? queryParameters}) async {
-    final response = await httpClient.put(path, data: body);
+    final response = await httpClient.put(
+      path,
+      data: body,
+      options: Options(headers: {"Content-Type": "application/json"}),
+    );
     return response;
   }
 }

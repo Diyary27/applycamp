@@ -2,15 +2,24 @@ import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/common/dio_instances.dart';
 import 'package:applycamp/data/local/app_preferences.dart';
 import 'package:applycamp/data/repository/agent_auth_repository_impl.dart';
+import 'package:applycamp/data/repository/application_repository_impl.dart';
 import 'package:applycamp/data/repository/student_auth_repository_impl.dart';
 import 'package:applycamp/data/repository/search_repository_impl.dart';
+import 'package:applycamp/data/repository/student_repository_impl.dart';
+import 'package:applycamp/data/repository/sub_user_repository_impl.dart';
 import 'package:applycamp/data/source/agent_auth_data_source.dart';
+import 'package:applycamp/data/source/application_data_source.dart';
 import 'package:applycamp/data/source/student_auth_data_source.dart';
 import 'package:applycamp/data/source/search_data_source.dart';
+import 'package:applycamp/data/source/student_data_source.dart';
+import 'package:applycamp/data/source/sub_user_data_source.dart';
 import 'package:applycamp/domain/entity/auth_data.dart';
 import 'package:applycamp/domain/repository/agent_auth_repository.dart';
+import 'package:applycamp/domain/repository/application_repository.dart';
 import 'package:applycamp/domain/repository/student_auth_repository.dart';
 import 'package:applycamp/domain/repository/search_repository.dart';
+import 'package:applycamp/domain/repository/student_repository.dart';
+import 'package:applycamp/domain/repository/sub_user_repository.dart';
 import 'package:applycamp/ui/auth/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -47,6 +56,12 @@ Future<void> initServices() async {
       () => AgentAuthRepositoryImpl(instance(), instance()));
   instance.registerLazySingleton<SearchRepository>(
       () => SearchRepositoryImpl(instance()));
+  instance.registerLazySingleton<SubUserRepository>(
+      () => SubUserRepositoryImpl(instance()));
+  instance.registerLazySingleton<StudentRepository>(
+      () => StudentRepositoryImpl(instance()));
+  instance.registerLazySingleton<ApplicationRepository>(
+      () => ApplicationRepositoryImpl(instance()));
 
   // data sources
   instance.registerLazySingleton<StudentAuthDataSource>(
@@ -55,6 +70,12 @@ Future<void> initServices() async {
       () => AgentAuthDataSourceImpl(instance()));
   instance.registerLazySingleton<SearchDataSource>(
       () => SearchDataSourceImpl(instance()));
+  instance.registerLazySingleton<SubUserDataSource>(
+      () => SubUserDataSourceImpl(instance()));
+  instance.registerLazySingleton<StudentDataSource>(
+      () => StudentDataSourceImpl(instance()));
+  instance.registerLazySingleton<ApplicationDataSource>(
+      () => ApplicationDataSourceImpl(instance()));
 
   // blocs
   instance.registerLazySingleton<AuthBloc>(() => AuthBloc(instance()));

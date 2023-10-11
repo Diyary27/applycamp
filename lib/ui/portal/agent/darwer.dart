@@ -1,5 +1,8 @@
+import 'package:applycamp/ui/portal/agent/applications/applications_page.dart';
 import 'package:applycamp/ui/portal/agent/dashboard.dart';
 import 'package:applycamp/ui/portal/agent/profile/profile.dart';
+import 'package:applycamp/ui/portal/agent/students/students_page.dart';
+import 'package:applycamp/ui/portal/agent/sub_users/sub_users_page.dart';
 import 'package:applycamp/ui/root.dart';
 import 'package:applycamp/ui/search/search_page.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +57,10 @@ class AgentDrawer extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => SubUsersPage()));
+                },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -82,7 +88,10 @@ class AgentDrawer extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => StudentsPage()));
+                },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -96,7 +105,10 @@ class AgentDrawer extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => ApplicationsPage()));
+                },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [

@@ -9,12 +9,25 @@ class SubUserEntity {
     required this.commissionPercentage,
     required this.canAddSubUsers,
   });
-  late final String name;
-  late final String password;
-  late final String email;
-  late final bool canViewCommissions;
-  late final String organization;
-  late final String phone;
-  late final int commissionPercentage;
-  late final bool canAddSubUsers;
+  final String name;
+  final String password;
+  final String email;
+  final String organization;
+  final String phone;
+  final int commissionPercentage;
+  final bool canViewCommissions;
+  final bool canAddSubUsers;
+
+  Map<String, dynamic> toJson() {
+    final _data = <String, dynamic>{};
+    _data['name'] = name;
+    _data['password'] = password;
+    _data['email'] = email;
+    _data['canViewCommissions'] = canViewCommissions;
+    _data['organization'] = organization;
+    _data['phone'] = phone;
+    _data['commissionPercentage'] = commissionPercentage;
+    _data['canAddSubUsers'] = canAddSubUsers;
+    return _data;
+  }
 }

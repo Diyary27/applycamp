@@ -1,6 +1,6 @@
 import 'package:applycamp/data/model/program_search_models/abilities.dart';
 import 'package:applycamp/data/model/user_model/role.dart';
-import 'package:applycamp/data/model/user_model/user_abilities.dart';
+import 'package:applycamp/data/model/user_model/user_can.dart';
 
 class Parent {
   Parent({

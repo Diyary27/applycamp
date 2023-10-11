@@ -1,4 +1,10 @@
-import 'package:applycamp/data/model/student_model/student_abilities_model.dart';
+import 'package:applycamp/data/model/program_search_models/degrees.dart';
+import 'package:applycamp/data/model/program_search_models/image.dart';
+import 'package:applycamp/data/model/student_model/high_school_country.dart';
+import 'package:applycamp/data/model/student_model/nationality.dart';
+import 'package:applycamp/data/model/student_model/residence_country.dart';
+import 'package:applycamp/data/model/student_model/student_can.dart';
+import 'package:applycamp/data/model/user_model/status.dart';
 
 class Student {
   Student({
@@ -60,7 +66,7 @@ class Student {
   late final String? passportNumber;
   late final passportDateOfIssue;
   late final passportDateOfExpiry;
-  late final phone;
+  late final String? phone;
   late final dateOfBirth;
   late final String gender;
   late final String martialStatus;
@@ -68,8 +74,8 @@ class Student {
   late final fatherPhone;
   late final String motherName;
   late final highSchool;
-  late final gpa;
-  late final addressAbroad;
+  late final int? gpa;
+  late final String? addressAbroad;
   late final addressTurkey;
   late final tcNumber;
   late final bool hasTcNumber;
@@ -84,13 +90,13 @@ class Student {
   late final StudentCan can;
   late final String createdAt;
   late final String updatedAt;
-  late final List<dynamic> nationality;
-  late final List<dynamic> residenceCountry;
+  late final Nationality? nationality;
+  late final ResidenceCountry? residenceCountry;
   late final List<dynamic> visaCountry;
-  late final List<dynamic> degree;
-  late final List<dynamic> highSchoolCountry;
-  late final List<dynamic> image;
-  late final Map<dynamic, dynamic> status;
+  late final Degree degree;
+  late final HighSchoolCountry? highSchoolCountry;
+  late final Image image;
+  late final Status status;
 
   Student.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -130,15 +136,13 @@ class Student {
     can = StudentCan.fromJson(json['can']);
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
-    nationality = List.castFrom<dynamic, dynamic>(json['nationality']);
-    residenceCountry =
-        List.castFrom<dynamic, dynamic>(json['residenceCountry']);
+    nationality = Nationality.fromJson(json['nationality']);
+    residenceCountry = ResidenceCountry.fromJson(json['residenceCountry']);
     visaCountry = List.castFrom<dynamic, dynamic>(json['visaCountry']);
-    degree = List.castFrom<dynamic, dynamic>(json['degree']);
-    highSchoolCountry =
-        List.castFrom<dynamic, dynamic>(json['highSchoolCountry']);
-    image = List.castFrom<dynamic, dynamic>(json['image']);
-    status = json['status'];
+    degree = Degree.fromJson(json['degree']);
+    highSchoolCountry = HighSchoolCountry.fromJson(json['highSchoolCountry']);
+    image = Image.fromJson(json['image']);
+    status = Status.fromJson(json['status']);
   }
 
   Map<String, dynamic> toJson() {
