@@ -3,8 +3,8 @@ class Can {
     required this.update,
     required this.delete,
   });
-  late final bool update;
-  late final bool delete;
+  late final bool? update;
+  late final bool? delete;
 
   Can.fromJson(Map<String, dynamic> json) {
     update = json['update'];

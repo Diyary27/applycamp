@@ -1,5 +1,6 @@
 import 'package:applycamp/data/model/application_models/academic_year.dart';
 import 'package:applycamp/data/model/application_models/application_abilities.dart';
+import 'package:applycamp/data/model/application_models/application_status.dart';
 import 'package:applycamp/data/model/application_models/confirm_to_download.dart';
 import 'package:applycamp/data/model/application_models/semester.dart';
 import 'package:applycamp/data/model/program_search_models/degrees.dart';
@@ -7,7 +8,6 @@ import 'package:applycamp/data/model/program_search_models/school.dart';
 import 'package:applycamp/data/model/program_search_models/school_programs.dart';
 import 'package:applycamp/data/model/student_model/maker.dart';
 import 'package:applycamp/data/model/student_model/student_model.dart';
-import 'package:applycamp/data/model/user_model/status.dart';
 
 class Application {
   Application({
@@ -62,7 +62,7 @@ class Application {
   late final Student student;
   late final School school;
   late final Degree degree;
-  late final Status status;
+  late final ApplicationStatus status;
   late final SchoolProgram schoolProgram;
   late final List<dynamic> assignedTo;
   late final Maker maker;
@@ -82,7 +82,10 @@ class Application {
     academicYearSlug = json['academicYearSlug'];
     semesterId = json['semesterId'];
     documents = List.castFrom<dynamic, dynamic>(json['documents']);
-    confirmToDownload = ConfirmToDownload.fromJson(json['confirmToDownload']);
+    json['confirmToDownload'] != null
+        ? confirmToDownload =
+            ConfirmToDownload.fromJson(json['confirmToDownload'])
+        : '';
     isProceedToNextStepActive = json['isProceedToNextStepActive'];
     can = ApplicationCan.fromJson(json['can']);
     completedAt = null;
@@ -92,7 +95,7 @@ class Application {
     student = Student.fromJson(json['student']);
     school = School.fromJson(json['school']);
     degree = Degree.fromJson(json['degree']);
-    status = Status.fromJson(json['status']);
+    status = ApplicationStatus.fromJson(json['status']);
     schoolProgram = SchoolProgram.fromJson(json['schoolProgram']);
     assignedTo = List.castFrom<dynamic, dynamic>(json['assignedTo']);
     maker = Maker.fromJson(json['maker']);

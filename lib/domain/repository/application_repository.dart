@@ -1,3 +1,7 @@
 abstract class ApplicationRepository {
-  Future getApplicationsByStudent(int id);
+  Future getMyApplications();
+  Future getMyApplicationsByFilter(
+      {int? studentId, int? schoolId, int? statusId});
+  Future getAnApplication(int id);
+  Future getAllStatus();
 }

@@ -44,7 +44,7 @@ class ProgramDetails extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      schoolProgram.school.title,
+                      schoolProgram.school!.title,
                       style: Theme.of(context)
                           .textTheme
                           .titleSmall!
@@ -59,7 +59,7 @@ class ProgramDetails extends StatelessWidget {
                         borderRadius: BorderRadius.circular(6),
                       ),
                       child: Text(
-                        schoolProgram.school.sector,
+                        schoolProgram.school!.sector,
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall!
@@ -234,8 +234,8 @@ class ProgramDetails extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(12),
-                      child: schoolProgram.school.aboutSchool != null
-                          ? Text(schoolProgram.school.aboutSchool.toString())
+                      child: schoolProgram.school!.aboutSchool != null
+                          ? Text(schoolProgram.school!.aboutSchool.toString())
                           : Center(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,

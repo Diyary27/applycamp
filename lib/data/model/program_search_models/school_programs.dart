@@ -74,7 +74,7 @@ class SchoolProgram {
   late final bool hasArticle;
   late final String createdAt;
   late final String updatedAt;
-  late final School school;
+  late final School? school;
   late final Program program;
   late final TuitionUnit tuitionUnit;
   late final Currency currency;
@@ -100,7 +100,7 @@ class SchoolProgram {
     hasArticle = json['hasArticle'];
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
-    school = School.fromJson(json['school']);
+    school = json['school'] != null ? School.fromJson(json['school']) : null;
     program = Program.fromJson(json['program']);
     tuitionUnit = TuitionUnit.fromJson(json['tuitionUnit']);
     currency = Currency.fromJson(json['currency']);
@@ -128,7 +128,7 @@ class SchoolProgram {
     _data['hasArticle'] = hasArticle;
     _data['createdAt'] = createdAt;
     _data['updatedAt'] = updatedAt;
-    _data['school'] = school.toJson();
+    _data['school'] = school?.toJson();
     _data['program'] = program.toJson();
     _data['tuitionUnit'] = tuitionUnit.toJson();
     _data['currency'] = currency.toJson();

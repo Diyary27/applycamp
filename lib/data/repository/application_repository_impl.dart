@@ -7,7 +7,24 @@ class ApplicationRepositoryImpl implements ApplicationRepository {
   ApplicationRepositoryImpl(this.dataSource);
 
   @override
-  Future getApplicationsByStudent(int id) async {
-    return dataSource.getApplicationsByStudent(id);
+  Future getMyApplications() async {
+    return dataSource.getMyApplications();
+  }
+
+  @override
+  Future getAllStatus() async {
+    return dataSource.getAllStatus();
+  }
+
+  @override
+  Future getMyApplicationsByFilter(
+      {int? studentId, int? schoolId, int? statusId}) async {
+    return dataSource.getMyApplicationsByFilter(
+        studentId: studentId, schoolId: schoolId, statusId: statusId);
+  }
+
+  @override
+  Future getAnApplication(int id) async {
+    return dataSource.getAnApplication(id);
   }
 }

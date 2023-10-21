@@ -59,7 +59,7 @@ class ProgramsListPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    schoolProgram.school.title,
+                                    schoolProgram.school!.title,
                                     style:
                                         Theme.of(context).textTheme.titleSmall,
                                   ),

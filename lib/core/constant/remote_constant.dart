@@ -25,6 +25,13 @@ class PortalRemoteConstants {
       "/api/v1/student/document-types";
 
   // applications
+  static const String getMyApplications = "/api/v1/my-applications";
+  static const String getAllApplicationStatus = "/api/v1/applications/statuses";
+  //// here we will concat the id to it
+  static const String getAnApplication = "/api/v1/application/";
+
+  // programs
+  static const String getPrograms = "/api/v1/programs";
 
   // Search Programs
   static const String getProgramSearchFields =

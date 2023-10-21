@@ -1,6 +1,6 @@
 import 'package:applycamp/data/model/user_model/profile_image.dart';
 import 'package:applycamp/data/model/user_model/role.dart';
-import 'package:applycamp/data/model/user_model/status.dart';
+import 'package:applycamp/data/model/user_model/user_status.dart';
 import 'package:applycamp/data/model/user_model/user_can.dart';
 
 class User {
@@ -47,7 +47,7 @@ class User {
   late final Role role;
   late final ProfileImage? profileImage;
   late final List<dynamic> parent;
-  late final Status status;
+  late final UserStatus status;
 
   User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -72,7 +72,7 @@ class User {
         ? ProfileImage.fromJson(json['profileImage'])
         : null;
     parent = List.castFrom<dynamic, dynamic>(json['parent']);
-    status = Status.fromJson(json['status']);
+    status = UserStatus.fromJson(json['status']);
   }
 
   Map<String, dynamic> toJson() {

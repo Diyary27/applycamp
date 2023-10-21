@@ -4,7 +4,7 @@ import 'package:applycamp/data/model/student_model/high_school_country.dart';
 import 'package:applycamp/data/model/student_model/nationality.dart';
 import 'package:applycamp/data/model/student_model/residence_country.dart';
 import 'package:applycamp/data/model/student_model/student_can.dart';
-import 'package:applycamp/data/model/user_model/status.dart';
+import 'package:applycamp/data/model/user_model/user_status.dart';
 
 class Student {
   Student({
@@ -92,11 +92,11 @@ class Student {
   late final String updatedAt;
   late final Nationality? nationality;
   late final ResidenceCountry? residenceCountry;
-  late final List<dynamic> visaCountry;
-  late final Degree degree;
+  late final List? visaCountry;
+  late final Degree? degree;
   late final HighSchoolCountry? highSchoolCountry;
   late final Image image;
-  late final Status status;
+  late final UserStatus status;
 
   Student.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -136,13 +136,21 @@ class Student {
     can = StudentCan.fromJson(json['can']);
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
-    nationality = Nationality.fromJson(json['nationality']);
-    residenceCountry = ResidenceCountry.fromJson(json['residenceCountry']);
-    visaCountry = List.castFrom<dynamic, dynamic>(json['visaCountry']);
-    degree = Degree.fromJson(json['degree']);
-    highSchoolCountry = HighSchoolCountry.fromJson(json['highSchoolCountry']);
+    nationality = json['nationality'] != null
+        ? Nationality.fromJson(json['nationality'])
+        : null;
+    residenceCountry = json['residenceCountry'] != null
+        ? ResidenceCountry.fromJson(json['residenceCountry'])
+        : null;
+    visaCountry = json['visaCountry'] != null
+        ? List.castFrom<dynamic, dynamic>(json['visaCountry'])
+        : null;
+    degree = json['degree'] != null ? Degree.fromJson(json['degree']) : null;
+    highSchoolCountry = json['highSchoolCountry'] != null
+        ? HighSchoolCountry.fromJson(json['highSchoolCountry'])
+        : null;
     image = Image.fromJson(json['image']);
-    status = Status.fromJson(json['status']);
+    status = UserStatus.fromJson(json['status']);
   }
 
   Map<String, dynamic> toJson() {

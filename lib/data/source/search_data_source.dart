@@ -55,7 +55,6 @@ class SearchDataSourceImpl implements SearchDataSource {
     (response.data["schools"] as List).forEach((element) {
       schoolsList.add(School.fromJson(element));
     });
-    debugPrint(schoolsList.length.toString());
     return schoolsList;
   }
 

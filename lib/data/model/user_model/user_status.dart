@@ -1,5 +1,5 @@
-class Status {
-  Status({
+class UserStatus {
+  UserStatus({
     required this.slug,
     required this.title,
     required this.ordering,
@@ -12,7 +12,7 @@ class Status {
   late final String color;
   late final String bgColor;
 
-  Status.fromJson(Map<String, dynamic> json) {
+  UserStatus.fromJson(Map<String, dynamic> json) {
     slug = json['slug'];
     title = json['title'];
     ordering = json['ordering'];

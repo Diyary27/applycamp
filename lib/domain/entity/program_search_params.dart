@@ -1,17 +1,19 @@
 class SearchParams {
-  SearchParams(
-      {this.degreeIds,
-      this.languageIds,
-      this.schoolTypeIds,
-      this.cityIds,
-      this.countryIds,
-      this.schoolIds,
-      this.specialityIds,
-      this.studyFieldIds,
-      this.tuitionFeeHigh,
-      this.tuitionFeeLow,
-      this.tuitionUnitId,
-      this.keywords});
+  SearchParams({
+    this.degreeIds,
+    this.languageIds,
+    this.schoolTypeIds,
+    this.cityIds,
+    this.countryIds,
+    this.schoolIds,
+    this.specialityIds,
+    this.studyFieldIds,
+    this.tuitionFeeHigh,
+    this.tuitionFeeLow,
+    this.tuitionUnitId,
+    this.onlyUsedPrograms,
+    this.keywords,
+  });
 
   String? degreeIds;
   String? languageIds;
@@ -24,6 +26,7 @@ class SearchParams {
   int? tuitionFeeHigh;
   int? tuitionFeeLow;
   int? tuitionUnitId;
+  bool? onlyUsedPrograms;
   String? keywords;
 
   Map<String, dynamic> toJson() {
@@ -50,6 +53,9 @@ class SearchParams {
     if (tuitionUnitId != null && tuitionUnitId != '')
       _data["q_tuitionUnitId[0]"] = tuitionUnitId;
     if (keywords != null && keywords != '') _data["q_keywords[0]"] = keywords;
+    // here i hardcoded this variable because there is only one value it takes if it is selected
+    if (onlyUsedPrograms != null && onlyUsedPrograms != '')
+      _data["f_onlyUsed"] = 1;
     return _data;
   }
 }
