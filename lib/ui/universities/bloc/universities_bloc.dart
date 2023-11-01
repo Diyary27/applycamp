@@ -19,16 +19,5 @@ class UniversitiesBloc extends Bloc<UniversitiesEvent, UniversitiesState> {
         emit(UniversitiesError());
       }
     });
-    on<UniversitiesCompare>((event, emit) async {
-      try {
-        final firstSchool = await instance<SearchRepository>().getAllSchools();
-        final secondSchool = await instance<SearchRepository>();
-        final cities = await instance<SearchRepository>().getAllCities();
-
-        // emit(UniversitiesCompareSuccess(firstSchool, secondSchool, cities));
-      } catch (e) {
-        emit(UniversitiesError());
-      }
-    });
   }
 }

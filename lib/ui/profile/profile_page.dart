@@ -4,6 +4,7 @@ import 'package:applycamp/domain/repository/student_auth_repository.dart';
 import 'package:applycamp/ui/auth/auth_page.dart';
 import 'package:applycamp/ui/components/app_bar.dart';
 import 'package:applycamp/ui/components/drawer.dart';
+import 'package:applycamp/ui/portal/agent/dashboard.dart';
 import 'package:applycamp/ui/profile/bloc/profile_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -119,101 +120,144 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: EdgeInsets.all(24),
                       child: Column(
                         children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(Icons.person),
-                              SizedBox(width: 10),
-                              Text(
-                                'Personal Information',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 28),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(Icons.school),
-                              SizedBox(width: 10),
-                              Text(
-                                'University Applications',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 28),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(Icons.topic_outlined),
-                              SizedBox(width: 10),
-                              Text(
-                                'Exam Applications',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 28),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(Icons.language),
-                              SizedBox(width: 10),
-                              Text(
-                                'Online Exams',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 28),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(Icons.hotel),
-                              SizedBox(width: 10),
-                              Text(
-                                'Services',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 28),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(Icons.mail),
-                              SizedBox(width: 10),
-                              Text(
-                                'Messages',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 28),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(Icons.password),
-                              SizedBox(width: 10),
-                              Text(
-                                'Change Password',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: 28),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Icon(Icons.favorite),
-                              SizedBox(width: 10),
-                              Text(
-                                'Favorites',
-                                style: Theme.of(context).textTheme.titleMedium,
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   crossAxisAlignment: CrossAxisAlignment.end,
+                          //   children: [
+                          //     Icon(Icons.person),
+                          //     SizedBox(width: 10),
+                          //     Text(
+                          //       'Personal Information',
+                          //       style: Theme.of(context).textTheme.titleMedium,
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 28),
+                          // Row(
+                          //   crossAxisAlignment: CrossAxisAlignment.end,
+                          //   children: [
+                          //     Icon(Icons.school),
+                          //     SizedBox(width: 10),
+                          //     Text(
+                          //       'University Applications',
+                          //       style: Theme.of(context).textTheme.titleMedium,
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 28),
+                          // Row(
+                          //   crossAxisAlignment: CrossAxisAlignment.end,
+                          //   children: [
+                          //     Icon(Icons.topic_outlined),
+                          //     SizedBox(width: 10),
+                          //     Text(
+                          //       'Exam Applications',
+                          //       style: Theme.of(context).textTheme.titleMedium,
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 28),
+                          // Row(
+                          //   crossAxisAlignment: CrossAxisAlignment.end,
+                          //   children: [
+                          //     Icon(Icons.language),
+                          //     SizedBox(width: 10),
+                          //     Text(
+                          //       'Online Exams',
+                          //       style: Theme.of(context).textTheme.titleMedium,
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 28),
+                          // Row(
+                          //   crossAxisAlignment: CrossAxisAlignment.end,
+                          //   children: [
+                          //     Icon(Icons.hotel),
+                          //     SizedBox(width: 10),
+                          //     Text(
+                          //       'Services',
+                          //       style: Theme.of(context).textTheme.titleMedium,
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 28),
+                          // Row(
+                          //   crossAxisAlignment: CrossAxisAlignment.end,
+                          //   children: [
+                          //     Icon(Icons.mail),
+                          //     SizedBox(width: 10),
+                          //     Text(
+                          //       'Messages',
+                          //       style: Theme.of(context).textTheme.titleMedium,
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 28),
+                          // Row(
+                          //   crossAxisAlignment: CrossAxisAlignment.end,
+                          //   children: [
+                          //     Icon(Icons.password),
+                          //     SizedBox(width: 10),
+                          //     Text(
+                          //       'Change Password',
+                          //       style: Theme.of(context).textTheme.titleMedium,
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 28),
+                          // Row(
+                          //   crossAxisAlignment: CrossAxisAlignment.end,
+                          //   children: [
+                          //     Icon(Icons.favorite),
+                          //     SizedBox(width: 10),
+                          //     Text(
+                          //       'Favorites',
+                          //       style: Theme.of(context).textTheme.titleMedium,
+                          //     ),
+                          //   ],
+                          // ),
+                          // SizedBox(height: 28),
+                          // for entering portal
+
+                          ValueListenableBuilder(
+                              valueListenable: loggedInUserNotifier,
+                              builder: (context, value, child) {
+                                if (value.key != null) {
+                                  return Row(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context,
+                                                  rootNavigator: true)
+                                              .pushReplacement(
+                                                  MaterialPageRoute(
+                                            builder: (context) =>
+                                                AgentDashboardPage(),
+                                          ));
+                                        },
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.login,
+                                              color: Colors.green,
+                                            ),
+                                            SizedBox(width: 10),
+                                            Text(
+                                              "Enter Portal",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleMedium!
+                                                  .copyWith(
+                                                      color: Colors.green),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                } else {
+                                  return SizedBox();
+                                }
+                              }),
                           SizedBox(height: 28),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,

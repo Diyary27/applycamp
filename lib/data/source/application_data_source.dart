@@ -1,6 +1,7 @@
 import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/constant/remote_constant.dart';
 import 'package:applycamp/data/model/application_models/application.dart';
+import 'package:applycamp/data/model/application_models/application_create_fields.dart';
 import 'package:applycamp/data/model/application_models/application_status.dart';
 
 abstract class ApplicationDataSource {
@@ -8,8 +9,17 @@ abstract class ApplicationDataSource {
   Future getMyApplicationsByFilter(
       {int? studentId, int? schoolId, int? statusId});
   Future getAnApplication(int id);
-
+  Future getCreateApplicationFields(int studentId);
   Future getAllStatus();
+  Future editApplication({
+    required int studentId,
+    int? schoolId,
+    int? programId,
+    int? degreeId,
+    String? externalId,
+    int? semesterId,
+  });
+  Future proceedToNextStep(int Id);
 }
 
 class ApplicationDataSourceImpl implements ApplicationDataSource {
@@ -68,8 +78,44 @@ class ApplicationDataSourceImpl implements ApplicationDataSource {
     final response = await dioConsumer
         .get(PortalRemoteConstants.getAnApplication + id.toString());
 
-    final Application application = Application.fromJson(response.data);
+    final Application application =
+        Application.fromJson(response.data["application"]);
 
     return application;
+  }
+
+  @override
+  Future getCreateApplicationFields(int studentId) async {
+    final response = await dioConsumer.get(
+        PortalRemoteConstants.getCreateApplicationFields,
+        queryParameters: {"studentId": studentId});
+
+    final createFields = ApplicationCreateFields.fromJson(response.data);
+
+    return createFields;
+  }
+
+  @override
+  Future editApplication(
+      {required int studentId,
+      int? schoolId,
+      int? programId,
+      int? degreeId,
+      String? externalId,
+      int? semesterId}) {
+    // TODO: implement editApplication
+    throw UnimplementedError();
+  }
+
+  @override
+  Future proceedToNextStep(int Id) async {
+    final response = await dioConsumer.post(
+        PortalRemoteConstants.getAnApplication +
+            Id.toString() +
+            "/proceed-to-next-step",
+        body: {
+          "subject": "demo",
+          "body": "",
+        });
   }
 }

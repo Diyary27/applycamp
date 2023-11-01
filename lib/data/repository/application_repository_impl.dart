@@ -27,4 +27,24 @@ class ApplicationRepositoryImpl implements ApplicationRepository {
   Future getAnApplication(int id) async {
     return dataSource.getAnApplication(id);
   }
+
+  @override
+  Future getCreateApplicationFields(int studentId) async {
+    return dataSource.getCreateApplicationFields(studentId);
+  }
+
+  @override
+  Future editApplication(
+      {required int studentId,
+      int? schoolId,
+      int? programId,
+      int? degreeId,
+      String? externalId,
+      int? semesterId}) async {
+    // TODO: implement editApplication
+    throw UnimplementedError();
+  }
+
+  @override
+  Future proceedToNextStep(int Id) async => dataSource.proceedToNextStep(Id);
 }

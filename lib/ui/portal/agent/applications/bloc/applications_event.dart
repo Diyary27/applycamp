@@ -17,3 +17,35 @@ class ApplicationsFilterClicked extends ApplicationsEvent {
     this.programId,
   });
 }
+
+class ApplicationEditStarted extends ApplicationsEvent {
+  final int studentId;
+  final int applicationtId;
+
+  ApplicationEditStarted(
+      {required this.studentId, required this.applicationtId});
+}
+
+class ApplicationEditBtnClicked extends ApplicationsEvent {
+  final int studentId;
+  final int? schoolId;
+  final int? programId;
+  final int? degreeId;
+  final String? externalId;
+  final int? semesterId;
+
+  ApplicationEditBtnClicked({
+    required this.studentId,
+    this.schoolId,
+    this.programId,
+    this.degreeId,
+    this.externalId,
+    this.semesterId,
+  });
+}
+
+class ApplicationCreateStarted extends ApplicationsEvent {
+  final int studentId;
+
+  ApplicationCreateStarted(this.studentId);
+}

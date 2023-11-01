@@ -1,5 +1,6 @@
 import 'package:applycamp/core/common/extensions.dart';
 import 'package:applycamp/ui/portal/agent/applications/application_details_page.dart';
+import 'package:applycamp/ui/portal/agent/applications/application_edit_form.dart';
 import 'package:applycamp/ui/portal/agent/applications/bloc/applications_bloc.dart';
 import 'package:applycamp/ui/portal/agent/darwer.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class ApplicationsPage extends StatelessWidget {
   ApplicationsPage({super.key});
 
   final MultiSelectController _StudentController = MultiSelectController();
+  ApplicationsBloc? applicationsBloc;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +24,7 @@ class ApplicationsPage extends StatelessWidget {
         create: (context) {
           final bloc = ApplicationsBloc();
           bloc.add(ApplicationsStarted());
+          applicationsBloc = bloc;
           return bloc;
         },
         child: BlocBuilder<ApplicationsBloc, ApplicationsState>(
@@ -115,7 +118,9 @@ class ApplicationsPage extends StatelessWidget {
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: ((context) => ApplicationDetailsPage(
-                                      application: application))));
+                                        application: application,
+                                        bloc: ApplicationsBloc(),
+                                      ))));
                             },
                             child: Container(
                               padding: EdgeInsets.all(8),
@@ -141,12 +146,12 @@ class ApplicationsPage extends StatelessWidget {
                                         padding: EdgeInsets.all(4),
                                         decoration: BoxDecoration(
                                           color: HexColor.fromHex(
-                                              application.status.bgColor),
+                                              application.status!.bgColor!),
                                           borderRadius:
                                               BorderRadius.circular(8),
                                         ),
                                         child: Text(
-                                          application.status.title,
+                                          application.status!.title!,
                                           textAlign: TextAlign.center,
                                         ),
                                       ),
@@ -159,7 +164,7 @@ class ApplicationsPage extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          application.student.name,
+                                          application.student!.name,
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleMedium,
@@ -167,29 +172,32 @@ class ApplicationsPage extends StatelessWidget {
                                         SizedBox(height: 3),
                                         Text('Program:  \n' +
                                             application
-                                                .schoolProgram.program.title),
+                                                .schoolProgram!.program.title),
                                         (application.assignedTo.isNotEmpty)
                                             ? Text('Assignee: ' +
                                                 application.assignedTo
                                                     .toString())
                                             : Text('Assignee: '),
                                         Text('School: \n' +
-                                            application.school.title),
+                                            application.school!.title),
                                         Text('Maker: \n' +
-                                            application.maker.name),
+                                            application.maker!.name),
                                       ],
                                     ),
                                   ),
                                   Column(
                                     children: [
                                       GestureDetector(
-                                        onTap: () async {},
+                                        onTap: () async {
+                                          context
+                                              .read<ApplicationsBloc>()
+                                              .add(ApplicationEditStarted(
+                                                applicationtId: application.id!,
+                                                studentId:
+                                                    application.studentId!,
+                                              ));
+                                        },
                                         child: Icon(Icons.edit),
-                                      ),
-                                      SizedBox(height: 12),
-                                      Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
                                       ),
                                     ],
                                   ),
@@ -202,6 +210,11 @@ class ApplicationsPage extends StatelessWidget {
                     ),
                   ],
                 ),
+              );
+            } else if (state is ApplicationEditLoaded) {
+              return ApplicationEditForm(
+                createFields: state.createFields,
+                application: state.application,
               );
             } else {
               return Text(state.toString());

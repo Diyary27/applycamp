@@ -1,4 +1,5 @@
 import 'package:applycamp/data/model/program_search_models/abilities.dart';
+import 'package:applycamp/data/model/program_search_models/country.dart';
 
 class City {
   City({
@@ -6,25 +7,31 @@ class City {
     required this.title,
     required this.countryId,
     required this.can,
+    required this.country,
   });
-  late final int id;
-  late final String title;
-  late final int countryId;
-  late final Can can;
 
-  City.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    countryId = json['countryId'];
-    can = Can.fromJson(json['can']);
+  final int? id;
+  final String? title;
+  final int? countryId;
+  final Can? can;
+  final Country? country;
+
+  factory City.fromJson(Map<String, dynamic> json) {
+    return City(
+      id: json["id"],
+      title: json["title"],
+      countryId: json["countryId"],
+      can: json["can"] == null ? null : Can.fromJson(json["can"]),
+      country:
+          json["country"] == null ? null : Country.fromJson(json["country"]),
+    );
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['title'] = title;
-    _data['countryId'] = countryId;
-    _data['can'] = can.toJson();
-    return _data;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "title": title,
+        "countryId": countryId,
+        "can": can?.toJson(),
+        "country": country?.toJson(),
+      };
 }

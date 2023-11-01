@@ -19,12 +19,4 @@ class UniversitySuccess extends UniversitiesState {
   UniversitySuccess(this.school, this.cities);
 }
 
-class UniversitiesCompareSuccess extends UniversitiesState {
-  final School firstSchool;
-  final School secondSchool;
-  final List<City> cities;
-
-  UniversitiesCompareSuccess(this.firstSchool, this.secondSchool, this.cities);
-}
-
 class UniversitiesError extends UniversitiesState {}

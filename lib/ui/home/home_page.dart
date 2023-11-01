@@ -29,18 +29,12 @@ class HomePage extends StatelessWidget {
                 case 2:
                   return UniversitiesList();
                 case 3:
-                  return Container(
-                    color: Theme.of(context).colorScheme.primary,
-                    margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-                    height: 100,
-                  );
-                case 4:
                   return CategoriesList();
-                case 5:
+                case 4:
                   return _CititesList();
-                case 6:
+                case 5:
                   return Container();
-                case 7:
+                case 6:
                   return _ServicesList();
                 default:
                   return Container();
@@ -182,37 +176,16 @@ class _CititesList extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         final city = state.cities[index];
-                        return Stack(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                              width: 165,
-                              height: 220,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  "assets/img/bau.jpg",
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                              width: 165,
-                              height: 220,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .primary
-                                    .withOpacity(0.4),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 10,
-                              left: 14,
+                        return Container(
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                          width: 165,
+                          height: 220,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(12),
+                            child: Container(
+                              color: Theme.of(context).colorScheme.primary,
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Icon(
                                     Icons.location_on,
@@ -220,7 +193,7 @@ class _CititesList extends StatelessWidget {
                                         Theme.of(context).colorScheme.onPrimary,
                                   ),
                                   Text(
-                                    city.title,
+                                    city.title!,
                                     style: TextStyle(
                                       color: Theme.of(context)
                                           .colorScheme
@@ -229,8 +202,8 @@ class _CititesList extends StatelessWidget {
                                   )
                                 ],
                               ),
-                            )
-                          ],
+                            ),
+                          ),
                         );
                       },
                     );

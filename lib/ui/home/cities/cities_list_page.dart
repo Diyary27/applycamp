@@ -27,54 +27,30 @@ class CitiesListPage extends StatelessWidget {
                 itemCount: state.cities.length,
                 itemBuilder: (context, index) {
                   final city = state.cities[index];
-                  return Center(
-                    child: Stack(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                          width: 180,
-                          height: 220,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Image.asset(
-                              "assets/img/bau.jpg",
-                              fit: BoxFit.cover,
+                  return Container(
+                    margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    width: 165,
+                    height: 220,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Container(
+                        color: Theme.of(context).colorScheme.primary,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: Theme.of(context).colorScheme.onPrimary,
                             ),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                          width: 180,
-                          height: 220,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            color: Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.4),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 10,
-                          left: 14,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Icon(
-                                Icons.location_on,
+                            Text(
+                              city.title!,
+                              style: TextStyle(
                                 color: Theme.of(context).colorScheme.onPrimary,
                               ),
-                              Text(
-                                city.title,
-                                style: TextStyle(
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   );
                 },

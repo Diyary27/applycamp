@@ -31,7 +31,7 @@ class Program {
   late final Can can;
   late final String createdAt;
   late final String updatedAt;
-  late final Degree degree;
+  late final Degree? degree;
   late final Speciality speciality;
   late final Language language;
 
@@ -47,7 +47,7 @@ class Program {
     can = Can.fromJson(json['can']);
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
-    degree = Degree.fromJson(json['degree']);
+    degree = json['degree'] == null ? null : Degree.fromJson(json['degree']);
     speciality = Speciality.fromJson(json['speciality']);
     language = Language.fromJson(json['language']);
   }
@@ -65,7 +65,7 @@ class Program {
     _data['can'] = can.toJson();
     _data['createdAt'] = createdAt;
     _data['updatedAt'] = updatedAt;
-    _data['degree'] = degree.toJson();
+    _data['degree'] = degree?.toJson();
     _data['speciality'] = speciality.toJson();
     _data['language'] = language.toJson();
     return _data;

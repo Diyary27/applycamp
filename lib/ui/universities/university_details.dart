@@ -95,7 +95,7 @@ class UniversityDetailsPage extends StatelessWidget {
                       color: Theme.of(context).colorScheme.onPrimary,
                     ),
                     Text(
-                      city.title,
+                      city.title!,
                       style: TextStyle(
                         color: Theme.of(context).colorScheme.onPrimary,
                       ),

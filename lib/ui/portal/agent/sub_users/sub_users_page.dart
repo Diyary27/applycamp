@@ -115,9 +115,10 @@ class SubUsersPage extends StatelessWidget {
                                                           subUserEntity:
                                                               subUserEntity,
                                                         )));
-                                        context
-                                            .read<SubUsersBloc>()
-                                            .add(SubUsersUpdateClicked(result));
+                                        if (result != null) {
+                                          context.read<SubUsersBloc>().add(
+                                              SubUsersUpdateClicked(result));
+                                        }
                                       },
                                       child: Icon(Icons.edit),
                                     ),

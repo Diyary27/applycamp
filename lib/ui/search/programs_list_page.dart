@@ -94,7 +94,7 @@ class ProgramsListPage extends StatelessWidget {
                                   ),
                                   SizedBox(width: 4),
                                   Text(
-                                    schoolProgram.program.degree.title,
+                                    schoolProgram.program.degree!.title,
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelMedium!

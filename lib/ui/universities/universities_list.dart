@@ -3,6 +3,7 @@ import 'package:applycamp/data/model/program_search_models/school.dart';
 import 'package:applycamp/ui/home/cities/bloc/cities_bloc.dart';
 import 'package:applycamp/ui/universities/bloc/universities_bloc.dart';
 import 'package:applycamp/ui/universities/universities_list_page.dart';
+import 'package:applycamp/ui/universities/university_details.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -58,122 +59,134 @@ class UniversitiesList extends StatelessWidget {
                         final cityName = state.cities
                             .firstWhere((e) => e.id == school.cityId)
                             .title;
-                        return Stack(
-                          children: [
-                            Container(
-                              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                              width: 165,
-                              height: 220,
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(
-                                  "assets/img/bau.jpg",
-                                  fit: BoxFit.cover,
-                                ),
-                                // Image.network("http://portalapi.applycamp.com/storage/" +
-                                // school.image!.realPath.toString()),
-                              ),
-                            ),
-                            Container(
-                              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                              width: 165,
-                              height: 220,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .primary
-                                    .withOpacity(0.4),
-                              ),
-                            ),
-                            Positioned(
-                              top: 14,
-                              left: 17,
-                              child: Icon(
-                                Icons.favorite_border,
-                                color: Theme.of(context).colorScheme.onPrimary,
-                              ),
-                            ),
-                            Positioned(
-                              right: 14,
-                              top: 10,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(2),
-                                    decoration: BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    child: Text(
-                                      school.sector,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .copyWith(color: Colors.white),
-                                    ),
-                                  ),
-                                  SizedBox(height: 2),
-                                  Container(
-                                    padding: EdgeInsets.all(2),
-                                    decoration: BoxDecoration(
-                                      color: Colors.orange,
-                                      borderRadius: BorderRadius.circular(6),
-                                    ),
-                                    child: Text(
-                                      'Popular',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall!
-                                          .copyWith(color: Colors.white),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 35,
-                              left: 14,
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    width: 115,
-                                    child: Text(
-                                      school.title,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .copyWith(color: Colors.white),
-                                      overflow: TextOverflow.clip,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 10,
-                              left: 14,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Icon(
-                                    Icons.location_on,
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context, rootNavigator: true)
+                                .push(MaterialPageRoute(
+                                    builder: (context) => UniversityDetailsPage(
+                                          school: state.schools[index],
+                                          city: state.cities[index],
+                                        )));
+                          },
+                          child: Stack(
+                            children: [
+                              Container(
+                                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                width: 165,
+                                height: 220,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: Container(
                                     color:
-                                        Theme.of(context).colorScheme.onPrimary,
+                                        Theme.of(context).colorScheme.primary,
                                   ),
-                                  Text(
-                                    cityName,
-                                    style: TextStyle(
+                                  // Image.network("http://portalapi.applycamp.com/storage/" +
+                                  // school.image!.realPath.toString()),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                width: 165,
+                                height: 220,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.4),
+                                ),
+                              ),
+                              Positioned(
+                                top: 14,
+                                left: 17,
+                                child: Icon(
+                                  Icons.favorite_border,
+                                  color:
+                                      Theme.of(context).colorScheme.onPrimary,
+                                ),
+                              ),
+                              Positioned(
+                                right: 14,
+                                top: 10,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Container(
+                                      padding: EdgeInsets.all(2),
+                                      decoration: BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: Text(
+                                        school.sector,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .copyWith(color: Colors.white),
+                                      ),
+                                    ),
+                                    SizedBox(height: 2),
+                                    Container(
+                                      padding: EdgeInsets.all(2),
+                                      decoration: BoxDecoration(
+                                        color: Colors.orange,
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: Text(
+                                        'Popular',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodySmall!
+                                            .copyWith(color: Colors.white),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 35,
+                                left: 14,
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      width: 115,
+                                      child: Text(
+                                        school.title,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleMedium!
+                                            .copyWith(color: Colors.white),
+                                        overflow: TextOverflow.clip,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Positioned(
+                                bottom: 10,
+                                left: 14,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Icon(
+                                      Icons.location_on,
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onPrimary,
                                     ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
+                                    Text(
+                                      cityName!,
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         );
                       },
                     );

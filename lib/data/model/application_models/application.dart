@@ -1,6 +1,8 @@
 import 'package:applycamp/data/model/application_models/academic_year.dart';
 import 'package:applycamp/data/model/application_models/application_abilities.dart';
+import 'package:applycamp/data/model/application_models/application_document.dart';
 import 'package:applycamp/data/model/application_models/application_status.dart';
+import 'package:applycamp/data/model/application_models/available_next_statues.dart';
 import 'package:applycamp/data/model/application_models/confirm_to_download.dart';
 import 'package:applycamp/data/model/application_models/semester.dart';
 import 'package:applycamp/data/model/program_search_models/degrees.dart';
@@ -17,16 +19,16 @@ class Application {
     required this.programId,
     required this.degreeId,
     required this.statusId,
-    this.assignedToId,
-    this.note,
-    this.externalId,
+    required this.assignedToId,
+    required this.note,
+    required this.externalId,
     required this.academicYearSlug,
     required this.semesterId,
     required this.documents,
     required this.confirmToDownload,
     required this.isProceedToNextStepActive,
     required this.can,
-    this.completedAt,
+    required this.completedAt,
     required this.createdAt,
     required this.updatedAt,
     required this.createdAtAbsolute,
@@ -39,100 +41,85 @@ class Application {
     required this.maker,
     required this.semester,
     required this.academicYear,
+    required this.messages,
   });
-  late final int id;
-  late final int studentId;
-  late final int schoolId;
-  late final int programId;
-  late final int degreeId;
-  late final int statusId;
-  late final assignedToId;
-  late final note;
-  late final externalId;
-  late final String academicYearSlug;
-  late final String semesterId;
-  late final List<dynamic> documents;
-  late final ConfirmToDownload confirmToDownload;
-  late final bool isProceedToNextStepActive;
-  late final ApplicationCan can;
-  late final completedAt;
-  late final String createdAt;
-  late final String updatedAt;
-  late final String createdAtAbsolute;
-  late final Student student;
-  late final School school;
-  late final Degree degree;
-  late final ApplicationStatus status;
-  late final SchoolProgram schoolProgram;
-  late final List<dynamic> assignedTo;
-  late final Maker maker;
-  late final Semester semester;
-  late final AcademicYear academicYear;
 
-  Application.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    studentId = json['studentId'];
-    schoolId = json['schoolId'];
-    programId = json['programId'];
-    degreeId = json['degreeId'];
-    statusId = json['statusId'];
-    assignedToId = null;
-    note = null;
-    externalId = null;
-    academicYearSlug = json['academicYearSlug'];
-    semesterId = json['semesterId'];
-    documents = List.castFrom<dynamic, dynamic>(json['documents']);
-    json['confirmToDownload'] != null
-        ? confirmToDownload =
-            ConfirmToDownload.fromJson(json['confirmToDownload'])
-        : '';
-    isProceedToNextStepActive = json['isProceedToNextStepActive'];
-    can = ApplicationCan.fromJson(json['can']);
-    completedAt = null;
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    createdAtAbsolute = json['createdAtAbsolute'];
-    student = Student.fromJson(json['student']);
-    school = School.fromJson(json['school']);
-    degree = Degree.fromJson(json['degree']);
-    status = ApplicationStatus.fromJson(json['status']);
-    schoolProgram = SchoolProgram.fromJson(json['schoolProgram']);
-    assignedTo = List.castFrom<dynamic, dynamic>(json['assignedTo']);
-    maker = Maker.fromJson(json['maker']);
-    semester = Semester.fromJson(json['semester']);
-    academicYear = AcademicYear.fromJson(json['academicYear']);
-  }
+  final int? id;
+  final int? studentId;
+  final int? schoolId;
+  final int? programId;
+  final int? degreeId;
+  final int? statusId;
+  final dynamic assignedToId;
+  final dynamic note;
+  final dynamic externalId;
+  final String? academicYearSlug;
+  final String? semesterId;
+  final List<dynamic> documents;
+  final dynamic confirmToDownload;
+  final bool? isProceedToNextStepActive;
+  final ApplicationCan? can;
+  final dynamic completedAt;
+  final String? createdAt;
+  final String? updatedAt;
+  final DateTime? createdAtAbsolute;
+  final Student? student;
+  final School? school;
+  final Degree? degree;
+  final AvailableNextStatuses? status;
+  final SchoolProgram? schoolProgram;
+  final List<dynamic> assignedTo;
+  final Maker? maker;
+  final Semester? semester;
+  final AcademicYear? academicYear;
+  final List<dynamic> messages;
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['studentId'] = studentId;
-    _data['schoolId'] = schoolId;
-    _data['programId'] = programId;
-    _data['degreeId'] = degreeId;
-    _data['statusId'] = statusId;
-    _data['assignedToId'] = assignedToId;
-    _data['note'] = note;
-    _data['externalId'] = externalId;
-    _data['academicYearSlug'] = academicYearSlug;
-    _data['semesterId'] = semesterId;
-    _data['documents'] = documents;
-    _data['confirmToDownload'] = confirmToDownload.toJson();
-    _data['isProceedToNextStepActive'] = isProceedToNextStepActive;
-    _data['can'] = can.toJson();
-    _data['completedAt'] = completedAt;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['createdAtAbsolute'] = createdAtAbsolute;
-    _data['student'] = student.toJson();
-    _data['school'] = school.toJson();
-    _data['degree'] = degree.toJson();
-    _data['status'] = status.toJson();
-    _data['schoolProgram'] = schoolProgram.toJson();
-    _data['assignedTo'] = assignedTo;
-    _data['maker'] = maker.toJson();
-    _data['semester'] = semester.toJson();
-    _data['academicYear'] = academicYear.toJson();
-    return _data;
+  factory Application.fromJson(Map<String, dynamic> json) {
+    return Application(
+      id: json["id"],
+      studentId: json["studentId"],
+      schoolId: json["schoolId"],
+      programId: json["programId"],
+      degreeId: json["degreeId"],
+      statusId: json["statusId"],
+      assignedToId: json["assignedToId"],
+      note: json["note"],
+      externalId: json["externalId"],
+      academicYearSlug: json["academicYearSlug"],
+      semesterId: json["semesterId"],
+      documents: json["documents"] == null
+          ? []
+          : List<ApplicationDocument>.from(
+              json["documents"]!.map((x) => ApplicationDocument.fromJson(x))),
+      confirmToDownload: json["confirmToDownload"],
+      isProceedToNextStepActive: json["isProceedToNextStepActive"],
+      can: json["can"] == null ? null : ApplicationCan.fromJson(json["can"]),
+      completedAt: json["completedAt"],
+      createdAt: json["createdAt"],
+      updatedAt: json["updatedAt"],
+      createdAtAbsolute: DateTime.tryParse(json["createdAtAbsolute"] ?? ""),
+      student:
+          json["student"] == null ? null : Student.fromJson(json["student"]),
+      school: json["school"] == null ? null : School.fromJson(json["school"]),
+      degree: json["degree"] == null ? null : Degree.fromJson(json["degree"]),
+      status: json["status"] == null
+          ? null
+          : AvailableNextStatuses.fromJson(json["status"]),
+      schoolProgram: json["schoolProgram"] == null
+          ? null
+          : SchoolProgram.fromJson(json["schoolProgram"]),
+      assignedTo: json["assignedTo"] == null
+          ? []
+          : List<dynamic>.from(json["assignedTo"]!.map((x) => x)),
+      maker: json["maker"] == null ? null : Maker.fromJson(json["maker"]),
+      semester:
+          json["semester"] == null ? null : Semester.fromJson(json["semester"]),
+      academicYear: json["academicYear"] == null
+          ? null
+          : AcademicYear.fromJson(json["academicYear"]),
+      messages: json["messages"] == null
+          ? []
+          : List<dynamic>.from(json["messages"]!.map((x) => x)),
+    );
   }
 }

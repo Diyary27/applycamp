@@ -12,10 +12,3 @@ class UniversityDetails extends UniversitiesEvent {
 
   UniversityDetails(this.schoolId);
 }
-
-class UniversitiesCompare extends UniversitiesEvent {
-  final int firstSchool;
-  final int secondSchool;
-
-  UniversitiesCompare(this.firstSchool, this.secondSchool);
-}

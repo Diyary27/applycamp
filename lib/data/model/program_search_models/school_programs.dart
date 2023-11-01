@@ -64,7 +64,7 @@ class SchoolProgram {
   late final bool isScholarship;
   late final bool hasDiscount;
   late final int? depositAmount;
-  late final int commission;
+  late final double? commission;
   late final int studyYears;
   late final description;
   late final admissionRequirements;
@@ -90,7 +90,7 @@ class SchoolProgram {
     isScholarship = json['isScholarship'];
     hasDiscount = json['hasDiscount'];
     depositAmount = null;
-    commission = json['commission'];
+    commission = json['commission'].toDouble();
     studyYears = json['studyYears'];
     description = null;
     admissionRequirements = null;

@@ -1,4 +1,5 @@
 import 'package:applycamp/data/model/application_models/application.dart';
+import 'package:applycamp/data/model/application_models/application_create_fields.dart';
 import 'package:applycamp/data/model/application_models/application_status.dart';
 import 'package:applycamp/data/model/program_search_models/program.dart';
 import 'package:applycamp/data/model/program_search_models/school.dart';
@@ -22,6 +23,8 @@ class ApplicationsBloc extends Bloc<ApplicationsEvent, ApplicationsState> {
     on<ApplicationsEvent>((event, emit) async {
       try {
         if (event is ApplicationsStarted) {
+          emit(ApplicationsInitial());
+
           final applications =
               await instance<ApplicationRepository>().getMyApplications();
           final status = await instance<ApplicationRepository>().getAllStatus();
@@ -68,6 +71,17 @@ class ApplicationsBloc extends Bloc<ApplicationsEvent, ApplicationsState> {
             schools: schools,
             programs: [],
           ));
+        } else if (event is ApplicationEditStarted) {
+          emit(ApplicationsInitial());
+
+          final createFields = await instance<ApplicationRepository>()
+              .getCreateApplicationFields(event.studentId);
+          final application = await instance<ApplicationRepository>()
+              .getAnApplication(event.applicationtId);
+          emit(ApplicationEditLoaded(
+              createFields: createFields, application: application));
+        } else if (event is ApplicationEditBtnClicked) {
+          //
         }
       } catch (e) {
         emit(ApplicationsError());

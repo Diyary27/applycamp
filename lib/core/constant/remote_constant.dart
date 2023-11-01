@@ -13,6 +13,9 @@ class PortalRemoteConstants {
   static const String userProfile = "/api/v1/auth/me";
   static const String editProfile = "/api/v1/user/edit-profile";
 
+  // user
+  static const String dashboard = "/api/v1/user/dashboard";
+
   // subUsers
   static const String getAllSubUsers = "/api/v1/user/sub-users";
   static const String createSubUser = "/api/v1/user/sub-user/create?";
@@ -29,6 +32,8 @@ class PortalRemoteConstants {
   static const String getAllApplicationStatus = "/api/v1/applications/statuses";
   //// here we will concat the id to it
   static const String getAnApplication = "/api/v1/application/";
+  static const String getCreateApplicationFields =
+      "/api/v1/application/get-fields";
 
   // programs
   static const String getPrograms = "/api/v1/programs";

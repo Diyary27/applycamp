@@ -162,7 +162,7 @@ class ProgramDetails extends StatelessWidget {
                           size: 16,
                         ),
                         SizedBox(width: 4),
-                        Text(schoolProgram.program.degree.title),
+                        Text(schoolProgram.program.degree!.title),
                       ],
                     ),
                     // study years

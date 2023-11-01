@@ -5,6 +5,7 @@ import 'package:applycamp/ui/portal/agent/students/students_page.dart';
 import 'package:applycamp/ui/portal/agent/sub_users/sub_users_page.dart';
 import 'package:applycamp/ui/root.dart';
 import 'package:applycamp/ui/search/search_page.dart';
+import 'package:applycamp/ui/universities/universities_list_page.dart';
 import 'package:flutter/material.dart';
 
 class AgentDrawer extends StatelessWidget {
@@ -74,7 +75,10 @@ class AgentDrawer extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => UniversitiesListPage()));
+                },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [

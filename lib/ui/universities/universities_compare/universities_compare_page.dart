@@ -4,14 +4,15 @@ import 'package:applycamp/ui/universities/bloc/universities_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CompareUnisPage extends StatefulWidget {
-  const CompareUnisPage({super.key});
+class UniversitiesComparePage extends StatefulWidget {
+  const UniversitiesComparePage({super.key});
 
   @override
-  State<CompareUnisPage> createState() => _CompareUnisPageState();
+  State<UniversitiesComparePage> createState() =>
+      _UniversitiesComparePageState();
 }
 
-class _CompareUnisPageState extends State<CompareUnisPage> {
+class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

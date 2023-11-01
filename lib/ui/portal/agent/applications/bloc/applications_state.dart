@@ -20,4 +20,18 @@ class ApplicationsLoaded extends ApplicationsState {
   });
 }
 
+class ApplicationEditLoaded extends ApplicationsState {
+  final ApplicationCreateFields createFields;
+  final Application application;
+
+  ApplicationEditLoaded(
+      {required this.createFields, required this.application});
+}
+
+class ApplicationCreateLoaded extends ApplicationsState {
+  final ApplicationCreateFields createFields;
+
+  ApplicationCreateLoaded(this.createFields);
+}
+
 class ApplicationsError extends ApplicationsState {}
