@@ -74,7 +74,7 @@ class ApplicationEditForm extends StatelessWidget {
           children: [
             Text(
               "Edit Application of " +
-                  application.student!.fullName +
+                  application.student!.fullName! +
                   " for " +
                   application.schoolProgram!.program.title,
               textAlign: TextAlign.center,

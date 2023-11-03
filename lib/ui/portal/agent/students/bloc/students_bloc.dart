@@ -10,10 +10,23 @@ part 'students_state.dart';
 class StudentsBloc extends Bloc<StudentsEvent, StudentsState> {
   StudentsBloc() : super(StudentsInitial()) {
     on<StudentsEvent>((event, emit) async {
-      if (event is StudentsStarted) {
-        final List<Student> students =
-            await instance<StudentRepository>().getAllMyStudents();
-        emit(StudentsLoaded(students));
+      try {
+        if (event is StudentsStarted) {
+          final List<Student> students =
+              await instance<StudentRepository>().getAllMyStudents();
+          emit(StudentsLoaded(students: students));
+        } else if (event is StudentDeleteClicked) {
+          emit(StudentsInitial());
+          await instance<StudentRepository>().deleteStudent(event.studentId);
+          final List<Student> students =
+              await instance<StudentRepository>().getAllMyStudents();
+          emit(StudentsLoaded(
+            students: students,
+            message: "Student Deleted Successfully",
+          ));
+        }
+      } catch (e) {
+        emit(StudentsError());
       }
     });
   }

@@ -47,7 +47,7 @@ class StudentAuthRepositoryImpl implements StudentAuthRepository {
   Future persistAuth(StudentAuthResponse authResponse) async {
     final id = authResponse.student.id.toString();
     final infos = [
-      authResponse.student.name,
+      authResponse.student.name!,
       authResponse.loginInfo.accessToken
     ];
     await appPreferences.setAuthInfos(id, infos);

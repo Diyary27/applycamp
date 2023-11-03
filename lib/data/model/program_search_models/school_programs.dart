@@ -76,8 +76,8 @@ class SchoolProgram {
   late final String updatedAt;
   late final School? school;
   late final Program program;
-  late final TuitionUnit tuitionUnit;
-  late final Currency currency;
+  late final TuitionUnit? tuitionUnit;
+  late final Currency? currency;
 
   SchoolProgram.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -102,8 +102,11 @@ class SchoolProgram {
     updatedAt = json['updatedAt'];
     school = json['school'] != null ? School.fromJson(json['school']) : null;
     program = Program.fromJson(json['program']);
-    tuitionUnit = TuitionUnit.fromJson(json['tuitionUnit']);
-    currency = Currency.fromJson(json['currency']);
+    tuitionUnit = json['tuitionUnit'] == null
+        ? null
+        : TuitionUnit.fromJson(json['tuitionUnit']);
+    currency =
+        json['currency'] == null ? null : Currency.fromJson(json['currency']);
   }
 
   Map<String, dynamic> toJson() {
@@ -130,8 +133,8 @@ class SchoolProgram {
     _data['updatedAt'] = updatedAt;
     _data['school'] = school?.toJson();
     _data['program'] = program.toJson();
-    _data['tuitionUnit'] = tuitionUnit.toJson();
-    _data['currency'] = currency.toJson();
+    _data['tuitionUnit'] = tuitionUnit?.toJson();
+    _data['currency'] = currency?.toJson();
     return _data;
   }
 }

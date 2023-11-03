@@ -1,5 +1,5 @@
 import 'package:applycamp/core/common/extensions.dart';
-import 'package:applycamp/ui/portal/agent/applications/application_details_page.dart';
+import 'package:applycamp/ui/portal/agent/applications/application_details/application_details_page.dart';
 import 'package:applycamp/ui/portal/agent/applications/application_edit_form.dart';
 import 'package:applycamp/ui/portal/agent/applications/bloc/applications_bloc.dart';
 import 'package:applycamp/ui/portal/agent/darwer.dart';
@@ -70,7 +70,7 @@ class ApplicationsPage extends StatelessWidget {
                               items: state.students.map((student) {
                                 return DropdownMenuItem(
                                     value: student.id,
-                                    child: Text(student.fullName));
+                                    child: Text(student.fullName!));
                               }).toList(),
                               onChanged: (newValue) {
                                 context.read<ApplicationsBloc>().add(
@@ -118,8 +118,7 @@ class ApplicationsPage extends StatelessWidget {
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: ((context) => ApplicationDetailsPage(
-                                        application: application,
-                                        bloc: ApplicationsBloc(),
+                                        applicationId: application.id!,
                                       ))));
                             },
                             child: Container(
@@ -164,7 +163,7 @@ class ApplicationsPage extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          application.student!.name,
+                                          application.student!.name!,
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleMedium,

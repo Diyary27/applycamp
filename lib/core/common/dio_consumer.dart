@@ -12,6 +12,7 @@ class PortalDioConsumer implements ApiConsumer {
     try {
       final response =
           await httpClient.delete(path, queryParameters: queryParameters);
+      return response;
     } catch (e) {
       debugPrint(e.toString());
     }

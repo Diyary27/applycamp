@@ -1,7 +1,9 @@
 import 'package:applycamp/core/common/extensions.dart';
 import 'package:applycamp/ui/portal/agent/darwer.dart';
 import 'package:applycamp/ui/portal/agent/students/bloc/students_bloc.dart';
-import 'package:applycamp/ui/portal/agent/students/student_details_page.dart';
+import 'package:applycamp/ui/portal/agent/students/student_create/student_create_page.dart';
+import 'package:applycamp/ui/portal/agent/students/student_details/student_applications_page.dart';
+import 'package:applycamp/ui/portal/agent/students/student_details/student_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,8 +33,22 @@ class StudentsPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
+                    BlocListener<StudentsBloc, StudentsState>(
+                      listener: (context, state) {
+                        if (state is StudentsLoaded) {
+                          state.message != null
+                              ? ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(state.message!)))
+                              : '';
+                        }
+                      },
+                      child: Container(),
+                    ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => StudentCreatePage()));
+                      },
                       child: Text('+ Add Student'),
                     ),
                     SizedBox(height: 8),
@@ -44,8 +60,8 @@ class StudentsPage extends StatelessWidget {
                           return GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: ((context) =>
-                                      StudentDetailsPage(student: student))));
+                                  builder: ((context) => StudentDetailsPage(
+                                      studentId: student.id))));
                             },
                             child: Container(
                               padding: EdgeInsets.all(8),
@@ -70,13 +86,13 @@ class StudentsPage extends StatelessWidget {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          student.name,
+                                          student.name!,
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleMedium,
                                         ),
                                         SizedBox(height: 3),
-                                        Text('Email: ' + student.email),
+                                        Text('Email: ' + student.email!),
                                         (student.phone != null)
                                             ? Text('Phone: ' +
                                                 student.phone.toString())
@@ -95,14 +111,21 @@ class StudentsPage extends StatelessWidget {
                                           padding: EdgeInsets.all(4),
                                           decoration: BoxDecoration(
                                             color: HexColor.fromHex(
-                                                student.status.bgColor),
+                                                student.status!.bgColor),
                                             borderRadius:
                                                 BorderRadius.circular(8),
                                           ),
-                                          child: Text(student.status.slug),
+                                          child: Text(student.status!.slug),
                                         ),
                                         TextButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        StudentApplicationsPage(
+                                                            StudentId:
+                                                                student.id)));
+                                          },
                                           child: Text('Applications'),
                                         ),
                                       ],
@@ -115,9 +138,15 @@ class StudentsPage extends StatelessWidget {
                                         child: Icon(Icons.edit),
                                       ),
                                       SizedBox(height: 12),
-                                      Icon(
-                                        Icons.delete,
-                                        color: Colors.red,
+                                      GestureDetector(
+                                        onTap: () {
+                                          context.read<StudentsBloc>().add(
+                                              StudentDeleteClicked(student.id));
+                                        },
+                                        child: Icon(
+                                          Icons.delete,
+                                          color: Colors.red,
+                                        ),
                                       ),
                                     ],
                                   ),

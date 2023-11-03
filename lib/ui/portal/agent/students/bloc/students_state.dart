@@ -6,8 +6,9 @@ class StudentsInitial extends StudentsState {}
 
 class StudentsLoaded extends StudentsState {
   final List<Student> students;
+  final String? message;
 
-  StudentsLoaded(this.students);
+  StudentsLoaded({required this.students, this.message});
 }
 
 class StudentsError extends StudentsState {}

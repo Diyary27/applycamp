@@ -128,7 +128,7 @@ class ProgramsListPage extends StatelessWidget {
                                   ),
                                   SizedBox(width: 4),
                                   Text(
-                                    schoolProgram.program.language.title,
+                                    schoolProgram.program.language!.title,
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelMedium!
@@ -148,7 +148,7 @@ class ProgramsListPage extends StatelessWidget {
                         Text(
                           schoolProgram.tuitionFee.toString() +
                               ' ' +
-                              schoolProgram.currency.title,
+                              schoolProgram.currency!.title,
                           style:
                               Theme.of(context).textTheme.labelMedium!.copyWith(
                                     decoration: TextDecoration.lineThrough,
@@ -158,7 +158,7 @@ class ProgramsListPage extends StatelessWidget {
                         Text(
                           schoolProgram.tuitionFeeDiscounted.toString() +
                               ' ' +
-                              schoolProgram.currency.title,
+                              schoolProgram.currency!.title,
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium!
@@ -166,7 +166,7 @@ class ProgramsListPage extends StatelessWidget {
                         ),
                         SizedBox(height: 2),
                         Text(
-                          schoolProgram.tuitionUnit.title,
+                          schoolProgram.tuitionUnit!.title,
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium!

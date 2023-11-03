@@ -1,50 +1,49 @@
+import 'package:applycamp/data/model/application_models/application.dart';
 import 'package:applycamp/data/model/program_search_models/degrees.dart';
 import 'package:applycamp/data/model/program_search_models/image.dart';
 import 'package:applycamp/data/model/student_model/high_school_country.dart';
+import 'package:applycamp/data/model/student_model/maker.dart';
 import 'package:applycamp/data/model/student_model/nationality.dart';
 import 'package:applycamp/data/model/student_model/residence_country.dart';
 import 'package:applycamp/data/model/student_model/student_can.dart';
+import 'package:applycamp/data/model/student_model/student_document.dart';
 import 'package:applycamp/data/model/user_model/user_status.dart';
 
 class Student {
   Student({
     required this.id,
-    this.makerId,
-    this.nationalityId,
-    this.residenceId,
-    this.visaId,
-    this.degreeId,
-    this.highSchoolCountryId,
+    required this.makerId,
+    required this.nationalityId,
+    required this.residenceId,
+    required this.degreeId,
+    required this.highSchoolCountryId,
     required this.email,
     required this.fullName,
     required this.name,
     required this.passportNumber,
-    this.passportDateOfIssue,
-    this.passportDateOfExpiry,
-    this.phone,
-    this.dateOfBirth,
+    required this.passportDateOfIssue,
+    required this.passportDateOfExpiry,
+    required this.phone,
+    required this.dateOfBirth,
     required this.gender,
     required this.martialStatus,
     required this.fatherName,
-    this.fatherPhone,
+    required this.fatherPhone,
     required this.motherName,
-    this.highSchool,
-    this.gpa,
-    this.addressAbroad,
-    this.addressTurkey,
-    this.tcNumber,
+    required this.highSchool,
+    required this.gpa,
     required this.hasTcNumber,
     required this.isTransferred,
     required this.isTurkeyCitizen,
     required this.isVisaRequired,
-    this.statusSlug,
+    required this.statusSlug,
     required this.canHaveApplications,
     required this.isSelfRegistered,
-    required this.isProfileFilled,
-    this.abilities,
+    required this.isLoginAllowed,
     required this.can,
     required this.createdAt,
     required this.updatedAt,
+    required this.maker,
     required this.nationality,
     required this.residenceCountry,
     required this.visaCountry,
@@ -52,153 +51,163 @@ class Student {
     required this.highSchoolCountry,
     required this.image,
     required this.status,
+    required this.profileImage,
+    required this.documents,
+    required this.applications,
   });
-  late final int id;
-  late final makerId;
-  late final nationalityId;
-  late final residenceId;
-  late final visaId;
-  late final degreeId;
-  late final highSchoolCountryId;
-  late final String email;
-  late final String fullName;
-  late final String name;
-  late final String? passportNumber;
-  late final passportDateOfIssue;
-  late final passportDateOfExpiry;
-  late final String? phone;
-  late final dateOfBirth;
-  late final String gender;
-  late final String martialStatus;
-  late final String fatherName;
-  late final fatherPhone;
-  late final String motherName;
-  late final highSchool;
-  late final int? gpa;
-  late final String? addressAbroad;
-  late final addressTurkey;
-  late final tcNumber;
-  late final bool hasTcNumber;
-  late final bool isTransferred;
-  late final bool isTurkeyCitizen;
-  late final bool isVisaRequired;
-  late final statusSlug;
-  late final bool canHaveApplications;
-  late final bool isSelfRegistered;
-  late final bool? isProfileFilled;
-  late final abilities;
-  late final StudentCan can;
-  late final String createdAt;
-  late final String updatedAt;
-  late final Nationality? nationality;
-  late final ResidenceCountry? residenceCountry;
-  late final List? visaCountry;
-  late final Degree? degree;
-  late final HighSchoolCountry? highSchoolCountry;
-  late final Image image;
-  late final UserStatus status;
 
-  Student.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    makerId = null;
-    nationalityId = null;
-    residenceId = null;
-    visaId = null;
-    degreeId = null;
-    highSchoolCountryId = null;
-    email = json['email'];
-    fullName = json['fullName'];
-    name = json['name'];
-    passportNumber = json['passportNumber'];
-    passportDateOfIssue = null;
-    passportDateOfExpiry = null;
-    phone = null;
-    dateOfBirth = null;
-    gender = json['gender'];
-    martialStatus = json['martialStatus'];
-    fatherName = json['fatherName'];
-    fatherPhone = null;
-    motherName = json['motherName'];
-    highSchool = null;
-    gpa = null;
-    addressAbroad = null;
-    addressTurkey = null;
-    tcNumber = null;
-    hasTcNumber = json['hasTcNumber'];
-    isTransferred = json['isTransferred'];
-    isTurkeyCitizen = json['isTurkeyCitizen'];
-    isVisaRequired = json['isVisaRequired'];
-    statusSlug = null;
-    canHaveApplications = json['canHaveApplications'];
-    isSelfRegistered = json['isSelfRegistered'];
-    isProfileFilled = json['isProfileFilled'];
-    abilities = null;
-    can = StudentCan.fromJson(json['can']);
-    createdAt = json['createdAt'];
-    updatedAt = json['updatedAt'];
-    nationality = json['nationality'] != null
-        ? Nationality.fromJson(json['nationality'])
-        : null;
-    residenceCountry = json['residenceCountry'] != null
-        ? ResidenceCountry.fromJson(json['residenceCountry'])
-        : null;
-    visaCountry = json['visaCountry'] != null
-        ? List.castFrom<dynamic, dynamic>(json['visaCountry'])
-        : null;
-    degree = json['degree'] != null ? Degree.fromJson(json['degree']) : null;
-    highSchoolCountry = json['highSchoolCountry'] != null
-        ? HighSchoolCountry.fromJson(json['highSchoolCountry'])
-        : null;
-    image = Image.fromJson(json['image']);
-    status = UserStatus.fromJson(json['status']);
+  final int id;
+  final int? makerId;
+  final int? nationalityId;
+  final int? residenceId;
+  final int? degreeId;
+  final int? highSchoolCountryId;
+  final String? email;
+  final String? fullName;
+  final String? name;
+  final String? passportNumber;
+  final String? passportDateOfIssue;
+  final String? passportDateOfExpiry;
+  final String? phone;
+  final String? dateOfBirth;
+  final String? gender;
+  final String? martialStatus;
+  final String? fatherName;
+  final String? fatherPhone;
+  final String? motherName;
+  final String? highSchool;
+  final int? gpa;
+  final bool? hasTcNumber;
+  final bool? isTransferred;
+  final bool? isTurkeyCitizen;
+  final bool? isVisaRequired;
+  final String? statusSlug;
+  final bool? canHaveApplications;
+  final bool? isSelfRegistered;
+  final bool? isLoginAllowed;
+  final StudentCan? can;
+  final String? createdAt;
+  final String? updatedAt;
+  final Maker? maker;
+  final HighSchoolCountry? nationality;
+  final HighSchoolCountry? residenceCountry;
+  final List<dynamic> visaCountry;
+  final Degree? degree;
+  final HighSchoolCountry? highSchoolCountry;
+  final Image? image;
+  final UserStatus? status;
+  final Image? profileImage;
+  final List<StudentDocument> documents;
+  final List<Application> applications;
+
+  factory Student.fromJson(Map<String, dynamic> json) {
+    return Student(
+      id: json["id"],
+      makerId: json["makerId"],
+      nationalityId: json["nationalityId"],
+      residenceId: json["residenceId"],
+      degreeId: json["degreeId"],
+      highSchoolCountryId: json["highSchoolCountryId"],
+      email: json["email"],
+      fullName: json["fullName"],
+      name: json["name"],
+      passportNumber: json["passportNumber"],
+      passportDateOfIssue: json["passportDateOfIssue"],
+      passportDateOfExpiry: json["passportDateOfExpiry"],
+      phone: json["phone"],
+      dateOfBirth: json["dateOfBirth"],
+      gender: json["gender"],
+      martialStatus: json["martialStatus"],
+      fatherName: json["fatherName"],
+      fatherPhone: json["fatherPhone"],
+      motherName: json["motherName"],
+      highSchool: json["highSchool"],
+      gpa: json["gpa"],
+      hasTcNumber: json["hasTcNumber"],
+      isTransferred: json["isTransferred"],
+      isTurkeyCitizen: json["isTurkeyCitizen"],
+      isVisaRequired: json["isVisaRequired"],
+      statusSlug: json["statusSlug"],
+      canHaveApplications: json["canHaveApplications"],
+      isSelfRegistered: json["isSelfRegistered"],
+      isLoginAllowed: json["isLoginAllowed"],
+      can: json["can"] == null ? null : StudentCan.fromJson(json["can"]),
+      createdAt: json["createdAt"],
+      updatedAt: json["updatedAt"],
+      maker: json["maker"] == null ? null : Maker.fromJson(json["maker"]),
+      nationality: json["nationality"] == null
+          ? null
+          : HighSchoolCountry.fromJson(json["nationality"]),
+      residenceCountry: json["residenceCountry"] == null
+          ? null
+          : HighSchoolCountry.fromJson(json["residenceCountry"]),
+      visaCountry: json["visaCountry"] == null
+          ? []
+          : List<dynamic>.from(json["visaCountry"]!.map((x) => x)),
+      degree: json["degree"] == null ? null : Degree.fromJson(json["degree"]),
+      highSchoolCountry: json["highSchoolCountry"] == null
+          ? null
+          : HighSchoolCountry.fromJson(json["highSchoolCountry"]),
+      image: json["image"] == null ? null : Image.fromJson(json["image"]),
+      status:
+          json["status"] == null ? null : UserStatus.fromJson(json["status"]),
+      profileImage: json["profileImage"] == null
+          ? null
+          : Image.fromJson(json["profileImage"]),
+      documents: json["documents"] == null
+          ? []
+          : List<StudentDocument>.from(
+              json["documents"]!.map((x) => StudentDocument.fromJson(x))),
+      applications: json["applications"] == null
+          ? []
+          : List<Application>.from(
+              json["applications"]!.map((x) => Application.fromJson(x))),
+    );
   }
 
-  Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['makerId'] = makerId;
-    _data['nationalityId'] = nationalityId;
-    _data['residenceId'] = residenceId;
-    _data['visaId'] = visaId;
-    _data['degreeId'] = degreeId;
-    _data['highSchoolCountryId'] = highSchoolCountryId;
-    _data['email'] = email;
-    _data['fullName'] = fullName;
-    _data['name'] = name;
-    _data['passportNumber'] = passportNumber;
-    _data['passportDateOfIssue'] = passportDateOfIssue;
-    _data['passportDateOfExpiry'] = passportDateOfExpiry;
-    _data['phone'] = phone;
-    _data['dateOfBirth'] = dateOfBirth;
-    _data['gender'] = gender;
-    _data['martialStatus'] = martialStatus;
-    _data['fatherName'] = fatherName;
-    _data['fatherPhone'] = fatherPhone;
-    _data['motherName'] = motherName;
-    _data['highSchool'] = highSchool;
-    _data['gpa'] = gpa;
-    _data['addressAbroad'] = addressAbroad;
-    _data['addressTurkey'] = addressTurkey;
-    _data['tcNumber'] = tcNumber;
-    _data['hasTcNumber'] = hasTcNumber;
-    _data['isTransferred'] = isTransferred;
-    _data['isTurkeyCitizen'] = isTurkeyCitizen;
-    _data['isVisaRequired'] = isVisaRequired;
-    _data['statusSlug'] = statusSlug;
-    _data['canHaveApplications'] = canHaveApplications;
-    _data['isSelfRegistered'] = isSelfRegistered;
-    _data['isProfileFilled'] = isProfileFilled;
-    _data['abilities'] = abilities;
-    _data['can'] = can.toJson();
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['nationality'] = nationality;
-    _data['residenceCountry'] = residenceCountry;
-    _data['visaCountry'] = visaCountry;
-    _data['degree'] = degree;
-    _data['highSchoolCountry'] = highSchoolCountry;
-    _data['image'] = image;
-    _data['status'] = status;
-    return _data;
-  }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "makerId": makerId,
+        "nationalityId": nationalityId,
+        "residenceId": residenceId,
+        "degreeId": degreeId,
+        "highSchoolCountryId": highSchoolCountryId,
+        "email": email,
+        "fullName": fullName,
+        "name": name,
+        "passportNumber": passportNumber,
+        "passportDateOfIssue": passportDateOfIssue,
+        "passportDateOfExpiry": passportDateOfExpiry,
+        "phone": phone,
+        "dateOfBirth": dateOfBirth,
+        "gender": gender,
+        "martialStatus": martialStatus,
+        "fatherName": fatherName,
+        "fatherPhone": fatherPhone,
+        "motherName": motherName,
+        "highSchool": highSchool,
+        "gpa": gpa,
+        "hasTcNumber": hasTcNumber,
+        "isTransferred": isTransferred,
+        "isTurkeyCitizen": isTurkeyCitizen,
+        "isVisaRequired": isVisaRequired,
+        "statusSlug": statusSlug,
+        "canHaveApplications": canHaveApplications,
+        "isSelfRegistered": isSelfRegistered,
+        "isLoginAllowed": isLoginAllowed,
+        "can": can?.toJson(),
+        "createdAt": createdAt,
+        "updatedAt": updatedAt,
+        "maker": maker?.toJson(),
+        "nationality": nationality?.toJson(),
+        "residenceCountry": residenceCountry?.toJson(),
+        "visaCountry": visaCountry.map((x) => x).toList(),
+        "degree": degree?.toJson(),
+        "highSchoolCountry": highSchoolCountry?.toJson(),
+        "image": image?.toJson(),
+        "status": status?.toJson(),
+        "profileImage": profileImage?.toJson(),
+        "documents": documents.map((x) => x?.toJson()).toList(),
+        "applications": applications.map((x) => x?.toJson()).toList(),
+      };
 }

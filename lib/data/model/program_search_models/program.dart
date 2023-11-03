@@ -33,7 +33,7 @@ class Program {
   late final String updatedAt;
   late final Degree? degree;
   late final Speciality speciality;
-  late final Language language;
+  late final Language? language;
 
   Program.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -49,7 +49,8 @@ class Program {
     updatedAt = json['updatedAt'];
     degree = json['degree'] == null ? null : Degree.fromJson(json['degree']);
     speciality = Speciality.fromJson(json['speciality']);
-    language = Language.fromJson(json['language']);
+    language =
+        json['language'] == null ? null : Language.fromJson(json['language']);
   }
 
   Map<String, dynamic> toJson() {
@@ -67,7 +68,7 @@ class Program {
     _data['updatedAt'] = updatedAt;
     _data['degree'] = degree?.toJson();
     _data['speciality'] = speciality.toJson();
-    _data['language'] = language.toJson();
+    _data['language'] = language?.toJson();
     return _data;
   }
 }

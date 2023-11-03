@@ -22,6 +22,8 @@ class PortalRemoteConstants {
 
   // students
   static const String getLoggedInUserStudents = "/api/v1/user/my-students";
+  //// here we will concat the id to it
+  static const String getStudentById = "/api/v1/student/";
   static const String getFieldsToModifyStudent =
       "/api/v1/student/get-fields-to-modify";
   static const String getStudentDocumentTypes =

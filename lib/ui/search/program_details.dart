@@ -123,14 +123,14 @@ class ProgramDetails extends StatelessWidget {
                           Text(
                             schoolProgram.tuitionFeeDiscounted.toString() +
                                 ' ' +
-                                schoolProgram.currency.title,
+                                schoolProgram.currency!.title,
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge!
                                 .copyWith(color: Colors.white),
                           ),
                           Text(
-                            " / " + schoolProgram.tuitionUnit.title,
+                            " / " + schoolProgram.tuitionUnit!.title,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
@@ -188,7 +188,7 @@ class ProgramDetails extends StatelessWidget {
                           size: 16,
                         ),
                         SizedBox(width: 4),
-                        Text(schoolProgram.program.language.title),
+                        Text(schoolProgram.program.language!.title),
                       ],
                     ),
                   ],

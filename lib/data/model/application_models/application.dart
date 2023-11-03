@@ -44,7 +44,7 @@ class Application {
     required this.messages,
   });
 
-  final int? id;
+  final int id;
   final int? studentId;
   final int? schoolId;
   final int? programId;
@@ -122,4 +122,34 @@ class Application {
           : List<dynamic>.from(json["messages"]!.map((x) => x)),
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "studentId": studentId,
+        "schoolId": schoolId,
+        "programId": programId,
+        "degreeId": degreeId,
+        "statusId": statusId,
+        "assignedToId": assignedToId,
+        "note": note,
+        "externalId": externalId,
+        "academicYearSlug": academicYearSlug,
+        "semesterId": semesterId,
+        "documents": documents.map((x) => x?.toJson()).toList(),
+        "confirmToDownload": confirmToDownload,
+        "isProceedToNextStepActive": isProceedToNextStepActive,
+        "can": can?.toJson(),
+        "completedAt": completedAt,
+        "createdAt": createdAt,
+        "updatedAt": updatedAt,
+        "createdAtAbsolute": createdAtAbsolute?.toIso8601String(),
+        "student": student?.toJson(),
+        "school": school?.toJson(),
+        "degree": degree?.toJson(),
+        "status": status?.toJson(),
+        "schoolProgram": schoolProgram?.toJson(),
+        "maker": maker?.toJson(),
+        "semester": semester?.toJson(),
+        "academicYear": academicYear?.toJson(),
+      };
 }

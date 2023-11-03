@@ -43,7 +43,7 @@ class Maker {
   late final Can can;
   late final String createdAt;
   late final String updatedAt;
-  late final Role role;
+  late final Role? role;
   late final List<dynamic> profileImage;
 
   Maker.fromJson(Map<String, dynamic> json) {
@@ -65,7 +65,7 @@ class Maker {
     can = Can.fromJson(json['can']);
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
-    role = Role.fromJson(json['role']);
+    role = json['role'] == null ? null : Role.fromJson(json['role']);
     profileImage = List.castFrom<dynamic, dynamic>(json['profileImage']);
   }
 
@@ -89,7 +89,7 @@ class Maker {
     _data['can'] = can.toJson();
     _data['createdAt'] = createdAt;
     _data['updatedAt'] = updatedAt;
-    _data['role'] = role.toJson();
+    _data['role'] = role?.toJson();
     _data['profileImage'] = profileImage;
     return _data;
   }

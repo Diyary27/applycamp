@@ -37,4 +37,17 @@ class File {
       updatedAt: json["updatedAt"],
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "uuid": uuid,
+        "name": name,
+        "path": path,
+        "realPath": realPath,
+        "mime": mime,
+        "extension": extension,
+        "note": note,
+        "createdAt": createdAt,
+        "updatedAt": updatedAt,
+      };
 }

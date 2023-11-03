@@ -15,4 +15,14 @@ class StudentRepositoryImpl implements StudentRepository {
   Future getStudentCreateFields() async {
     return dataSource.getStudentCreateFields();
   }
+
+  @override
+  Future getStudentById(int studentId) async {
+    return dataSource.getStudentById(studentId);
+  }
+
+  @override
+  Future deleteStudent(int studentId) async {
+    return dataSource.deleteStudent(studentId);
+  }
 }
