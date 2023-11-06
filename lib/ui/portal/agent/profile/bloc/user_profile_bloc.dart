@@ -2,7 +2,6 @@ import 'package:applycamp/data/model/user_model/user.dart';
 import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/domain/repository/agent_auth_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 
 part 'user_profile_event.dart';
 part 'user_profile_state.dart';

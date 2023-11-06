@@ -1,14 +1,13 @@
 import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/domain/repository/agent_auth_repository.dart';
-import 'package:applycamp/domain/repository/student_auth_repository.dart';
 import 'package:applycamp/ui/auth/auth_page.dart';
 import 'package:applycamp/ui/portal/agent/dashboard.dart';
 import 'package:applycamp/ui/profile/profile_page.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AppDrawer extends StatefulWidget {
+  const AppDrawer({super.key});
+
   @override
   State<AppDrawer> createState() => _AppDrawerState();
 }
@@ -34,17 +33,17 @@ class _AppDrawerState extends State<AppDrawer> {
                         child: Column(
                           children: [
                             Container(
-                              padding: EdgeInsets.fromLTRB(24, 50, 24, 24),
+                              padding: const EdgeInsets.fromLTRB(24, 50, 24, 24),
                               height: 200,
                               color: Theme.of(context).colorScheme.primary,
                               child: Row(
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: 80,
                                     height: 80,
                                     child: value.key != null
-                                        ? CircleAvatar(
+                                        ? const CircleAvatar(
                                             minRadius: 40,
                                             maxRadius: 40,
                                             backgroundImage: NetworkImage(
@@ -53,7 +52,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                           )
                                         : Container(),
                                   ),
-                                  SizedBox(width: 6),
+                                  const SizedBox(width: 6),
                                   Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -68,7 +67,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                             .titleMedium!
                                             .copyWith(color: Colors.white),
                                       ),
-                                      SizedBox(height: 4),
+                                      const SizedBox(height: 4),
                                       value.key != null
                                           ? GestureDetector(
                                               onTap: () {
@@ -76,7 +75,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                                 Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            ProfilePage()));
+                                                            const ProfilePage()));
                                               },
                                               child: Text(
                                                 'View Profile',
@@ -93,7 +92,7 @@ class _AppDrawerState extends State<AppDrawer> {
                                                 Navigator.of(context).push(
                                                     MaterialPageRoute(
                                                         builder: (context) =>
-                                                            AuthPage()));
+                                                            const AuthPage()));
                                               },
                                               child: Text(
                                                 'Login',
@@ -115,7 +114,7 @@ class _AppDrawerState extends State<AppDrawer> {
                               valueListenable: AllloggedInUsersNotifier,
                               builder: (context, accounts, child) {
                                 return ExpansionTile(
-                                  title: Text('Accounts'),
+                                  title: const Text('Accounts'),
                                   children: [
                                     for (var account in accounts)
                                       TextButton(
@@ -133,9 +132,9 @@ class _AppDrawerState extends State<AppDrawer> {
                                         Navigator.of(context).push(
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    AuthPage()));
+                                                    const AuthPage()));
                                       },
-                                      child: Text('+ Add Account'),
+                                      child: const Text('+ Add Account'),
                                     ),
                                   ],
                                 );
@@ -143,7 +142,7 @@ class _AppDrawerState extends State<AppDrawer> {
                             ),
                             // all added Student accounts
 
-                            ExpansionTile(
+                            const ExpansionTile(
                               title: Text('Apply Camp'),
                               children: [
                                 Text(
@@ -157,18 +156,18 @@ class _AppDrawerState extends State<AppDrawer> {
                                 onTap: () {
                                   Navigator.of(context, rootNavigator: true)
                                       .pushReplacement(MaterialPageRoute(
-                                    builder: (context) => AgentDashboardPage(),
+                                    builder: (context) => const AgentDashboardPage(),
                                   ));
                                 },
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.login,
                                         color: Colors.green,
                                       ),
-                                      SizedBox(width: 5),
+                                      const SizedBox(width: 5),
                                       Text(
                                         "Enter Portal",
                                         style: Theme.of(context)
@@ -192,13 +191,13 @@ class _AppDrawerState extends State<AppDrawer> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            child: Icon(Icons.facebook, size: 36),
+                            child: const Icon(Icons.facebook, size: 36),
                           ),
                           Container(
-                            child: Icon(Icons.telegram, size: 36),
+                            child: const Icon(Icons.telegram, size: 36),
                           ),
                           Container(
-                            child: Icon(Icons.whatshot, size: 36),
+                            child: const Icon(Icons.whatshot, size: 36),
                           ),
                         ],
                       ),

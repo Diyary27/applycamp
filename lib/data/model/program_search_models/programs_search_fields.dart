@@ -62,18 +62,18 @@ class ProgramSearchFields {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['schoolTypes'] = schoolTypes.map((e) => e.toJson()).toList();
-    _data['studyLanguages'] = studyLanguages.map((e) => e.toJson()).toList();
-    _data['studyFields'] = studyFields.map((e) => e.toJson()).toList();
-    _data['specialities'] = specialities.map((e) => e.toJson()).toList();
-    _data['degrees'] = degrees.map((e) => e.toJson()).toList();
-    _data['countries'] = countries.map((e) => e.toJson()).toList();
-    _data['cities'] = cities.map((e) => e.toJson()).toList();
-    _data['tuitionUnits'] = tuitionUnits.map((e) => e.toJson()).toList();
-    _data['schools'] = schools.map((e) => e.toJson()).toList();
-    _data['lowestTuitionFee'] = lowestTuitionFee;
-    _data['highestTuitionFee'] = highestTuitionFee;
-    return _data;
+    final data = <String, dynamic>{};
+    data['schoolTypes'] = schoolTypes.map((e) => e.toJson()).toList();
+    data['studyLanguages'] = studyLanguages.map((e) => e.toJson()).toList();
+    data['studyFields'] = studyFields.map((e) => e.toJson()).toList();
+    data['specialities'] = specialities.map((e) => e.toJson()).toList();
+    data['degrees'] = degrees.map((e) => e.toJson()).toList();
+    data['countries'] = countries.map((e) => e.toJson()).toList();
+    data['cities'] = cities.map((e) => e.toJson()).toList();
+    data['tuitionUnits'] = tuitionUnits.map((e) => e.toJson()).toList();
+    data['schools'] = schools.map((e) => e.toJson()).toList();
+    data['lowestTuitionFee'] = lowestTuitionFee;
+    data['highestTuitionFee'] = highestTuitionFee;
+    return data;
   }
 }

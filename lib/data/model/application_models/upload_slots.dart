@@ -21,9 +21,9 @@ class UploadSlots {
     if (optional != null) {
       final v = optional;
       final arr0 = [];
-      v!.forEach((v) {
+      for (var v in v!) {
         arr0.add(v!.toJson());
-      });
+      }
       data['optional'] = arr0;
     }
     return data;

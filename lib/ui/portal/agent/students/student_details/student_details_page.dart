@@ -1,12 +1,11 @@
 import 'package:applycamp/core/common/extensions.dart';
-import 'package:applycamp/data/model/student_model/student_model.dart';
 import 'package:applycamp/ui/portal/agent/applications/application_details/application_details_page.dart';
 import 'package:applycamp/ui/portal/agent/students/student_details/bloc/student_details_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StudentDetailsPage extends StatelessWidget {
-  StudentDetailsPage({
+  const StudentDetailsPage({
     super.key,
     required this.studentId,
   });
@@ -20,12 +19,12 @@ class StudentDetailsPage extends StatelessWidget {
           StudentDetailsBloc()..add(StudentDetailsStarted(studentId)),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Student Details'),
+          title: const Text('Student Details'),
         ),
         body: BlocBuilder<StudentDetailsBloc, StudentDetailsState>(
           builder: (context, state) {
             if (state is StudentDetailsInitial) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is StudentDetailsSuccess) {
               return SingleChildScrollView(
                 child: Padding(
@@ -34,24 +33,24 @@ class StudentDetailsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Column(
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               minRadius: 40,
                               maxRadius: 40,
                               backgroundImage: NetworkImage(
                                 'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
                               ),
                             ),
-                            SizedBox(height: 18),
+                            const SizedBox(height: 18),
                             Text(state.student.fullName!,
                                 style: Theme.of(context).textTheme.titleMedium),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -129,21 +128,21 @@ class StudentDetailsPage extends StatelessWidget {
                                 Text(state.student.motherName!),
                               ],
                             ),
-                            SizedBox(height: 16),
+                            const SizedBox(height: 16),
                             ElevatedButton(
                               onPressed: () {},
-                              child: Text('Download Student Information'),
+                              child: const Text('Download Student Information'),
                             ),
                             ElevatedButton(
                               onPressed: () {},
-                              child: Text('Download PDF'),
+                              child: const Text('Download PDF'),
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Container(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
@@ -232,7 +231,7 @@ class StudentDetailsPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       //
                       // Applications
                       //
@@ -256,8 +255,8 @@ class StudentDetailsPage extends StatelessWidget {
                                         ))));
                               },
                               child: Container(
-                                padding: EdgeInsets.all(8),
-                                margin: EdgeInsets.only(bottom: 8),
+                                padding: const EdgeInsets.all(8),
+                                margin: const EdgeInsets.only(bottom: 8),
                                 decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(12),
@@ -266,7 +265,7 @@ class StudentDetailsPage extends StatelessWidget {
                                   children: [
                                     Container(
                                       width: 100,
-                                      padding: EdgeInsets.all(4),
+                                      padding: const EdgeInsets.all(4),
                                       decoration: BoxDecoration(
                                         color: HexColor.fromHex(
                                             application.status!.bgColor!),
@@ -277,7 +276,7 @@ class StudentDetailsPage extends StatelessWidget {
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
-                                    SizedBox(width: 20),
+                                    const SizedBox(width: 20),
                                     Expanded(
                                       child: Column(
                                         crossAxisAlignment:
@@ -289,10 +288,9 @@ class StudentDetailsPage extends StatelessWidget {
                                                 .textTheme
                                                 .titleMedium,
                                           ),
-                                          SizedBox(height: 3),
-                                          Text('Program:  \n' +
-                                              application.schoolProgram!.program
-                                                  .title),
+                                          const SizedBox(height: 3),
+                                          Text('Program:  \n${application.schoolProgram!.program
+                                                  .title}'),
                                         ],
                                       ),
                                     ),
@@ -308,7 +306,7 @@ class StudentDetailsPage extends StatelessWidget {
                 ),
               );
             } else if (state is StudentDetailsError) {
-              return Center(child: Text("Error"));
+              return const Center(child: Text("Error"));
             } else {
               return Text(state.toString());
             }

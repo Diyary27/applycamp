@@ -36,36 +36,36 @@ class ApplicationEditForm extends StatelessWidget {
   Widget build(BuildContext context) {
     // lists
     final List<DropDownValueModel> countries = [];
-    (createFields.countries).forEach((element) {
+    for (var element in (createFields.countries)) {
       countries.add(DropDownValueModel(name: element.title, value: element.id));
-    });
+    }
     final List<DropDownValueModel> schoolTypes = [];
-    (createFields.schoolTypes).forEach((element) {
+    for (var element in (createFields.schoolTypes)) {
       schoolTypes
           .add(DropDownValueModel(name: element.title, value: element.id));
-    });
+    }
     final List<DropDownValueModel> schools = [];
-    (createFields.schools).forEach((element) {
+    for (var element in (createFields.schools)) {
       schools.add(DropDownValueModel(name: element.title, value: element.id));
-    });
+    }
     final List<DropDownValueModel> studyLanguages = [];
-    (createFields.studyLanguages).forEach((element) {
+    for (var element in (createFields.studyLanguages)) {
       studyLanguages
           .add(DropDownValueModel(name: element.title, value: element.id));
-    });
+    }
     final List<DropDownValueModel> degrees = [];
-    (createFields.degrees).forEach((element) {
+    for (var element in (createFields.degrees)) {
       degrees.add(DropDownValueModel(name: element.title, value: element.id));
-    });
+    }
     final List<DropDownValueModel> programs = [];
-    (createFields.programs).forEach((element) {
+    for (var element in (createFields.programs)) {
       programs.add(DropDownValueModel(name: element.title, value: element.id));
-    });
+    }
     final List<DropDownValueModel> semesters = [];
-    (createFields.academicYears).forEach((element) {
+    for (var element in (createFields.academicYears)) {
       semesters
           .add(DropDownValueModel(name: element.slug, value: element.slug));
-    });
+    }
 
     return SingleChildScrollView(
       child: Padding(
@@ -73,61 +73,58 @@ class ApplicationEditForm extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              "Edit Application of " +
-                  application.student!.fullName! +
-                  " for " +
-                  application.schoolProgram!.program.title,
+              "Edit Application of ${application.student!.fullName!} for ${application.schoolProgram!.program.title}",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             DropDownTextField(
-              textFieldDecoration: InputDecoration(label: Text("Country")),
+              textFieldDecoration: const InputDecoration(label: Text("Country")),
               controller: _countryController,
               dropDownList: countries,
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             DropDownTextField(
-              textFieldDecoration: InputDecoration(label: Text("School Type")),
+              textFieldDecoration: const InputDecoration(label: Text("School Type")),
               controller: _schoolTypeController,
               dropDownList: schoolTypes,
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             DropDownTextField(
-              textFieldDecoration: InputDecoration(label: Text("School")),
+              textFieldDecoration: const InputDecoration(label: Text("School")),
               controller: _schoolController,
               dropDownList: schools,
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             DropDownTextField(
               textFieldDecoration:
-                  InputDecoration(label: Text("Study Language")),
+                  const InputDecoration(label: Text("Study Language")),
               controller: _studyLanguageController,
               dropDownList: studyLanguages,
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             DropDownTextField(
-              textFieldDecoration: InputDecoration(label: Text("Degree")),
+              textFieldDecoration: const InputDecoration(label: Text("Degree")),
               controller: _degreeController,
               dropDownList: degrees,
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             DropDownTextField(
-              textFieldDecoration: InputDecoration(label: Text("Program")),
+              textFieldDecoration: const InputDecoration(label: Text("Program")),
               controller: _programController,
               dropDownList: programs,
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             DropDownTextField(
-              textFieldDecoration: InputDecoration(label: Text("Semester")),
+              textFieldDecoration: const InputDecoration(label: Text("Semester")),
               controller: _semesterController,
               dropDownList: semesters,
             ),
-            SizedBox(height: 18),
+            const SizedBox(height: 18),
             TextField(
                 controller: _applicationIdController,
-                decoration: InputDecoration(label: Text("Application ID"))),
-            SizedBox(height: 18),
+                decoration: const InputDecoration(label: Text("Application ID"))),
+            const SizedBox(height: 18),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -135,7 +132,7 @@ class ApplicationEditForm extends StatelessWidget {
                   onPressed: () {
                     context.read<ApplicationsBloc>().add(ApplicationsStarted());
                   },
-                  child: Text("Back"),
+                  child: const Text("Back"),
                 ),
                 // SizedBox(w),
                 ElevatedButton(
@@ -151,7 +148,7 @@ class ApplicationEditForm extends StatelessWidget {
                           semesterId: _semesterController.dropDownValue?.value,
                         ));
                   },
-                  child: Text("Save Changes"),
+                  child: const Text("Save Changes"),
                 ),
               ],
             )

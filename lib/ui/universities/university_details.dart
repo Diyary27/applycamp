@@ -13,14 +13,14 @@ class UniversityDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Program Details'),
+        title: const Text('Program Details'),
         centerTitle: false,
       ),
       body: Column(
         children: [
           // top banner
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: Theme.of(context).colorScheme.primary,
             ),
@@ -30,7 +30,7 @@ class UniversityDetailsPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.favorite_border,
                       color: Colors.white,
                     ),
@@ -39,7 +39,7 @@ class UniversityDetailsPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Container(
-                          padding: EdgeInsets.all(2),
+                          padding: const EdgeInsets.all(2),
                           decoration: BoxDecoration(
                             color: Colors.green,
                             borderRadius: BorderRadius.circular(6),
@@ -52,9 +52,9 @@ class UniversityDetailsPage extends StatelessWidget {
                                 .copyWith(color: Colors.white),
                           ),
                         ),
-                        SizedBox(height: 2),
+                        const SizedBox(height: 2),
                         Container(
-                          padding: EdgeInsets.all(2),
+                          padding: const EdgeInsets.all(2),
                           decoration: BoxDecoration(
                             color: Colors.orange,
                             borderRadius: BorderRadius.circular(6),
@@ -72,20 +72,20 @@ class UniversityDetailsPage extends StatelessWidget {
                   ],
                 ),
                 // logo
-                Container(
+                SizedBox(
                   width: 45,
                   height: 45,
                   child: Image.network(
                       "https://upload.wikimedia.org/wikipedia/en/4/4b/Logo_of_Bah%C3%A7e%C5%9Fehir_University.jpg"),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
                   school.title.toUpperCase(),
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         color: Theme.of(context).colorScheme.onPrimary,
                       ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 // Location
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +111,7 @@ class UniversityDetailsPage extends StatelessWidget {
             child: DefaultTabController(
               length: 5,
               child: Scaffold(
-                appBar: TabBar(
+                appBar: const TabBar(
                   isScrollable: true,
                   labelColor: Colors.black,
                   tabs: [
@@ -134,8 +134,8 @@ class UniversityDetailsPage extends StatelessWidget {
                 ),
                 body: TabBarView(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.all(12),
+                    const Padding(
+                      padding: EdgeInsets.all(12),
                       child: 'schoolrogram.careerPath' != null
                           ? Text('schoolProgram.careerPath.toString()')
                           : Center(
@@ -149,8 +149,8 @@ class UniversityDetailsPage extends StatelessWidget {
                               ),
                             ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(12),
+                    const Padding(
+                      padding: EdgeInsets.all(12),
                       child: 'schoolProgram.school.aboutSchool' != null
                           ? Text('schoolProgram.school.aboutSchool.toString()')
                           : Center(
@@ -164,8 +164,8 @@ class UniversityDetailsPage extends StatelessWidget {
                               ),
                             ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(12),
+                    const Padding(
+                      padding: EdgeInsets.all(12),
                       child: 'schoolProgram.admissionRequirements' != null
                           ? Text(
                               'schoolProgram.admissionRequirements.toString()')

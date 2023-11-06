@@ -17,9 +17,9 @@ class ApplicationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Applications'),
+        title: const Text('Applications'),
       ),
-      drawer: AgentDrawer(),
+      drawer: const AgentDrawer(),
       body: BlocProvider(
         create: (context) {
           final bloc = ApplicationsBloc();
@@ -30,7 +30,7 @@ class ApplicationsPage extends StatelessWidget {
         child: BlocBuilder<ApplicationsBloc, ApplicationsState>(
           builder: (context, state) {
             if (state is ApplicationsInitial) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is ApplicationsLoaded) {
               return Padding(
                 padding: const EdgeInsets.fromLTRB(8, 16, 8, 8),
@@ -59,14 +59,14 @@ class ApplicationsPage extends StatelessWidget {
                         },
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
                           // filter by student
                           DropdownButton(
-                              hint: Text('Filter By Student'),
+                              hint: const Text('Filter By Student'),
                               items: state.students.map((student) {
                                 return DropdownMenuItem(
                                     value: student.id,
@@ -77,10 +77,10 @@ class ApplicationsPage extends StatelessWidget {
                                     ApplicationsFilterClicked(
                                         studentId: newValue));
                               }),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           // filter by school
                           DropdownButton(
-                              hint: Text('Filter By School'),
+                              hint: const Text('Filter By School'),
                               items: state.schools.map((school) {
                                 return DropdownMenuItem(
                                     value: school.id,
@@ -91,10 +91,10 @@ class ApplicationsPage extends StatelessWidget {
                                     ApplicationsFilterClicked(
                                         schoolId: newValue));
                               }),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           // filter by student
                           DropdownButton(
-                              hint: Text('Filter By Program'),
+                              hint: const Text('Filter By Program'),
                               items: state.programs.map((program) {
                                 return DropdownMenuItem(
                                     value: program.id,
@@ -108,7 +108,7 @@ class ApplicationsPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Expanded(
                       child: ListView.builder(
                         itemCount: state.applications.length,
@@ -118,12 +118,12 @@ class ApplicationsPage extends StatelessWidget {
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: ((context) => ApplicationDetailsPage(
-                                        applicationId: application.id!,
+                                        applicationId: application.id,
                                       ))));
                             },
                             child: Container(
-                              padding: EdgeInsets.all(8),
-                              margin: EdgeInsets.only(bottom: 8),
+                              padding: const EdgeInsets.all(8),
+                              margin: const EdgeInsets.only(bottom: 8),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(12),
@@ -132,17 +132,17 @@ class ApplicationsPage extends StatelessWidget {
                                 children: [
                                   Column(
                                     children: [
-                                      CircleAvatar(
+                                      const CircleAvatar(
                                         minRadius: 40,
                                         maxRadius: 40,
                                         backgroundImage: NetworkImage(
                                           'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
                                         ),
                                       ),
-                                      SizedBox(height: 12),
+                                      const SizedBox(height: 12),
                                       Container(
                                         width: 100,
-                                        padding: EdgeInsets.all(4),
+                                        padding: const EdgeInsets.all(4),
                                         decoration: BoxDecoration(
                                           color: HexColor.fromHex(
                                               application.status!.bgColor!),
@@ -156,7 +156,7 @@ class ApplicationsPage extends StatelessWidget {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment:
@@ -168,19 +168,14 @@ class ApplicationsPage extends StatelessWidget {
                                               .textTheme
                                               .titleMedium,
                                         ),
-                                        SizedBox(height: 3),
-                                        Text('Program:  \n' +
-                                            application
-                                                .schoolProgram!.program.title),
+                                        const SizedBox(height: 3),
+                                        Text('Program:  \n${application
+                                                .schoolProgram!.program.title}'),
                                         (application.assignedTo.isNotEmpty)
-                                            ? Text('Assignee: ' +
-                                                application.assignedTo
-                                                    .toString())
-                                            : Text('Assignee: '),
-                                        Text('School: \n' +
-                                            application.school!.title),
-                                        Text('Maker: \n' +
-                                            application.maker!.name),
+                                            ? Text('Assignee: ${application.assignedTo}')
+                                            : const Text('Assignee: '),
+                                        Text('School: \n${application.school!.title}'),
+                                        Text('Maker: \n${application.maker!.name}'),
                                       ],
                                     ),
                                   ),
@@ -191,12 +186,12 @@ class ApplicationsPage extends StatelessWidget {
                                           context
                                               .read<ApplicationsBloc>()
                                               .add(ApplicationEditStarted(
-                                                applicationtId: application.id!,
+                                                applicationtId: application.id,
                                                 studentId:
                                                     application.studentId!,
                                               ));
                                         },
-                                        child: Icon(Icons.edit),
+                                        child: const Icon(Icons.edit),
                                       ),
                                     ],
                                   ),

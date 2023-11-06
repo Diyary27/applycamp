@@ -1,10 +1,8 @@
 import 'package:applycamp/domain/entity/sub_user.dart';
-import 'package:applycamp/ui/portal/agent/sub_users/bloc/sub_users_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SubUserForm extends StatefulWidget {
-  SubUserForm({super.key, this.subUserEntity});
+  const SubUserForm({super.key, this.subUserEntity});
 
   final SubUserEntity? subUserEntity;
 
@@ -53,42 +51,42 @@ class _SubUserFormState extends State<SubUserForm> {
               children: [
                 TextFormField(
                   controller: _nameController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     label: Text('Name'),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   controller: _emailController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     label: Text('Email'),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   controller: _passController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     label: Text('Password'),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   controller: _organizationController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     label: Text('Organization'),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   controller: _phoneController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     label: Text('Phone'),
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextFormField(
                   controller: _commissionController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     label: Text('Commision Percentage'),
                   ),
                 ),
@@ -118,18 +116,18 @@ class _SubUserFormState extends State<SubUserForm> {
                         });
                       },
                     ),
-                    Text(
+                    const Text(
                       'Can View Commissions',
                     ),
                   ],
                 ),
                 //
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text('Upload Profile Photo'),
+                  child: const Text('Upload Profile Photo'),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 widget.subUserEntity == null
                     ? ElevatedButton(
                         onPressed: () {
@@ -146,11 +144,11 @@ class _SubUserFormState extends State<SubUserForm> {
                           );
                           Navigator.of(context).pop(subUserEntity);
                         },
-                        child: Text('Add Sub User'),
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                           backgroundColor:
                               MaterialStatePropertyAll(Colors.green),
                         ),
+                        child: const Text('Add Sub User'),
                       )
                     : ElevatedButton(
                         onPressed: () {
@@ -167,11 +165,11 @@ class _SubUserFormState extends State<SubUserForm> {
                           );
                           Navigator.of(context).pop(subUserEntity);
                         },
-                        child: Text('Edit Sub User'),
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                           backgroundColor:
                               MaterialStatePropertyAll(Colors.green),
                         ),
+                        child: const Text('Edit Sub User'),
                       ),
               ],
             ),

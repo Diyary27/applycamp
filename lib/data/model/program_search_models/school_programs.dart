@@ -20,10 +20,10 @@ class SchoolPrograms {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['paginationInfo'] = paginationInfo?.toJson();
-    _data['schoolPrograms'] = schoolPrograms.map((e) => e.toJson()).toList();
-    return _data;
+    final data = <String, dynamic>{};
+    data['paginationInfo'] = paginationInfo?.toJson();
+    data['schoolPrograms'] = schoolPrograms.map((e) => e.toJson()).toList();
+    return data;
   }
 }
 
@@ -110,31 +110,31 @@ class SchoolProgram {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['schoolId'] = schoolId;
-    _data['programId'] = programId;
-    _data['tuitionUnitId'] = tuitionUnitId;
-    _data['currencyId'] = currencyId;
-    _data['tuitionFee'] = tuitionFee;
-    _data['tuitionFeeDiscounted'] = tuitionFeeDiscounted;
-    _data['isScholarship'] = isScholarship;
-    _data['hasDiscount'] = hasDiscount;
-    _data['depositAmount'] = depositAmount;
-    _data['commission'] = commission;
-    _data['studyYears'] = studyYears;
-    _data['description'] = description;
-    _data['admissionRequirements'] = admissionRequirements;
-    _data['careerPath'] = careerPath;
-    _data['isActiveInSearch'] = isActiveInSearch;
-    _data['isActiveInNewApps'] = isActiveInNewApps;
-    _data['hasArticle'] = hasArticle;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['school'] = school?.toJson();
-    _data['program'] = program.toJson();
-    _data['tuitionUnit'] = tuitionUnit?.toJson();
-    _data['currency'] = currency?.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['schoolId'] = schoolId;
+    data['programId'] = programId;
+    data['tuitionUnitId'] = tuitionUnitId;
+    data['currencyId'] = currencyId;
+    data['tuitionFee'] = tuitionFee;
+    data['tuitionFeeDiscounted'] = tuitionFeeDiscounted;
+    data['isScholarship'] = isScholarship;
+    data['hasDiscount'] = hasDiscount;
+    data['depositAmount'] = depositAmount;
+    data['commission'] = commission;
+    data['studyYears'] = studyYears;
+    data['description'] = description;
+    data['admissionRequirements'] = admissionRequirements;
+    data['careerPath'] = careerPath;
+    data['isActiveInSearch'] = isActiveInSearch;
+    data['isActiveInNewApps'] = isActiveInNewApps;
+    data['hasArticle'] = hasArticle;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['school'] = school?.toJson();
+    data['program'] = program.toJson();
+    data['tuitionUnit'] = tuitionUnit?.toJson();
+    data['currency'] = currency?.toJson();
+    return data;
   }
 }

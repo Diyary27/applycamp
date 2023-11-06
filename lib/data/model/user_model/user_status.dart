@@ -21,12 +21,12 @@ class UserStatus {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['slug'] = slug;
-    _data['title'] = title;
-    _data['ordering'] = ordering;
-    _data['color'] = color;
-    _data['bgColor'] = bgColor;
-    return _data;
+    final data = <String, dynamic>{};
+    data['slug'] = slug;
+    data['title'] = title;
+    data['ordering'] = ordering;
+    data['color'] = color;
+    data['bgColor'] = bgColor;
+    return data;
   }
 }

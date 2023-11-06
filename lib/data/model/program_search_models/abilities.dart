@@ -12,9 +12,9 @@ class Can {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['update'] = update;
-    _data['delete'] = delete;
-    return _data;
+    final data = <String, dynamic>{};
+    data['update'] = update;
+    data['delete'] = delete;
+    return data;
   }
 }

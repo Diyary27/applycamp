@@ -13,17 +13,17 @@ class ProgramDetails extends StatelessWidget {
       floatingActionButton: FloatingActionButton.extended(
         foregroundColor: Colors.white,
         onPressed: () {},
-        label: Text('Apply Now'),
+        label: const Text('Apply Now'),
       ),
       appBar: AppBar(
-        title: Text('Program Details'),
+        title: const Text('Program Details'),
         centerTitle: false,
       ),
       body: Column(
         children: [
           // top banner
           Container(
-            padding: EdgeInsets.fromLTRB(12, 12, 12, 16),
+            padding: const EdgeInsets.fromLTRB(12, 12, 12, 16),
             color: Theme.of(context).colorScheme.primary,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,16 +31,16 @@ class ProgramDetails extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 55,
                       height: 55,
                       child: Image.network(
                           "https://upload.wikimedia.org/wikipedia/en/4/4b/Logo_of_Bah%C3%A7e%C5%9Fehir_University.jpg"),
                     ),
-                    Icon(Icons.favorite_border, color: Colors.white)
+                    const Icon(Icons.favorite_border, color: Colors.white)
                   ],
                 ),
-                SizedBox(height: 24),
+                const SizedBox(height: 24),
                 Row(
                   children: [
                     Text(
@@ -50,10 +50,10 @@ class ProgramDetails extends StatelessWidget {
                           .titleSmall!
                           .copyWith(color: Colors.white),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     // sector
                     Container(
-                      padding: EdgeInsets.all(2),
+                      padding: const EdgeInsets.all(2),
                       decoration: BoxDecoration(
                         color: Colors.green,
                         borderRadius: BorderRadius.circular(6),
@@ -68,7 +68,7 @@ class ProgramDetails extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 // program name
                 SizedBox(
                   width: MediaQuery.of(context).size.width - 12,
@@ -89,13 +89,13 @@ class ProgramDetails extends StatelessWidget {
                       .bodyMedium!
                       .copyWith(color: Colors.white),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.location_pin,
                           size: 18,
                           color: Colors.white,
@@ -111,7 +111,7 @@ class ProgramDetails extends StatelessWidget {
                     ),
                     // tuition fee
                     Container(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
@@ -121,16 +121,14 @@ class ProgramDetails extends StatelessWidget {
                       child: Row(
                         children: [
                           Text(
-                            schoolProgram.tuitionFeeDiscounted.toString() +
-                                ' ' +
-                                schoolProgram.currency!.title,
+                            '${schoolProgram.tuitionFeeDiscounted} ${schoolProgram.currency!.title}',
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge!
                                 .copyWith(color: Colors.white),
                           ),
                           Text(
-                            " / " + schoolProgram.tuitionUnit!.title,
+                            " / ${schoolProgram.tuitionUnit!.title}",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium!
@@ -146,7 +144,7 @@ class ProgramDetails extends StatelessWidget {
           ),
           // other details under banner
           Container(
-            padding: EdgeInsets.fromLTRB(10, 8, 10, 8),
+            padding: const EdgeInsets.fromLTRB(10, 8, 10, 8),
             color: Colors.grey.shade300,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -157,24 +155,23 @@ class ProgramDetails extends StatelessWidget {
                     // degree
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.school,
                           size: 16,
                         ),
-                        SizedBox(width: 4),
+                        const SizedBox(width: 4),
                         Text(schoolProgram.program.degree!.title),
                       ],
                     ),
                     // study years
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.timelapse,
                           size: 16,
                         ),
-                        SizedBox(width: 4),
-                        Text("Study Years: " +
-                            schoolProgram.studyYears.toString()),
+                        const SizedBox(width: 4),
+                        Text("Study Years: ${schoolProgram.studyYears}"),
                       ],
                     ),
                   ],
@@ -183,11 +180,11 @@ class ProgramDetails extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.language,
                           size: 16,
                         ),
-                        SizedBox(width: 4),
+                        const SizedBox(width: 4),
                         Text(schoolProgram.program.language!.title),
                       ],
                     ),
@@ -200,7 +197,7 @@ class ProgramDetails extends StatelessWidget {
             child: DefaultTabController(
               length: 3,
               child: Scaffold(
-                appBar: TabBar(
+                appBar: const TabBar(
                   isScrollable: true,
                   labelColor: Colors.black,
                   tabs: [
@@ -221,7 +218,7 @@ class ProgramDetails extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       child: schoolProgram.careerPath != null
                           ? Text(schoolProgram.careerPath.toString())
-                          : Center(
+                          : const Center(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -236,7 +233,7 @@ class ProgramDetails extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       child: schoolProgram.school!.aboutSchool != null
                           ? Text(schoolProgram.school!.aboutSchool.toString())
-                          : Center(
+                          : const Center(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
@@ -251,7 +248,7 @@ class ProgramDetails extends StatelessWidget {
                       padding: const EdgeInsets.all(12),
                       child: schoolProgram.admissionRequirements != null
                           ? Text(schoolProgram.admissionRequirements.toString())
-                          : Center(
+                          : const Center(
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [

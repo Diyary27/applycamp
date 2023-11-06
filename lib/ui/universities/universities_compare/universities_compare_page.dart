@@ -19,12 +19,12 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: false,
-          title: Text('Compare Universities'),
+          title: const Text('Compare Universities'),
         ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               BlocListener<UniversitiesBloc, UniversitiesState>(
                 listener: (context, state) {
                   // TODO: implement listener
@@ -35,7 +35,7 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
                     Stack(
                       children: [
                         Container(
-                          margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                           width: 185,
                           height: 210,
                           child: ClipRRect(
@@ -49,7 +49,7 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                           width: 185,
                           height: 210,
                           decoration: BoxDecoration(
@@ -67,7 +67,7 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
-                                padding: EdgeInsets.all(2),
+                                padding: const EdgeInsets.all(2),
                                 decoration: BoxDecoration(
                                   color: Colors.green,
                                   borderRadius: BorderRadius.circular(6),
@@ -80,7 +80,7 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
                                       .copyWith(color: Colors.white),
                                 ),
                               ),
-                              SizedBox(height: 2),
+                              const SizedBox(height: 2),
                             ],
                           ),
                         ),
@@ -128,7 +128,7 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
                     Stack(
                       children: [
                         Container(
-                          margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                           width: 185,
                           height: 210,
                           child: ClipRRect(
@@ -142,7 +142,7 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                           width: 185,
                           height: 210,
                           decoration: BoxDecoration(
@@ -160,7 +160,7 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
                               Container(
-                                padding: EdgeInsets.all(2),
+                                padding: const EdgeInsets.all(2),
                                 decoration: BoxDecoration(
                                   color: Colors.green,
                                   borderRadius: BorderRadius.circular(6),
@@ -173,7 +173,7 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
                                       .copyWith(color: Colors.white),
                                 ),
                               ),
-                              SizedBox(height: 2),
+                              const SizedBox(height: 2),
                             ],
                           ),
                         ),
@@ -221,21 +221,21 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               BlocBuilder<UniversitiesBloc, UniversitiesState>(
                 builder: (context, state) {
                   return Column(
                     children: [
                       Container(
                         margin:
-                            EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                        padding: EdgeInsets.only(top: 10, bottom: 20),
+                            const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                        padding: const EdgeInsets.only(top: 10, bottom: 20),
                         height: 100,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10),
-                            boxShadow: [
+                            boxShadow: const [
                               BoxShadow(
                                 color: Colors.black12,
                                 blurRadius: 5,
@@ -248,7 +248,7 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
                               "Type",
                               style: Theme.of(context).textTheme.titleSmall,
                             ),
-                            Row(
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
                                 Text("Public"),

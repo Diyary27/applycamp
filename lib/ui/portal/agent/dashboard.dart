@@ -1,5 +1,4 @@
 import 'package:applycamp/ui/portal/agent/darwer.dart';
-import 'package:applycamp/ui/root.dart';
 import 'package:flutter/material.dart';
 
 class AgentDashboardPage extends StatelessWidget {
@@ -9,11 +8,11 @@ class AgentDashboardPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dashboard'),
+        title: const Text('Dashboard'),
       ),
-      drawer: AgentDrawer(),
+      drawer: const AgentDrawer(),
       body: Container(
-        child: SingleChildScrollView(
+        child: const SingleChildScrollView(
           child: Column(
             children: [],
           ),

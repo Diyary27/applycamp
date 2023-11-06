@@ -54,21 +54,21 @@ class Program {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['degreeId'] = degreeId;
-    _data['specialityId'] = specialityId;
-    _data['languageId'] = languageId;
-    _data['title'] = title;
-    _data['isActiveInSearch'] = isActiveInSearch;
-    _data['isActiveInNewApps'] = isActiveInNewApps;
-    _data['hasArticle'] = hasArticle;
-    _data['can'] = can.toJson();
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['degree'] = degree?.toJson();
-    _data['speciality'] = speciality.toJson();
-    _data['language'] = language?.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['degreeId'] = degreeId;
+    data['specialityId'] = specialityId;
+    data['languageId'] = languageId;
+    data['title'] = title;
+    data['isActiveInSearch'] = isActiveInSearch;
+    data['isActiveInNewApps'] = isActiveInNewApps;
+    data['hasArticle'] = hasArticle;
+    data['can'] = can.toJson();
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['degree'] = degree?.toJson();
+    data['speciality'] = speciality.toJson();
+    data['language'] = language?.toJson();
+    return data;
   }
 }

@@ -3,8 +3,6 @@ import 'package:applycamp/data/model/program_search_models/degrees.dart';
 import 'package:applycamp/data/model/program_search_models/image.dart';
 import 'package:applycamp/data/model/student_model/high_school_country.dart';
 import 'package:applycamp/data/model/student_model/maker.dart';
-import 'package:applycamp/data/model/student_model/nationality.dart';
-import 'package:applycamp/data/model/student_model/residence_country.dart';
 import 'package:applycamp/data/model/student_model/student_can.dart';
 import 'package:applycamp/data/model/student_model/student_document.dart';
 import 'package:applycamp/data/model/user_model/user_status.dart';
@@ -207,7 +205,7 @@ class Student {
         "image": image?.toJson(),
         "status": status?.toJson(),
         "profileImage": profileImage?.toJson(),
-        "documents": documents.map((x) => x?.toJson()).toList(),
-        "applications": applications.map((x) => x?.toJson()).toList(),
+        "documents": documents.map((x) => x.toJson()).toList(),
+        "applications": applications.map((x) => x.toJson()).toList(),
       };
 }

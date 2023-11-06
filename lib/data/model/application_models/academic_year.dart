@@ -26,13 +26,13 @@ class AcademicYear {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['slug'] = slug;
-    _data['start'] = start;
-    _data['end'] = end;
-    _data['title'] = title;
-    _data['isActive'] = isActive;
-    _data['can'] = can.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['slug'] = slug;
+    data['start'] = start;
+    data['end'] = end;
+    data['title'] = title;
+    data['isActive'] = isActive;
+    data['can'] = can.toJson();
+    return data;
   }
 }

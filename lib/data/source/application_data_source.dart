@@ -33,9 +33,9 @@ class ApplicationDataSourceImpl implements ApplicationDataSource {
         await dioConsumer.get(PortalRemoteConstants.getMyApplications);
 
     final List<Application> applications = [];
-    (response.data["applications"] as List).forEach((element) {
+    for (var element in (response.data["applications"] as List)) {
       applications.add(Application.fromJson(element));
-    });
+    }
 
     return applications;
   }
@@ -46,9 +46,9 @@ class ApplicationDataSourceImpl implements ApplicationDataSource {
         await dioConsumer.get(PortalRemoteConstants.getAllApplicationStatus);
 
     final List<ApplicationStatus> status = [];
-    (response.data['applicationStatuses'] as List).forEach((element) {
+    for (var element in (response.data['applicationStatuses'] as List)) {
       status.add(ApplicationStatus.fromJson(element));
-    });
+    }
 
     return status;
   }
@@ -66,9 +66,9 @@ class ApplicationDataSourceImpl implements ApplicationDataSource {
     );
 
     final List<Application> applications = [];
-    (response.data["applications"] as List).forEach((element) {
+    for (var element in (response.data["applications"] as List)) {
       applications.add(Application.fromJson(element));
-    });
+    }
 
     return applications;
   }
@@ -110,9 +110,7 @@ class ApplicationDataSourceImpl implements ApplicationDataSource {
   @override
   Future proceedToNextStep(int Id) async {
     final response = await dioConsumer.post(
-        PortalRemoteConstants.getAnApplication +
-            Id.toString() +
-            "/proceed-to-next-step",
+        "${PortalRemoteConstants.getAnApplication}$Id/proceed-to-next-step",
         body: {
           "subject": "demo",
           "body": "",

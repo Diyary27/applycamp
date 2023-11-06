@@ -14,7 +14,7 @@ class ProgramsListPage extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
           foregroundColor: Colors.white,
-          child: Icon(Icons.arrow_back),
+          child: const Icon(Icons.arrow_back),
           onPressed: () {
             context.read<SearchBloc>().add(SearchPageStarted());
           }),
@@ -31,8 +31,8 @@ class ProgramsListPage extends StatelessWidget {
                             )));
               },
               child: Container(
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                margin: EdgeInsets.fromLTRB(10, 10, 10, 5),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                margin: const EdgeInsets.fromLTRB(10, 10, 10, 5),
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -48,13 +48,13 @@ class ProgramsListPage extends StatelessWidget {
                           Row(
                             children: [
                               // Image.network(schoolProgram.school.image!.path),
-                              Container(
+                              SizedBox(
                                 width: 45,
                                 height: 45,
                                 child: Image.network(
                                     "https://upload.wikimedia.org/wikipedia/en/4/4b/Logo_of_Bah%C3%A7e%C5%9Fehir_University.jpg"),
                               ),
-                              SizedBox(width: 4),
+                              const SizedBox(width: 4),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -82,17 +82,17 @@ class ProgramsListPage extends StatelessWidget {
                             ],
                           ),
                           //
-                          SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           Column(
                             children: [
                               // degree
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.school,
                                     size: 16,
                                   ),
-                                  SizedBox(width: 4),
+                                  const SizedBox(width: 4),
                                   Text(
                                     schoolProgram.program.degree!.title,
                                     style: Theme.of(context)
@@ -105,14 +105,13 @@ class ProgramsListPage extends StatelessWidget {
                               // study years
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.timelapse,
                                     size: 16,
                                   ),
-                                  SizedBox(width: 4),
+                                  const SizedBox(width: 4),
                                   Text(
-                                    "Study Years: " +
-                                        schoolProgram.studyYears.toString(),
+                                    "Study Years: ${schoolProgram.studyYears}",
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelMedium!
@@ -122,11 +121,11 @@ class ProgramsListPage extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.language,
                                     size: 16,
                                   ),
-                                  SizedBox(width: 4),
+                                  const SizedBox(width: 4),
                                   Text(
                                     schoolProgram.program.language!.title,
                                     style: Theme.of(context)
@@ -146,9 +145,7 @@ class ProgramsListPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          schoolProgram.tuitionFee.toString() +
-                              ' ' +
-                              schoolProgram.currency!.title,
+                          '${schoolProgram.tuitionFee} ${schoolProgram.currency!.title}',
                           style:
                               Theme.of(context).textTheme.labelMedium!.copyWith(
                                     decoration: TextDecoration.lineThrough,
@@ -156,15 +153,13 @@ class ProgramsListPage extends StatelessWidget {
                                   ),
                         ),
                         Text(
-                          schoolProgram.tuitionFeeDiscounted.toString() +
-                              ' ' +
-                              schoolProgram.currency!.title,
+                          '${schoolProgram.tuitionFeeDiscounted} ${schoolProgram.currency!.title}',
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium!
                               .copyWith(color: Colors.green),
                         ),
-                        SizedBox(height: 2),
+                        const SizedBox(height: 2),
                         Text(
                           schoolProgram.tuitionUnit!.title,
                           style: Theme.of(context)

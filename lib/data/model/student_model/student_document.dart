@@ -26,6 +26,6 @@ class StudentDocument {
   Map<String, dynamic> toJson() => {
         "id": id,
         "type": type?.toJson(),
-        "files": files.map((x) => x?.toJson()).toList(),
+        "files": files.map((x) => x.toJson()).toList(),
       };
 }

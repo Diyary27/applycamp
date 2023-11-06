@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfilePage extends StatefulWidget {
-  ProfilePage({super.key});
+  const ProfilePage({super.key});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -43,8 +43,8 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
-      drawer: AppDrawer(),
+      appBar: const CustomAppBar(),
+      drawer: const AppDrawer(),
       body: BlocProvider<ProfileBloc>(
         create: (context) {
           final bloc = ProfileBloc();
@@ -52,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
           stateStreamSubscription = bloc.stream.listen((state) {
             if (state is ProfileAuthRequired) {
               Navigator.of(context, rootNavigator: true)
-                  .push(MaterialPageRoute(builder: (context) => AuthPage()))
+                  .push(MaterialPageRoute(builder: (context) => const AuthPage()))
                   .then((value) => setState(() {}));
             }
           });
@@ -62,16 +62,16 @@ class _ProfilePageState extends State<ProfilePage> {
         child: BlocBuilder<ProfileBloc, ProfileState>(
           builder: (context, state) {
             if (state is ProfileInitial) {
-              return Container(
+              return SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: Center(child: CircularProgressIndicator()),
+                child: const Center(child: CircularProgressIndicator()),
               );
             } else if (state is ProfileSuccess) {
               return SingleChildScrollView(
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.all(24),
+                      padding: const EdgeInsets.all(24),
                       height: 120,
                       color: Theme.of(context).colorScheme.primary,
                       child: Row(
@@ -81,9 +81,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           Container(
                             width: 80,
                             height: 80,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 shape: BoxShape.circle, color: Colors.white70),
-                            child: CircleAvatar(
+                            child: const CircleAvatar(
                               minRadius: 40,
                               maxRadius: 40,
                               backgroundImage: NetworkImage(
@@ -91,7 +91,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                           ),
-                          SizedBox(width: 6),
+                          const SizedBox(width: 6),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(24),
+                      padding: const EdgeInsets.all(24),
                       child: Column(
                         children: [
                           // Row(
@@ -231,16 +231,16 @@ class _ProfilePageState extends State<ProfilePage> {
                                               .pushReplacement(
                                                   MaterialPageRoute(
                                             builder: (context) =>
-                                                AgentDashboardPage(),
+                                                const AgentDashboardPage(),
                                           ));
                                         },
                                         child: Row(
                                           children: [
-                                            Icon(
+                                            const Icon(
                                               Icons.login,
                                               color: Colors.green,
                                             ),
-                                            SizedBox(width: 10),
+                                            const SizedBox(width: 10),
                                             Text(
                                               "Enter Portal",
                                               style: Theme.of(context)
@@ -255,18 +255,18 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ],
                                   );
                                 } else {
-                                  return SizedBox();
+                                  return const SizedBox();
                                 }
                               }),
-                          SizedBox(height: 28),
+                          const SizedBox(height: 28),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.logout,
                                 color: Colors.red,
                               ),
-                              SizedBox(width: 10),
+                              const SizedBox(width: 10),
                               ValueListenableBuilder(
                                   valueListenable: loggedInUserNotifier,
                                   builder: (context, value, child) {
@@ -286,15 +286,15 @@ class _ProfilePageState extends State<ProfilePage> {
                                   }),
                             ],
                           ),
-                          SizedBox(height: 28),
+                          const SizedBox(height: 28),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.delete_forever,
                                 color: Colors.red,
                               ),
-                              SizedBox(width: 10),
+                              const SizedBox(width: 10),
                               Text(
                                 'Delete Account',
                                 style: Theme.of(context)
@@ -304,7 +304,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 28),
+                          const SizedBox(height: 28),
                         ],
                       ),
                     )
@@ -312,7 +312,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               );
             } else if (state is ProfileAuthRequired) {
-              return Container(
+              return SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -321,15 +321,15 @@ class _ProfilePageState extends State<ProfilePage> {
                         'Please Login to your account first',
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
-                      SizedBox(height: 12),
+                      const SizedBox(height: 12),
                       ElevatedButton(
                         onPressed: () {
                           Navigator.of(context, rootNavigator: true)
                               .push(MaterialPageRoute(
-                                  builder: (context) => AuthPage()))
+                                  builder: (context) => const AuthPage()))
                               .then((value) => setState(() {}));
                         },
-                        child: Text('Login'),
+                        child: const Text('Login'),
                       )
                     ],
                   ));

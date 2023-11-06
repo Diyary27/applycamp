@@ -36,17 +36,17 @@ class Image {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['uuid'] = uuid;
-    _data['name'] = name;
-    _data['path'] = path;
-    _data['realPath'] = realPath;
-    _data['mime'] = mime;
-    _data['extension'] = extension;
-    _data['note'] = note;
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['uuid'] = uuid;
+    data['name'] = name;
+    data['path'] = path;
+    data['realPath'] = realPath;
+    data['mime'] = mime;
+    data['extension'] = extension;
+    data['note'] = note;
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    return data;
   }
 }

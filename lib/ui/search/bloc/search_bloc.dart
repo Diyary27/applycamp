@@ -1,12 +1,10 @@
 import 'package:applycamp/data/model/program_search_models/city.dart';
-import 'package:applycamp/data/model/program_search_models/programs_search_fields.dart';
 import 'package:applycamp/data/model/program_search_models/school.dart';
 import 'package:applycamp/data/model/program_search_models/school_programs.dart';
 import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/domain/entity/program_search_params.dart';
 import 'package:applycamp/domain/repository/search_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:multi_dropdown/models/value_item.dart';
 
 part 'search_event.dart';
@@ -71,21 +69,21 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           List cityIds = [];
           List schoolIds = [];
           // parse the value model objects and store their value in a list
-          event.degrees.forEach((element) {
+          for (var element in event.degrees) {
             degreeIds.add(element.value);
-          });
-          event.languages.forEach((element) {
+          }
+          for (var element in event.languages) {
             languageIds.add(element.value);
-          });
-          event.schoolTypes.forEach((element) {
+          }
+          for (var element in event.schoolTypes) {
             schoolTypeIds.add(element.value);
-          });
-          event.cities.forEach((element) {
+          }
+          for (var element in event.cities) {
             cityIds.add(element.value);
-          });
-          event.universities.forEach((element) {
+          }
+          for (var element in event.universities) {
             schoolIds.add(element.value);
-          });
+          }
 
           // creating an instance of programSearchParams and passing the list items converted to string
           final searchParams = SearchParams(
@@ -105,12 +103,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           List schoolTypeIds = [];
           List cityIds = [];
 
-          event.schoolTypes.forEach((element) {
+          for (var element in event.schoolTypes) {
             schoolTypeIds.add(element.value);
-          });
-          event.cities.forEach((element) {
+          }
+          for (var element in event.cities) {
             cityIds.add(element.value);
-          });
+          }
 
           final searhParams = SearchParams(
             schoolTypeIds: schoolTypeIds.join(','),

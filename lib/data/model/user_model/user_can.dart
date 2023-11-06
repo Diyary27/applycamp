@@ -15,11 +15,11 @@ class UserCan {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['update'] = update;
-    _data['delete'] = delete;
-    _data['changeStatus'] = changeStatus;
-    return _data;
+    final data = <String, dynamic>{};
+    data['update'] = update;
+    data['delete'] = delete;
+    data['changeStatus'] = changeStatus;
+    return data;
   }
 }
 
@@ -73,21 +73,21 @@ class Abilities {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['createUser'] = createUser;
-    _data['createCountry'] = createCountry;
-    _data['createCity'] = createCity;
-    _data['createStudyLanguage'] = createStudyLanguage;
-    _data['createStudyField'] = createStudyField;
-    _data['createSpeciality'] = createSpeciality;
-    _data['createSchool'] = createSchool;
-    _data['createProgram'] = createProgram;
-    _data['createAnnouncement'] = createAnnouncement;
-    _data['createAcademicYear'] = createAcademicYear;
-    _data['addProgramToSchool'] = addProgramToSchool;
-    _data['removeProgramFromSchool'] = removeProgramFromSchool;
-    _data['createApplication'] = createApplication;
-    _data['createStudent'] = createStudent;
-    return _data;
+    final data = <String, dynamic>{};
+    data['createUser'] = createUser;
+    data['createCountry'] = createCountry;
+    data['createCity'] = createCity;
+    data['createStudyLanguage'] = createStudyLanguage;
+    data['createStudyField'] = createStudyField;
+    data['createSpeciality'] = createSpeciality;
+    data['createSchool'] = createSchool;
+    data['createProgram'] = createProgram;
+    data['createAnnouncement'] = createAnnouncement;
+    data['createAcademicYear'] = createAcademicYear;
+    data['addProgramToSchool'] = addProgramToSchool;
+    data['removeProgramFromSchool'] = removeProgramFromSchool;
+    data['createApplication'] = createApplication;
+    data['createStudent'] = createStudent;
+    return data;
   }
 }

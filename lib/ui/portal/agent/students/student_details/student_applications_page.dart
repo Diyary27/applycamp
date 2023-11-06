@@ -13,7 +13,7 @@ class StudentApplicationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Applications'),
+        title: const Text('Applications'),
       ),
       body: BlocProvider(
         create: (context) =>
@@ -21,7 +21,7 @@ class StudentApplicationsPage extends StatelessWidget {
         child: BlocBuilder<StudentDetailsBloc, StudentDetailsState>(
           builder: (context, state) {
             if (state is StudentDetailsInitial) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is StudentApplicationsSuccess) {
               return ListView.builder(
                 itemCount: state.student.applications.length,
@@ -35,8 +35,8 @@ class StudentApplicationsPage extends StatelessWidget {
                               ))));
                     },
                     child: Container(
-                      padding: EdgeInsets.all(8),
-                      margin: EdgeInsets.only(bottom: 8),
+                      padding: const EdgeInsets.all(8),
+                      margin: const EdgeInsets.only(bottom: 8),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(12),
@@ -45,7 +45,7 @@ class StudentApplicationsPage extends StatelessWidget {
                         children: [
                           Container(
                             width: 100,
-                            padding: EdgeInsets.all(4),
+                            padding: const EdgeInsets.all(4),
                             decoration: BoxDecoration(
                               color: HexColor.fromHex(
                                   application.status!.bgColor!),
@@ -56,7 +56,7 @@ class StudentApplicationsPage extends StatelessWidget {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,9 +66,8 @@ class StudentApplicationsPage extends StatelessWidget {
                                   style:
                                       Theme.of(context).textTheme.titleMedium,
                                 ),
-                                SizedBox(height: 3),
-                                Text('Program:  \n' +
-                                    application.schoolProgram!.program.title),
+                                const SizedBox(height: 3),
+                                Text('Program:  \n${application.schoolProgram!.program.title}'),
                               ],
                             ),
                           ),

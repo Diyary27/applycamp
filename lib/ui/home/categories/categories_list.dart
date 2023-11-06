@@ -12,12 +12,12 @@ class CategoriesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CategoriesBloc()..add(CategoriesStarted()),
-      child: Container(
+      child: SizedBox(
         height: 320,
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(16, 0, 8, 0),
+              padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -32,7 +32,7 @@ class CategoriesList extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context, rootNavigator: true).push(
                           MaterialPageRoute(
-                              builder: (context) => CategoriesListPage()));
+                              builder: (context) => const CategoriesListPage()));
                     },
                     child: Text(
                       'All',
@@ -46,13 +46,13 @@ class CategoriesList extends StatelessWidget {
               child: BlocBuilder<CategoriesBloc, CategoriesState>(
                 builder: (context, state) {
                   if (state is CategoriesInitial) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is CategoriesSuccess) {
                     return GridView.builder(
-                        padding: EdgeInsets.fromLTRB(12, 0, 12, 0),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3),
-                        physics: NeverScrollableScrollPhysics(),
+                        physics: const NeverScrollableScrollPhysics(),
                         itemCount: 6,
                         itemBuilder: (context, index) {
                           final studyField = state.studyFields[index];
@@ -61,7 +61,7 @@ class CategoriesList extends StatelessWidget {
                               color: Theme.of(context).colorScheme.primary,
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            margin: EdgeInsets.all(4),
+                            margin: const EdgeInsets.all(4),
                             child: Stack(
                               children: [
                                 Center(
@@ -106,7 +106,7 @@ class CategoriesList extends StatelessWidget {
                           );
                         });
                   } else if (state is CategoriesError) {
-                    return Text('error');
+                    return const Text('error');
                   } else {
                     return Text(state.toString());
                   }

@@ -20,7 +20,7 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
+        padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
         child: Column(
           children: [
             Image.asset("assets/img/applycamp_logo.png", width: 170),
@@ -39,7 +39,7 @@ class _LoginFormState extends State<LoginForm> {
                               widget.isAgent = !widget.isAgent;
                             });
                           },
-                          child: Text("Login as Studnent"))
+                          child: const Text("Login as Studnent"))
                     ],
                   )
                 : Row(
@@ -56,10 +56,10 @@ class _LoginFormState extends State<LoginForm> {
                               widget.isAgent = !widget.isAgent;
                             });
                           },
-                          child: Text("Login as Agent"))
+                          child: const Text("Login as Agent"))
                     ],
                   ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
@@ -74,7 +74,7 @@ class _LoginFormState extends State<LoginForm> {
                 filled: true,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextField(
               controller: _passwordController,
               obscureText: true,
@@ -94,26 +94,26 @@ class _LoginFormState extends State<LoginForm> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Forgot your password?"),
-                  SizedBox(width: 10),
+                  const Text("Forgot your password?"),
+                  const SizedBox(width: 10),
                   TextButton(
                     onPressed: () {
                       context.read<AuthBloc>().add(StudentAuthStarted(
                           isLoginMode: false, isForgotPass: true));
                     },
-                    child: Text('Reset Email'),
+                    child: const Text('Reset Email'),
                   ),
                 ],
               ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16))),
                   backgroundColor: MaterialStatePropertyAll(
                       Theme.of(context).colorScheme.primary),
-                  fixedSize: MaterialStatePropertyAll(Size(200, 50))),
-              child: Text('Login'),
+                  fixedSize: const MaterialStatePropertyAll(Size(200, 50))),
+              child: const Text('Login'),
               onPressed: () async {
                 if (widget.isAgent) {
                   context.read<AuthBloc>().add(AgentAuthLoginBtnClicked(
@@ -124,12 +124,12 @@ class _LoginFormState extends State<LoginForm> {
                 }
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account?"),
-                SizedBox(width: 10),
+                const Text("Don't have an account?"),
+                const SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
                     if (widget.isAgent) {
@@ -140,7 +140,7 @@ class _LoginFormState extends State<LoginForm> {
                           isLoginMode: false, isForgotPass: false));
                     }
                   },
-                  child: Text('Sign Up'),
+                  child: const Text('Sign Up'),
                 ),
               ],
             ),

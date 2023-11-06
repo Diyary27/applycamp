@@ -18,10 +18,10 @@ class StudentAuthResponse {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['student'] = student.toJson();
-    _data['loginInfo'] = loginInfo.toJson();
-    _data['message'] = message;
-    return _data;
+    final data = <String, dynamic>{};
+    data['student'] = student.toJson();
+    data['loginInfo'] = loginInfo.toJson();
+    data['message'] = message;
+    return data;
   }
 }

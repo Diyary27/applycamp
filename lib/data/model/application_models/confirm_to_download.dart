@@ -18,11 +18,11 @@ class ConfirmToDownload {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['title'] = title;
-    _data['slug'] = slug;
-    _data['ordering'] = ordering;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['slug'] = slug;
+    data['ordering'] = ordering;
+    return data;
   }
 }

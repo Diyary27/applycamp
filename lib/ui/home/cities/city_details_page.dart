@@ -8,7 +8,7 @@ class CityDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('City Name'),
+        title: const Text('City Name'),
         centerTitle: false,
       ),
       body: SingleChildScrollView(
@@ -43,7 +43,7 @@ class CityDetailsPage extends StatelessWidget {
                 ],
               ),
             ),
-            UniversitiesList(),
+            const UniversitiesList(),
           ],
         ),
       ),

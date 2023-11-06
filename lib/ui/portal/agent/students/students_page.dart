@@ -14,9 +14,9 @@ class StudentsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Students'),
+        title: const Text('Students'),
       ),
-      drawer: AgentDrawer(),
+      drawer: const AgentDrawer(),
       body: BlocProvider(
         create: (context) {
           final bloc = StudentsBloc();
@@ -27,7 +27,7 @@ class StudentsPage extends StatelessWidget {
         child: BlocBuilder<StudentsBloc, StudentsState>(
           builder: (context, state) {
             if (state is StudentsInitial) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is StudentsLoaded) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -47,11 +47,11 @@ class StudentsPage extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => StudentCreatePage()));
+                            builder: (context) => const StudentCreatePage()));
                       },
-                      child: Text('+ Add Student'),
+                      child: const Text('+ Add Student'),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Expanded(
                       child: ListView.builder(
                         itemCount: state.students.length,
@@ -64,22 +64,22 @@ class StudentsPage extends StatelessWidget {
                                       studentId: student.id))));
                             },
                             child: Container(
-                              padding: EdgeInsets.all(8),
-                              margin: EdgeInsets.only(bottom: 8),
+                              padding: const EdgeInsets.all(8),
+                              margin: const EdgeInsets.only(bottom: 8),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(12),
                               ),
                               child: Row(
                                 children: [
-                                  CircleAvatar(
+                                  const CircleAvatar(
                                     minRadius: 40,
                                     maxRadius: 40,
                                     backgroundImage: NetworkImage(
                                       'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
                                     ),
                                   ),
-                                  SizedBox(width: 10),
+                                  const SizedBox(width: 10),
                                   Expanded(
                                     child: Column(
                                       crossAxisAlignment:
@@ -91,14 +91,12 @@ class StudentsPage extends StatelessWidget {
                                               .textTheme
                                               .titleMedium,
                                         ),
-                                        SizedBox(height: 3),
-                                        Text('Email: ' + student.email!),
+                                        const SizedBox(height: 3),
+                                        Text('Email: ${student.email!}'),
                                         (student.phone != null)
-                                            ? Text('Phone: ' +
-                                                student.phone.toString())
-                                            : Text('Phone: '),
-                                        Text('Nationality: ' +
-                                            student.nationality!.name),
+                                            ? Text('Phone: ${student.phone}')
+                                            : const Text('Phone: '),
+                                        Text('Nationality: ${student.nationality!.name}'),
                                       ],
                                     ),
                                   ),
@@ -108,7 +106,7 @@ class StudentsPage extends StatelessWidget {
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
                                         Container(
-                                          padding: EdgeInsets.all(4),
+                                          padding: const EdgeInsets.all(4),
                                           decoration: BoxDecoration(
                                             color: HexColor.fromHex(
                                                 student.status!.bgColor),
@@ -126,7 +124,7 @@ class StudentsPage extends StatelessWidget {
                                                             StudentId:
                                                                 student.id)));
                                           },
-                                          child: Text('Applications'),
+                                          child: const Text('Applications'),
                                         ),
                                       ],
                                     ),
@@ -135,15 +133,15 @@ class StudentsPage extends StatelessWidget {
                                     children: [
                                       GestureDetector(
                                         onTap: () async {},
-                                        child: Icon(Icons.edit),
+                                        child: const Icon(Icons.edit),
                                       ),
-                                      SizedBox(height: 12),
+                                      const SizedBox(height: 12),
                                       GestureDetector(
                                         onTap: () {
                                           context.read<StudentsBloc>().add(
                                               StudentDeleteClicked(student.id));
                                         },
-                                        child: Icon(
+                                        child: const Icon(
                                           Icons.delete,
                                           color: Colors.red,
                                         ),

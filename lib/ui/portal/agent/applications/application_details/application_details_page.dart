@@ -1,15 +1,13 @@
 import 'package:applycamp/core/common/extensions.dart';
-import 'package:applycamp/data/model/application_models/application.dart';
 import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/domain/repository/application_repository.dart';
 import 'package:applycamp/ui/portal/agent/applications/application_details/bloc/application_details_bloc.dart';
-import 'package:applycamp/ui/portal/agent/applications/bloc/applications_bloc.dart';
 import 'package:applycamp/ui/portal/agent/students/student_details/student_details_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ApplicationDetailsPage extends StatelessWidget {
-  ApplicationDetailsPage({
+  const ApplicationDetailsPage({
     super.key,
     required this.applicationId,
   });
@@ -23,12 +21,12 @@ class ApplicationDetailsPage extends StatelessWidget {
         ..add(ApplicationDetailsStarted(applicationId)),
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Application Details'),
+          title: const Text('Application Details'),
         ),
         body: BlocBuilder<ApplicationDetailsBloc, ApplicationDetailsState>(
           builder: (context, state) {
             if (state is ApplicationDetailsInitial) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is ApplicationDetailsSuccess) {
               return SingleChildScrollView(
                 child: Padding(
@@ -38,21 +36,21 @@ class ApplicationDetailsPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Container(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Column(
                           children: [
-                            CircleAvatar(
+                            const CircleAvatar(
                               minRadius: 40,
                               maxRadius: 40,
                               backgroundImage: NetworkImage(
                                 'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
                               ),
                             ),
-                            SizedBox(height: 12),
+                            const SizedBox(height: 12),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -136,14 +134,14 @@ class ApplicationDetailsPage extends StatelessWidget {
                                               state.application.student!.id,
                                         )));
                               },
-                              child: Text('View Student'),
+                              child: const Text('View Student'),
                             ),
                           ],
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Container(
-                        padding: EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
@@ -153,12 +151,10 @@ class ApplicationDetailsPage extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(state.application.status!.progress
-                                        .toString() +
-                                    "%"),
-                                SizedBox(width: 10),
+                                Text("${state.application.status!.progress}%"),
+                                const SizedBox(width: 10),
                                 Container(
-                                  padding: EdgeInsets.all(4),
+                                  padding: const EdgeInsets.all(4),
                                   decoration: BoxDecoration(
                                     color: HexColor.fromHex(
                                         state.application.status!.bgColor!),
@@ -171,7 +167,7 @@ class ApplicationDetailsPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 10),
+                            const SizedBox(height: 10),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -273,14 +269,14 @@ class ApplicationDetailsPage extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(height: 18),
+                      const SizedBox(height: 18),
                       state.application.isProceedToNextStepActive!
                           ? ElevatedButton(
                               onPressed: () {
                                 instance<ApplicationRepository>()
-                                    .proceedToNextStep(state.application.id!);
+                                    .proceedToNextStep(state.application.id);
                               },
-                              child: Text('Proceed To Next Step'),
+                              child: const Text('Proceed To Next Step'),
                             )
                           : Text(
                               "Proceeded to next step",

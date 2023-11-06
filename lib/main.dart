@@ -1,6 +1,5 @@
 import 'package:applycamp/domain/repository/agent_auth_repository.dart';
 import 'package:applycamp/domain/repository/student_auth_repository.dart';
-import 'package:applycamp/domain/repository/student_repository.dart';
 import 'package:applycamp/ui/root.dart';
 import 'package:applycamp/ui/theme.dart';
 import 'package:flutter/material.dart';
@@ -24,19 +23,19 @@ class MyApp extends StatelessWidget {
       title: 'ApplyCamp',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.light(
+        colorScheme: const ColorScheme.light(
           primary: ColorPalette.primaryColor,
           secondary: ColorPalette.secondaryColor,
           onPrimary: ColorPalette.onPrimaryColor,
           surface: ColorPalette.surface,
         ),
         textTheme: textTheme,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
             backgroundColor: Colors.white,
             centerTitle: true,
             foregroundColor: Colors.black),
       ),
-      home: RootScreen(),
+      home: const RootScreen(),
     );
   }
 }

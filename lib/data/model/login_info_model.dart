@@ -12,9 +12,9 @@ class LoginInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['accessToken'] = accessToken;
-    _data['tokenType'] = tokenType;
-    return _data;
+    final data = <String, dynamic>{};
+    data['accessToken'] = accessToken;
+    data['tokenType'] = tokenType;
+    return data;
   }
 }

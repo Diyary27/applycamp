@@ -15,9 +15,9 @@ class PortalProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Profile'),
+        title: const Text('My Profile'),
       ),
-      drawer: AgentDrawer(),
+      drawer: const AgentDrawer(),
       body: BlocProvider<UserProfileBloc>(
         create: (context) {
           final bloc = UserProfileBloc();
@@ -27,7 +27,7 @@ class PortalProfilePage extends StatelessWidget {
               if (state is UserProfileUpdateSuccess) {
                 bloc.add(UserProfileStarted());
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Profile Updated Successfully')),
+                  const SnackBar(content: Text('Profile Updated Successfully')),
                 );
               }
             },
@@ -37,7 +37,7 @@ class PortalProfilePage extends StatelessWidget {
         child: BlocBuilder<UserProfileBloc, UserProfileState>(
           builder: (context, state) {
             if (state is UserProfileInitial) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is UserProfilLoaded) {
               _nameController.text = state.user.name;
               _organizationController.text = state.user.organization;
@@ -49,7 +49,7 @@ class PortalProfilePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // avatar
-                      Center(
+                      const Center(
                         child: CircleAvatar(
                           minRadius: 55,
                           maxRadius: 55,
@@ -58,49 +58,49 @@ class PortalProfilePage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Center(
                         child: ElevatedButton(
                           onPressed: () {},
-                          child: Text('Upload Photo'),
+                          child: const Text('Upload Photo'),
                         ),
                       ),
-                      SizedBox(height: 24),
+                      const SizedBox(height: 24),
                       TextField(
                         controller: _nameController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           label: Text('Name'),
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       TextField(
                         controller: _organizationController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           label: Text('Organization'),
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       TextField(
                         controller: _phoneController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           label: Text('Phone'),
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       TextField(
                         controller: _passwordController,
                         obscureText: true,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           label: Text('Password'),
                           helperText:
                               'dont write anything if you want it unchanged',
                           border: OutlineInputBorder(),
                         ),
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
@@ -111,16 +111,16 @@ class PortalProfilePage extends StatelessWidget {
                                     phone: _phoneController.text,
                                     password: _passwordController.text));
                           },
-                          child: Text('Update'),
                           style: ButtonStyle(
                             backgroundColor:
-                                MaterialStatePropertyAll(Colors.green),
+                                const MaterialStatePropertyAll(Colors.green),
                             minimumSize: MaterialStatePropertyAll(
                                 Size(MediaQuery.of(context).size.width, 50)),
                             shape: MaterialStatePropertyAll(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8))),
                           ),
+                          child: const Text('Update'),
                         ),
                       ),
                     ],

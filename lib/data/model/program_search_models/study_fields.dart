@@ -17,10 +17,10 @@ class StudyField {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['title'] = title;
-    _data['can'] = can.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['can'] = can.toJson();
+    return data;
   }
 }

@@ -1,9 +1,7 @@
 import 'package:applycamp/data/model/application_models/academic_year.dart';
 import 'package:applycamp/data/model/application_models/application_abilities.dart';
 import 'package:applycamp/data/model/application_models/application_document.dart';
-import 'package:applycamp/data/model/application_models/application_status.dart';
 import 'package:applycamp/data/model/application_models/available_next_statues.dart';
-import 'package:applycamp/data/model/application_models/confirm_to_download.dart';
 import 'package:applycamp/data/model/application_models/semester.dart';
 import 'package:applycamp/data/model/program_search_models/degrees.dart';
 import 'package:applycamp/data/model/program_search_models/school.dart';

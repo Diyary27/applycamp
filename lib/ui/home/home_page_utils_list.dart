@@ -9,7 +9,7 @@ class HomePageUtilsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 10),
+      margin: const EdgeInsets.only(top: 10),
       height: 130,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -19,13 +19,13 @@ class HomePageUtilsList extends StatelessWidget {
               onTap: () {
                 Navigator.of(context, rootNavigator: true).push(
                     MaterialPageRoute(
-                        builder: (context) => UniversitiesComparePage()));
+                        builder: (context) => const UniversitiesComparePage()));
               },
               child: Container(
                 margin: const EdgeInsets.only(left: 6, right: 6),
-                padding: EdgeInsets.all(6),
+                padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 251, 251, 251),
+                    color: const Color.fromARGB(255, 251, 251, 251),
                     border: Border.all(
                         width: 0.5,
                         color: Theme.of(context).colorScheme.primary),
@@ -38,7 +38,7 @@ class HomePageUtilsList extends StatelessWidget {
                       size: 36,
                       color: Theme.of(context).colorScheme.primary,
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       'Compare Universities',
                       textAlign: TextAlign.center,
@@ -56,13 +56,13 @@ class HomePageUtilsList extends StatelessWidget {
               onTap: () {
                 Navigator.of(context, rootNavigator: true).push(
                     MaterialPageRoute(
-                        builder: (context) => UniversitiesComparePage()));
+                        builder: (context) => const UniversitiesComparePage()));
               },
               child: Container(
                 margin: const EdgeInsets.only(left: 6, right: 6),
-                padding: EdgeInsets.all(6),
+                padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 251, 251, 251),
+                    color: const Color.fromARGB(255, 251, 251, 251),
                     border: Border.all(
                         width: 0.5,
                         color: Theme.of(context).colorScheme.primary),
@@ -75,7 +75,7 @@ class HomePageUtilsList extends StatelessWidget {
                       size: 36,
                       color: Theme.of(context).colorScheme.primary,
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       'Frequently Asked Questions',
                       textAlign: TextAlign.center,

@@ -27,14 +27,14 @@ class PaginationInfo {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['total'] = total;
-    _data['count'] = count;
-    _data['currentPage'] = currentPage;
-    _data['firstItem'] = firstItem;
-    _data['lastItem'] = lastItem;
-    _data['lastPage'] = lastPage;
-    _data['perPage'] = perPage;
-    return _data;
+    final data = <String, dynamic>{};
+    data['total'] = total;
+    data['count'] = count;
+    data['currentPage'] = currentPage;
+    data['firstItem'] = firstItem;
+    data['lastItem'] = lastItem;
+    data['lastPage'] = lastPage;
+    data['perPage'] = perPage;
+    return data;
   }
 }

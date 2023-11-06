@@ -18,11 +18,11 @@ class StudentCan {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['update'] = update;
-    _data['delete'] = delete;
-    _data['changeMaker'] = changeMaker;
-    _data['changeStatus'] = changeStatus;
-    return _data;
+    final data = <String, dynamic>{};
+    data['update'] = update;
+    data['delete'] = delete;
+    data['changeMaker'] = changeMaker;
+    data['changeStatus'] = changeStatus;
+    return data;
   }
 }

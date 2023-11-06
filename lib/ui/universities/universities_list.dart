@@ -1,6 +1,3 @@
-import 'package:applycamp/data/model/program_search_models/city.dart';
-import 'package:applycamp/data/model/program_search_models/school.dart';
-import 'package:applycamp/ui/home/cities/bloc/cities_bloc.dart';
 import 'package:applycamp/ui/universities/bloc/universities_bloc.dart';
 import 'package:applycamp/ui/universities/universities_list_page.dart';
 import 'package:applycamp/ui/universities/university_details.dart';
@@ -16,12 +13,12 @@ class UniversitiesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UniversitiesBloc()..add(UniversitiesStarted()),
-      child: Container(
+      child: SizedBox(
         height: 260,
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(16, 0, 8, 0),
+              padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -35,7 +32,7 @@ class UniversitiesList extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => UniversitiesListPage()));
+                          builder: (context) => const UniversitiesListPage()));
                     },
                     child: Text(
                       'All',
@@ -49,7 +46,7 @@ class UniversitiesList extends StatelessWidget {
               child: BlocBuilder<UniversitiesBloc, UniversitiesState>(
                 builder: (context, state) {
                   if (state is UniversitiesInitial) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is UniversitiesSuccess) {
                     return ListView.builder(
                       scrollDirection: Axis.horizontal,
@@ -71,7 +68,7 @@ class UniversitiesList extends StatelessWidget {
                           child: Stack(
                             children: [
                               Container(
-                                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                 width: 165,
                                 height: 220,
                                 child: ClipRRect(
@@ -85,7 +82,7 @@ class UniversitiesList extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                                 width: 165,
                                 height: 220,
                                 decoration: BoxDecoration(
@@ -112,7 +109,7 @@ class UniversitiesList extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Container(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       decoration: BoxDecoration(
                                         color: Colors.green,
                                         borderRadius: BorderRadius.circular(6),
@@ -125,9 +122,9 @@ class UniversitiesList extends StatelessWidget {
                                             .copyWith(color: Colors.white),
                                       ),
                                     ),
-                                    SizedBox(height: 2),
+                                    const SizedBox(height: 2),
                                     Container(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       decoration: BoxDecoration(
                                         color: Colors.orange,
                                         borderRadius: BorderRadius.circular(6),
@@ -191,7 +188,7 @@ class UniversitiesList extends StatelessWidget {
                       },
                     );
                   } else if (state is UniversitiesError) {
-                    return Text('Error');
+                    return const Text('Error');
                   } else {
                     return Text(state.toString());
                   }

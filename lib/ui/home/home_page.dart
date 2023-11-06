@@ -15,8 +15,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(),
-        drawer: AppDrawer(),
+        appBar: const CustomAppBar(),
+        drawer: const AppDrawer(),
         body: SafeArea(
           child: ListView.builder(
             itemCount: 8,
@@ -25,17 +25,17 @@ class HomePage extends StatelessWidget {
                 case 0:
                   return BannerSlider();
                 case 1:
-                  return HomePageUtilsList();
+                  return const HomePageUtilsList();
                 case 2:
-                  return UniversitiesList();
+                  return const UniversitiesList();
                 case 3:
-                  return CategoriesList();
+                  return const CategoriesList();
                 case 4:
-                  return _CititesList();
+                  return const _CititesList();
                 case 5:
                   return Container();
                 case 6:
-                  return _ServicesList();
+                  return const _ServicesList();
                 default:
                   return Container();
               }
@@ -52,13 +52,13 @@ class _ServicesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 160,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.fromLTRB(16, 10, 0, 0),
+            padding: const EdgeInsets.fromLTRB(16, 10, 0, 0),
             child: Text(
               'Our Services',
               style: Theme.of(context)
@@ -69,7 +69,7 @@ class _ServicesList extends StatelessWidget {
           ),
           Expanded(
             child: ListView.builder(
-                padding: EdgeInsets.fromLTRB(16, 10, 16, 10),
+                padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
                 scrollDirection: Axis.horizontal,
                 itemCount: 8,
                 itemBuilder: (context, index) {
@@ -94,10 +94,10 @@ class _ServicesList extends StatelessWidget {
                     Icons.support_agent,
                   ];
                   return Container(
-                    margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                    margin: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                     width: 110,
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 251, 251, 251),
+                        color: const Color.fromARGB(255, 251, 251, 251),
                         border: Border.all(width: 0.5, color: Colors.green),
                         borderRadius: BorderRadius.circular(12)),
                     child: Column(
@@ -108,7 +108,7 @@ class _ServicesList extends StatelessWidget {
                             size: 36,
                             color: Colors.green,
                           ),
-                          SizedBox(height: 4),
+                          const SizedBox(height: 4),
                           Text(
                             titles[index],
                             textAlign: TextAlign.center,
@@ -133,12 +133,12 @@ class _CititesList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CitiesBloc()..add(CitiesStarted()),
-      child: Container(
+      child: SizedBox(
         height: 220,
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.fromLTRB(16, 0, 8, 0),
+              padding: const EdgeInsets.fromLTRB(16, 0, 8, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -152,7 +152,7 @@ class _CititesList extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => CitiesListPage()));
+                          builder: (context) => const CitiesListPage()));
                     },
                     child: Text(
                       'All',
@@ -166,16 +166,16 @@ class _CititesList extends StatelessWidget {
               child: BlocBuilder<CitiesBloc, CitiesState>(
                 builder: (context, state) {
                   if (state is CitiesInitial) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   } else if (state is CitiesSuccess) {
                     return ListView.builder(
-                      padding: EdgeInsets.fromLTRB(6, 0, 8, 0),
+                      padding: const EdgeInsets.fromLTRB(6, 0, 8, 0),
                       itemCount: state.cities.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         final city = state.cities[index];
                         return Container(
-                          margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                          margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                           width: 165,
                           height: 220,
                           child: ClipRRect(
@@ -206,7 +206,7 @@ class _CititesList extends StatelessWidget {
                       },
                     );
                   } else if (state is CitiesError) {
-                    return Text('error');
+                    return const Text('error');
                   } else {
                     return Text(state.toString());
                   }

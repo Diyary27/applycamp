@@ -7,7 +7,6 @@ import 'package:applycamp/data/model/program_search_models/programs_search_field
 import 'package:applycamp/data/model/program_search_models/school_programs.dart';
 import 'package:applycamp/data/model/program_search_models/school.dart';
 import 'package:applycamp/data/model/program_search_models/study_fields.dart';
-import 'package:flutter/material.dart';
 
 abstract class SearchDataSource {
   Future<List<City>> getAllCities();
@@ -29,17 +28,17 @@ class SearchDataSourceImpl implements SearchDataSource {
 
     // here we get the cities response as countries model which contain their cities
     final List countriesWithCities = [];
-    (response.data['countries'] as List).forEach((element) {
+    for (var element in (response.data['countries'] as List)) {
       countriesWithCities.add(Country.fromJson(element));
-    });
+    }
 
     // we collect the cities from countries list into another list
     final List<City> cities = [];
-    countriesWithCities.forEach((element) {
-      (element.cities as List).forEach((city) {
+    for (var element in countriesWithCities) {
+      for (var city in (element.cities as List)) {
         cities.add(city);
-      });
-    });
+      }
+    }
 
     return cities;
   }
@@ -51,9 +50,9 @@ class SearchDataSourceImpl implements SearchDataSource {
         await dioConsumer.get(PortalRemoteConstants.getProgramSearchFields);
 
     final List<School> schoolsList = [];
-    (response.data["schools"] as List).forEach((element) {
+    for (var element in (response.data["schools"] as List)) {
       schoolsList.add(School.fromJson(element));
-    });
+    }
     return schoolsList;
   }
 
@@ -63,9 +62,9 @@ class SearchDataSourceImpl implements SearchDataSource {
         await dioConsumer.get(PortalRemoteConstants.getAllStudyFields);
 
     final List<StudyField> studyFields = [];
-    (response.data["studyFields"] as List).forEach((element) {
+    for (var element in (response.data["studyFields"] as List)) {
       studyFields.add(StudyField.fromJson(element));
-    });
+    }
 
     return studyFields;
   }
@@ -96,9 +95,9 @@ class SearchDataSourceImpl implements SearchDataSource {
         queryParameters: searchParams);
 
     final List<School> schools = [];
-    (response.data['schools'] as List).forEach((element) {
+    for (var element in (response.data['schools'] as List)) {
       schools.add(School.fromJson(element));
-    });
+    }
 
     return schools;
   }

@@ -49,15 +49,15 @@ class ApplicationCreateFields {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['degrees'] = degrees.map((e) => e.toJson()).toList();
-    _data['countries'] = countries.map((e) => e.toJson()).toList();
-    _data['schoolTypes'] = schoolTypes.map((e) => e.toJson()).toList();
-    _data['studyLanguages'] = studyLanguages.map((e) => e.toJson()).toList();
-    _data['academicYears'] = academicYears.map((e) => e.toJson()).toList();
-    _data['schools'] = schools.map((e) => e.toJson()).toList();
-    _data['programs'] = programs.map((e) => e.toJson()).toList();
-    _data['student'] = student.toJson();
-    return _data;
+    final data = <String, dynamic>{};
+    data['degrees'] = degrees.map((e) => e.toJson()).toList();
+    data['countries'] = countries.map((e) => e.toJson()).toList();
+    data['schoolTypes'] = schoolTypes.map((e) => e.toJson()).toList();
+    data['studyLanguages'] = studyLanguages.map((e) => e.toJson()).toList();
+    data['academicYears'] = academicYears.map((e) => e.toJson()).toList();
+    data['schools'] = schools.map((e) => e.toJson()).toList();
+    data['programs'] = programs.map((e) => e.toJson()).toList();
+    data['student'] = student.toJson();
+    return data;
   }
 }

@@ -27,14 +27,14 @@ class ResidenceCountry {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['name'] = name;
-    _data['fullName'] = fullName;
-    _data['continentCode'] = continentCode;
-    _data['code'] = code;
-    _data['iso3'] = iso3;
-    _data['number'] = number;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['fullName'] = fullName;
+    data['continentCode'] = continentCode;
+    data['code'] = code;
+    data['iso3'] = iso3;
+    data['number'] = number;
+    return data;
   }
 }

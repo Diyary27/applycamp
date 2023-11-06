@@ -9,7 +9,7 @@ class CitiesListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cities List'),
+        title: const Text('Cities List'),
         centerTitle: false,
       ),
       body: BlocProvider(
@@ -17,18 +17,18 @@ class CitiesListPage extends StatelessWidget {
         child: BlocBuilder<CitiesBloc, CitiesState>(
           builder: (context, state) {
             if (state is CitiesInitial) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is CitiesSuccess) {
               return GridView.builder(
-                padding: EdgeInsets.fromLTRB(6, 10, 6, 10),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                padding: const EdgeInsets.fromLTRB(6, 10, 6, 10),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                 ),
                 itemCount: state.cities.length,
                 itemBuilder: (context, index) {
                   final city = state.cities[index];
                   return Container(
-                    margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                    margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                     width: 165,
                     height: 220,
                     child: ClipRRect(
@@ -56,7 +56,7 @@ class CitiesListPage extends StatelessWidget {
                 },
               );
             } else if (state is CitiesError) {
-              return Text('Error');
+              return const Text('Error');
             } else {
               return Text(state.toString());
             }

@@ -70,27 +70,27 @@ class Parent {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['roleId'] = roleId;
-    _data['isSubUser'] = isSubUser;
-    _data['name'] = name;
-    _data['email'] = email;
-    _data['phone'] = phone;
-    _data['organization'] = organization;
-    _data['canAddApplications'] = canAddApplications;
-    _data['canAddStudents'] = canAddStudents;
-    _data['canViewCommissions'] = canViewCommissions;
-    _data['commissionPercentage'] = commissionPercentage;
-    _data['canAddSubUsers'] = canAddSubUsers;
-    _data['subUserLevel'] = subUserLevel;
-    _data['isSelfRegisterResponsible'] = isSelfRegisterResponsible;
-    _data['abilities'] = abilities.toJson();
-    _data['can'] = can.toJson();
-    _data['createdAt'] = createdAt;
-    _data['updatedAt'] = updatedAt;
-    _data['role'] = role.toJson();
-    _data['profileImage'] = profileImage;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['roleId'] = roleId;
+    data['isSubUser'] = isSubUser;
+    data['name'] = name;
+    data['email'] = email;
+    data['phone'] = phone;
+    data['organization'] = organization;
+    data['canAddApplications'] = canAddApplications;
+    data['canAddStudents'] = canAddStudents;
+    data['canViewCommissions'] = canViewCommissions;
+    data['commissionPercentage'] = commissionPercentage;
+    data['canAddSubUsers'] = canAddSubUsers;
+    data['subUserLevel'] = subUserLevel;
+    data['isSelfRegisterResponsible'] = isSelfRegisterResponsible;
+    data['abilities'] = abilities.toJson();
+    data['can'] = can.toJson();
+    data['createdAt'] = createdAt;
+    data['updatedAt'] = updatedAt;
+    data['role'] = role.toJson();
+    data['profileImage'] = profileImage;
+    return data;
   }
 }

@@ -1,5 +1,4 @@
 import 'package:applycamp/ui/search/bloc/search_bloc.dart';
-import 'package:applycamp/ui/search/programs_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_dropdown/multiselect_dropdown.dart';
@@ -22,7 +21,7 @@ class ProgramsSearchForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             // Field : Education Level
@@ -32,7 +31,7 @@ class ProgramsSearchForm extends StatelessWidget {
               onOptionSelected: (options) {},
               options: state.degrees,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Field : Education Language
             MultiSelectDropDown(
               hint: "Education Language",
@@ -40,7 +39,7 @@ class ProgramsSearchForm extends StatelessWidget {
               onOptionSelected: (options) {},
               options: state.languages,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Field : UniversityType
             MultiSelectDropDown(
               hint: "University Type",
@@ -48,7 +47,7 @@ class ProgramsSearchForm extends StatelessWidget {
               onOptionSelected: (options) {},
               options: state.schoolTypes,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Field : City
             MultiSelectDropDown(
               hint: "City",
@@ -56,7 +55,7 @@ class ProgramsSearchForm extends StatelessWidget {
               onOptionSelected: (options) {},
               options: state.cities,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Field : University
             MultiSelectDropDown(
               hint: "University",
@@ -64,7 +63,7 @@ class ProgramsSearchForm extends StatelessWidget {
               onOptionSelected: (options) {},
               options: state.universities,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -106,7 +105,7 @@ class ProgramsSearchForm extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // Field : Programs
             Autocomplete(
               optionsBuilder: (optionsBuilder) {
@@ -114,10 +113,10 @@ class ProgramsSearchForm extends StatelessWidget {
                     .toLowerCase()
                     .startsWith(optionsBuilder.text.toLowerCase()));
               },
-              fieldViewBuilder: (context, _specialityController, focusNode,
+              fieldViewBuilder: (context, specialityController, focusNode,
                   onFieldSubmitted) {
                 return TextField(
-                  controller: _specialityController,
+                  controller: specialityController,
                   focusNode: focusNode,
                   decoration: InputDecoration(
                     floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -131,13 +130,13 @@ class ProgramsSearchForm extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16))),
-                  backgroundColor: MaterialStatePropertyAll(Colors.green),
-                  fixedSize: MaterialStatePropertyAll(Size(120, 40))),
+                  backgroundColor: const MaterialStatePropertyAll(Colors.green),
+                  fixedSize: const MaterialStatePropertyAll(Size(120, 40))),
               onPressed: () {
                 context.read<SearchBloc>().add(SearchProgramBtnClicked(
                       degrees: _degreeController.selectedOptions,
@@ -150,7 +149,7 @@ class ProgramsSearchForm extends StatelessWidget {
                       keyWords: _keyWordController.text,
                     ));
               },
-              child: Row(
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.search),

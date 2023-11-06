@@ -11,7 +11,7 @@ class ForgotPassForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
+        padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
         child: Column(
           children: [
             Image.asset("assets/img/applycamp_logo.png", width: 170),
@@ -29,32 +29,32 @@ class ForgotPassForm extends StatelessWidget {
                 filled: true,
               ),
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             ElevatedButton(
               style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16))),
                   backgroundColor: MaterialStatePropertyAll(
                       Theme.of(context).colorScheme.primary),
-                  fixedSize: MaterialStatePropertyAll(Size(200, 50))),
-              child: Text('Send Email'),
+                  fixedSize: const MaterialStatePropertyAll(Size(200, 50))),
+              child: const Text('Send Email'),
               onPressed: () async {
                 context.read<AuthBloc>().add(
                     StudentAuthForgotPassBtnClicked(_emailController.text));
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account?"),
-                SizedBox(width: 10),
+                const Text("Don't have an account?"),
+                const SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
                     context.read<AuthBloc>().add(StudentAuthStarted(
                         isLoginMode: false, isForgotPass: false));
                   },
-                  child: Text('Sign Up'),
+                  child: const Text('Sign Up'),
                 ),
               ],
             ),

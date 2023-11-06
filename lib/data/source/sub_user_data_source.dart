@@ -1,9 +1,7 @@
 import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/constant/remote_constant.dart';
 import 'package:applycamp/data/model/user_model/sub_user.dart';
-import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/domain/entity/sub_user.dart';
-import 'package:flutter/foundation.dart';
 
 abstract class SubUserDataSource {
   Future getAllSubUsers();
@@ -48,9 +46,9 @@ class SubUserDataSourceImpl implements SubUserDataSource {
     final response =
         await dioConsumer.get(PortalRemoteConstants.getAllSubUsers);
     final List<SubUser> subUsers = [];
-    (response.data['subUsers'] as List).forEach((element) {
+    for (var element in (response.data['subUsers'] as List)) {
       subUsers.add(SubUser.fromJson(element));
-    });
+    }
 
     return subUsers;
   }

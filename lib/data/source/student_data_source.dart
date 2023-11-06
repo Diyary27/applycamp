@@ -27,9 +27,9 @@ class StudentDataSourceImpl implements StudentDataSource {
         await dioConsumer.get(PortalRemoteConstants.getLoggedInUserStudents);
 
     final List<Student> students = [];
-    (response.data['students'] as List).forEach((student) {
+    for (var student in (response.data['students'] as List)) {
       students.add(Student.fromJson(student));
-    });
+    }
 
     return students;
   }
@@ -45,15 +45,15 @@ class StudentDataSourceImpl implements StudentDataSource {
     final degrees = <Degree>[];
     final nations = <Nationality>[];
 
-    (documentTypesResponse.data["documentTypes"] as List).forEach((element) {
+    for (var element in (documentTypesResponse.data["documentTypes"] as List)) {
       documentTypes.add(StudentDocument.fromJson(element));
-    });
-    (createFieldsResponse.data["degrees"] as List).forEach((element) {
+    }
+    for (var element in (createFieldsResponse.data["degrees"] as List)) {
       degrees.add(Degree.fromJson(element));
-    });
-    (createFieldsResponse.data["nations"] as List).forEach((element) {
+    }
+    for (var element in (createFieldsResponse.data["nations"] as List)) {
       nations.add(Nationality.fromJson(element));
-    });
+    }
 
     final StudentCreateFields studentCreateFields = StudentCreateFields(
         studentDocuments: documentTypes, degrees: degrees, nations: nations);

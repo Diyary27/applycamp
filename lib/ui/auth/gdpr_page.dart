@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class GDPRPage extends StatelessWidget {
   const GDPRPage({super.key});
@@ -70,7 +68,7 @@ By using our Application, you hereby consent to our Privacy Policy and agree to 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("GDPR")),
+        appBar: AppBar(title: const Text("GDPR")),
         body: Container(
             child: Column(
           children: [

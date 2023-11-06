@@ -1,4 +1,3 @@
-import 'package:applycamp/data/model/file_response.dart';
 import 'package:applycamp/data/model/program_search_models/abilities.dart';
 import 'package:applycamp/data/model/program_search_models/city.dart';
 import 'package:applycamp/data/model/program_search_models/image.dart';
@@ -81,7 +80,7 @@ class School {
         "isActiveInSearch": isActiveInSearch,
         "isActiveInNewApps": isActiveInNewApps,
         "aboutSchool": aboutSchool,
-        "can": can?.toJson(),
+        "can": can.toJson(),
         "createdAt": createdAt,
         "updatedAt": updatedAt,
         "city": city?.toJson(),

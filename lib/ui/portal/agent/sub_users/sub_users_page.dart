@@ -14,9 +14,9 @@ class SubUsersPage extends StatelessWidget {
     return Scaffold(
       key: _scaffoldkey,
       appBar: AppBar(
-        title: Text('Sub Users'),
+        title: const Text('Sub Users'),
       ),
-      drawer: AgentDrawer(),
+      drawer: const AgentDrawer(),
       body: BlocProvider(
         create: (context) {
           final bloc = SubUsersBloc();
@@ -27,7 +27,7 @@ class SubUsersPage extends StatelessWidget {
         child: BlocBuilder<SubUsersBloc, SubUsersState>(
           builder: (context, state) {
             if (state is SubUsersInitial) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is SubUsersLoaded) {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -38,38 +38,38 @@ class SubUsersPage extends StatelessWidget {
                       onPressed: () async {
                         final result = await Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (context) => SubUserForm()));
+                                builder: (context) => const SubUserForm()));
                         if (result != null) {
                           context
                               .read<SubUsersBloc>()
                               .add(SubUsersAddClicked(result));
                         }
                       },
-                      child: Text('+ Add SubUser'),
+                      child: const Text('+ Add SubUser'),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Expanded(
                       child: ListView.builder(
                         itemCount: state.subUsers.length,
                         itemBuilder: (context, index) {
                           final subUser = state.subUsers[index];
                           return Container(
-                            padding: EdgeInsets.all(8),
-                            margin: EdgeInsets.only(bottom: 8),
+                            padding: const EdgeInsets.all(8),
+                            margin: const EdgeInsets.only(bottom: 8),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Row(
                               children: [
-                                CircleAvatar(
+                                const CircleAvatar(
                                   minRadius: 40,
                                   maxRadius: 40,
                                   backgroundImage: NetworkImage(
                                     'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
                                   ),
                                 ),
-                                SizedBox(width: 10),
+                                const SizedBox(width: 10),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
@@ -81,11 +81,10 @@ class SubUsersPage extends StatelessWidget {
                                             .textTheme
                                             .titleMedium,
                                       ),
-                                      SizedBox(height: 3),
-                                      Text('Email: ' + subUser.email),
-                                      Text('Phone: ' + subUser.phone),
-                                      Text('Organization: ' +
-                                          subUser.organization),
+                                      const SizedBox(height: 3),
+                                      Text('Email: ${subUser.email}'),
+                                      Text('Phone: ${subUser.phone}'),
+                                      Text('Organization: ${subUser.organization}'),
                                     ],
                                   ),
                                 ),
@@ -120,10 +119,10 @@ class SubUsersPage extends StatelessWidget {
                                               SubUsersUpdateClicked(result));
                                         }
                                       },
-                                      child: Icon(Icons.edit),
+                                      child: const Icon(Icons.edit),
                                     ),
-                                    SizedBox(height: 10),
-                                    Icon(
+                                    const SizedBox(height: 10),
+                                    const Icon(
                                       Icons.delete,
                                       color: Colors.red,
                                     ),

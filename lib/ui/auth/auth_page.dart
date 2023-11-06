@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AuthPage extends StatefulWidget {
-  AuthPage({super.key});
+  const AuthPage({super.key});
 
   @override
   State<AuthPage> createState() => _AuthPageState();
@@ -53,9 +53,9 @@ class _AuthPageState extends State<AuthPage> {
           child: BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
               if (state is AuthInitial) {
-                return Container(
+                return SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  child: Center(child: CircularProgressIndicator()),
+                  child: const Center(child: CircularProgressIndicator()),
                 );
               } else if (state is StudentAuthRegisterLoaded) {
                 return RegisterForm(isAgent: false);

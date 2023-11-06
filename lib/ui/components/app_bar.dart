@@ -21,13 +21,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ],
       ),
-      actions: [
+      actions: const [
         Padding(
-          padding: const EdgeInsets.only(right: 6, left: 10),
+          padding: EdgeInsets.only(right: 6, left: 10),
           child: Icon(Icons.notifications_outlined),
         ),
         Padding(
-          padding: const EdgeInsets.only(right: 10, left: 6),
+          padding: EdgeInsets.only(right: 10, left: 6),
           child: Icon(Icons.shopping_bag_outlined),
         ),
       ],

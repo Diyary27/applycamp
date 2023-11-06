@@ -27,14 +27,14 @@ class ApplicationStatus {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['id'] = id;
-    _data['title'] = title;
-    _data['order'] = order;
-    _data['bgColor'] = bgColor;
-    _data['textColor'] = textColor;
-    _data['progress'] = progress;
-    _data['isError'] = isError;
-    return _data;
+    final data = <String, dynamic>{};
+    data['id'] = id;
+    data['title'] = title;
+    data['order'] = order;
+    data['bgColor'] = bgColor;
+    data['textColor'] = textColor;
+    data['progress'] = progress;
+    data['isError'] = isError;
+    return data;
   }
 }

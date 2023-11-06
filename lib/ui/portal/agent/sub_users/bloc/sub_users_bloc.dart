@@ -3,7 +3,6 @@ import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/domain/entity/sub_user.dart';
 import 'package:applycamp/domain/repository/sub_user_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 
 part 'sub_users_event.dart';
 part 'sub_users_state.dart';

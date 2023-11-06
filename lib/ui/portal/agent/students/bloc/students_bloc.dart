@@ -2,7 +2,6 @@ import 'package:applycamp/data/model/student_model/student_model.dart';
 import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/domain/repository/student_repository.dart';
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 
 part 'students_event.dart';
 part 'students_state.dart';

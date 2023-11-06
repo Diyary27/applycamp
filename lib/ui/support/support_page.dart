@@ -9,8 +9,8 @@ class SupportPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(),
-      drawer: AppDrawer(),
+      appBar: const CustomAppBar(),
+      drawer: const AppDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
@@ -19,10 +19,10 @@ class SupportPage extends StatelessWidget {
             InkWell(
               onTap: () {
                 Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => ContactUsPage()));
+                    MaterialPageRoute(builder: (context) => const ContactUsPage()));
               },
               child: Container(
-                child: Column(
+                child: const Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
@@ -35,9 +35,9 @@ class SupportPage extends StatelessWidget {
                 ),
               ),
             ),
-            Divider(),
+            const Divider(),
             Container(
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(

@@ -1,7 +1,5 @@
 import 'package:applycamp/ui/portal/agent/students/student_create/bloc/student_create_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class StudentCreatePage extends StatefulWidget {
@@ -23,14 +21,14 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create New Student'),
+        title: const Text('Create New Student'),
       ),
       body: BlocProvider(
         create: (context) => StudentCreateBloc()..add(StudentCreateStarted()),
         child: BlocBuilder<StudentCreateBloc, StudentCreateState>(
           builder: (context, state) {
             if (state is StudentCreateInitial) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (state is StudentCreateLoaded) {
               return SingleChildScrollView(
                 child: Padding(
@@ -42,27 +40,27 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                         'Personal Information',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Full Name *'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Email *'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Phone *'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Birth Date *'),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -71,7 +69,7 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                           RadioListTile(
-                            title: Text('Male'),
+                            title: const Text('Male'),
                             value: 'male',
                             groupValue: gender,
                             onChanged: (value) {
@@ -81,7 +79,7 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                             },
                           ),
                           RadioListTile(
-                            title: Text('Female'),
+                            title: const Text('Female'),
                             value: 'female',
                             groupValue: gender,
                             onChanged: (value) {
@@ -92,7 +90,7 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -101,7 +99,7 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                             style: Theme.of(context).textTheme.titleMedium,
                           ),
                           RadioListTile(
-                            title: Text('Male'),
+                            title: const Text('Male'),
                             value: 'male',
                             groupValue: maritalStatus,
                             onChanged: (value) {
@@ -111,7 +109,7 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                             },
                           ),
                           RadioListTile(
-                            title: Text('Female'),
+                            title: const Text('Female'),
                             value: 'female',
                             groupValue: maritalStatus,
                             onChanged: (value) {
@@ -122,64 +120,64 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                           ),
                         ],
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Father Name *'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Mother Name *'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Father Phone'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Address Abroad'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Turkey Addrress'),
                         ),
                       ),
-                      SizedBox(height: 26),
+                      const SizedBox(height: 26),
                       Text(
                         'Residence Information',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Passport Number *'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Passport Date of Issue *'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Passport Date of Expiry *'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Nationality *'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Residence *'),
                         ),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       CheckboxListTile(
-                        title: Text('Is Visa Required'),
+                        title: const Text('Is Visa Required'),
                         value: isVisaRequired,
                         onChanged: (value) {
                           setState(() {
@@ -188,7 +186,7 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                         },
                       ),
                       CheckboxListTile(
-                        title: Text('Has TC Number'),
+                        title: const Text('Has TC Number'),
                         value: hasTCNumber,
                         onChanged: (value) {
                           setState(() {
@@ -197,7 +195,7 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                         },
                       ),
                       CheckboxListTile(
-                        title: Text('Is Transfered'),
+                        title: const Text('Is Transfered'),
                         value: isTransfered,
                         onChanged: (value) {
                           setState(() {
@@ -206,7 +204,7 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                         },
                       ),
                       CheckboxListTile(
-                        title: Text('Is Turkey Citizen'),
+                        title: const Text('Is Turkey Citizen'),
                         value: isTurkeyCitizen,
                         onChanged: (value) {
                           setState(() {
@@ -214,39 +212,39 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                           });
                         },
                       ),
-                      SizedBox(height: 26),
+                      const SizedBox(height: 26),
                       Text(
                         'Education Information',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('High School *'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('Degree *'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('GPA (Grade Point Average)'),
                         ),
                       ),
-                      TextField(
+                      const TextField(
                         decoration: InputDecoration(
                           label: Text('High School Country'),
                         ),
                       ),
-                      SizedBox(height: 26),
+                      const SizedBox(height: 26),
                       Text(
                         'Documents',
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       ElevatedButton(
                         onPressed: () {},
-                        child: Text('Upload Photo *'),
+                        child: const Text('Upload Photo *'),
                       )
                     ],
                   ),

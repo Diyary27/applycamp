@@ -1,5 +1,4 @@
 import 'package:applycamp/domain/entity/auth_data.dart';
-import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppPreferences {
@@ -26,20 +25,20 @@ class AppPreferences {
   // }
 
   Future setAuthInfos(String id, List<String> infos) async {
-    final keyId = 'auth_' + id.toString();
+    final keyId = 'auth_$id';
     return _sharedPreferences.setStringList(keyId, infos);
   }
 
   // موقت
   Future setLoginInfo(String id, List<String> infos) async {
-    final keyId = 'login_' + id.toString();
+    final keyId = 'login_$id';
     return _sharedPreferences.setStringList(keyId, infos);
   }
 
   Future getLoginInfo(String id) async {
-    final keyId = 'login_' + id.toString();
+    final keyId = 'login_$id';
 
-    final loginInfo = await _sharedPreferences.getStringList(keyId);
+    final loginInfo = _sharedPreferences.getStringList(keyId);
 
     return loginInfo;
   }
@@ -47,22 +46,22 @@ class AppPreferences {
   Future getAuthInfos(String key) async {
     // in the list first one is name and second one is accessToken
     // we have a model like this "auth_id" -> [[0]name, [1]accessToken]
-    final List? authInfos = await _sharedPreferences.getStringList(key);
+    final List? authInfos = _sharedPreferences.getStringList(key);
 
     return authInfos;
   }
 
   Future<List<AuthData>> getAllAuthInfos() async {
-    final authKeys = await _sharedPreferences
+    final authKeys = _sharedPreferences
         .getKeys()
         .where((element) => element.contains('auth'));
     final List<AuthData> authData = [];
-    authKeys.forEach((key) {
+    for (var key in authKeys) {
       authData.add(AuthData(
           key: key,
           name: _sharedPreferences.getStringList(key)?[0],
           accessToken: _sharedPreferences.getStringList(key)?[1]));
-    });
+    }
 
     return authData;
   }

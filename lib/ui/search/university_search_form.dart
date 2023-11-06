@@ -14,7 +14,7 @@ class UniversitySearchForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           // Field : UniversityType
@@ -24,7 +24,7 @@ class UniversitySearchForm extends StatelessWidget {
             onOptionSelected: (options) {},
             options: state.schoolTypes,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           // Field : City
           MultiSelectDropDown(
             hint: "City",
@@ -32,7 +32,7 @@ class UniversitySearchForm extends StatelessWidget {
             onOptionSelected: (options) {},
             options: state.cities,
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Autocomplete(
             optionsBuilder: (optionsBuilder) {
               return state.specialities.where((element) => element
@@ -58,13 +58,13 @@ class UniversitySearchForm extends StatelessWidget {
               );
             },
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ElevatedButton(
             style: ButtonStyle(
                 shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16))),
-                backgroundColor: MaterialStatePropertyAll(Colors.green),
-                fixedSize: MaterialStatePropertyAll(Size(120, 40))),
+                backgroundColor: const MaterialStatePropertyAll(Colors.green),
+                fixedSize: const MaterialStatePropertyAll(Size(120, 40))),
             onPressed: () {
               context.read<SearchBloc>().add(SearchUniBtnClicked(
                     cities: _cityController.selectedOptions,
@@ -72,7 +72,7 @@ class UniversitySearchForm extends StatelessWidget {
                     schoolTypes: _uniTypeController.selectedOptions,
                   ));
             },
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(Icons.search),

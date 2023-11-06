@@ -24,13 +24,13 @@ class ApplicationCan {
   }
 
   Map<String, dynamic> toJson() {
-    final _data = <String, dynamic>{};
-    _data['update'] = update;
-    _data['changeDocuments'] = changeDocuments;
-    _data['changeStatus'] = changeStatus;
-    _data['assign'] = assign;
-    _data['sendEmail'] = sendEmail;
-    _data['generatePreAcceptanceLetter'] = generatePreAcceptanceLetter;
-    return _data;
+    final data = <String, dynamic>{};
+    data['update'] = update;
+    data['changeDocuments'] = changeDocuments;
+    data['changeStatus'] = changeStatus;
+    data['assign'] = assign;
+    data['sendEmail'] = sendEmail;
+    data['generatePreAcceptanceLetter'] = generatePreAcceptanceLetter;
+    return data;
   }
 }

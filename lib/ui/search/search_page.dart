@@ -29,8 +29,8 @@ class _SearchPageState extends State<SearchPage> {
     }
 
     return Scaffold(
-      appBar: CustomAppBar(),
-      drawer: AppDrawer(),
+      appBar: const CustomAppBar(),
+      drawer: const AppDrawer(),
       body: DefaultTabController(
         length: 2,
         child: BlocProvider(
@@ -42,7 +42,7 @@ class _SearchPageState extends State<SearchPage> {
           child: BlocBuilder<SearchBloc, SearchState>(
             builder: (context, state) {
               if (state is SearchInitial) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               } else if (state is SearchPageLoaded) {
                 return Scaffold(
                   appBar: TabBar(

@@ -7,7 +7,7 @@ class ContactUsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('About Us'),
+        title: const Text('About Us'),
         centerTitle: false,
       ),
       body: SingleChildScrollView(
@@ -26,8 +26,8 @@ class ContactUsPage extends StatelessWidget {
                   .titleMedium!
                   .copyWith(color: Theme.of(context).colorScheme.primary),
             ),
-            SizedBox(height: 18),
-            Text(
+            const SizedBox(height: 18),
+            const Text(
               'Apply Camp dkkmdmvk mksmdvkmsldkmslkm  dslkvmslkdmvl kalekfmk dklvms kdvkmdsv sdsdvsdv.',
               textAlign: TextAlign.center,
             ),
@@ -37,11 +37,11 @@ class ContactUsPage extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.mail,
                         size: 35,
                       ),
-                      SizedBox(width: 14),
+                      const SizedBox(width: 14),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -49,19 +49,19 @@ class ContactUsPage extends StatelessWidget {
                             'Email',
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
-                          Text('info@applycamp.com'),
+                          const Text('info@applycamp.com'),
                         ],
                       )
                     ],
                   ),
-                  SizedBox(height: 36),
+                  const SizedBox(height: 36),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.directions,
                         size: 35,
                       ),
-                      SizedBox(width: 14),
+                      const SizedBox(width: 14),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -69,19 +69,19 @@ class ContactUsPage extends StatelessWidget {
                             'Main Office',
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
-                          Text('info@applycamp.com'),
+                          const Text('info@applycamp.com'),
                         ],
                       )
                     ],
                   ),
-                  SizedBox(height: 36),
+                  const SizedBox(height: 36),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.phone_android,
                         size: 35,
                       ),
-                      SizedBox(width: 14),
+                      const SizedBox(width: 14),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -89,19 +89,19 @@ class ContactUsPage extends StatelessWidget {
                             'Phone',
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
-                          Text('+90 958741256'),
+                          const Text('+90 958741256'),
                         ],
                       )
                     ],
                   ),
-                  SizedBox(height: 36),
+                  const SizedBox(height: 36),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.phone_android,
                         size: 35,
                       ),
-                      SizedBox(width: 14),
+                      const SizedBox(width: 14),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -109,19 +109,19 @@ class ContactUsPage extends StatelessWidget {
                             'Support',
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
-                          Text('+90 879654875'),
+                          const Text('+90 879654875'),
                         ],
                       )
                     ],
                   ),
-                  SizedBox(height: 36),
+                  const SizedBox(height: 36),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.mail,
                         size: 35,
                       ),
-                      SizedBox(width: 14),
+                      const SizedBox(width: 14),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -129,19 +129,19 @@ class ContactUsPage extends StatelessWidget {
                             'Instagram',
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
-                          Text('info@applycamp.com'),
+                          const Text('info@applycamp.com'),
                         ],
                       )
                     ],
                   ),
-                  SizedBox(height: 36),
+                  const SizedBox(height: 36),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.mail,
                         size: 35,
                       ),
-                      SizedBox(width: 14),
+                      const SizedBox(width: 14),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -149,19 +149,19 @@ class ContactUsPage extends StatelessWidget {
                             'Facebook',
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
-                          Text('info@applycamp.com'),
+                          const Text('info@applycamp.com'),
                         ],
                       )
                     ],
                   ),
-                  SizedBox(height: 36),
+                  const SizedBox(height: 36),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.mail,
                         size: 35,
                       ),
-                      SizedBox(width: 14),
+                      const SizedBox(width: 14),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -169,12 +169,12 @@ class ContactUsPage extends StatelessWidget {
                             'Twitter',
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
-                          Text('info@applycamp.com'),
+                          const Text('info@applycamp.com'),
                         ],
                       )
                     ],
                   ),
-                  SizedBox(height: 36),
+                  const SizedBox(height: 36),
                 ],
               ),
             ),

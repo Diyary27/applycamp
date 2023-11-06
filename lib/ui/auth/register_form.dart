@@ -1,4 +1,3 @@
-import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/ui/auth/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,15 +26,15 @@ class _RegisterFormState extends State<RegisterForm> {
   var _genderController = "male";
 
   List<DropdownMenuItem> genders = [
-    DropdownMenuItem(child: Text('Male'), value: "male"),
-    DropdownMenuItem(child: Text('Female'), value: "female"),
+    const DropdownMenuItem(value: "male", child: Text('Male')),
+    const DropdownMenuItem(value: "female", child: Text('Female')),
   ];
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.fromLTRB(32, 16, 32, 16),
+        padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
         child: Column(
           children: [
             Image.asset("assets/img/applycamp_logo.png", width: 160),
@@ -55,7 +54,7 @@ class _RegisterFormState extends State<RegisterForm> {
                               widget.isAgent = !widget.isAgent;
                             });
                           },
-                          child: Text("Register as Studnent"))
+                          child: const Text("Register as Studnent"))
                     ],
                   )
                 : Row(
@@ -72,10 +71,10 @@ class _RegisterFormState extends State<RegisterForm> {
                               widget.isAgent = !widget.isAgent;
                             });
                           },
-                          child: Text("Register as Agent"))
+                          child: const Text("Register as Agent"))
                     ],
                   ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             TextField(
               controller: _firstNameController,
               decoration: InputDecoration(
@@ -90,7 +89,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 filled: true,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextField(
               controller: _lastNameController,
               decoration: InputDecoration(
@@ -105,7 +104,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 filled: true,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             // if student dont show it
             if (widget.isAgent == false)
               DropdownButtonFormField(
@@ -140,7 +139,7 @@ class _RegisterFormState extends State<RegisterForm> {
                   filled: true,
                 ),
               ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextField(
               controller: _emailController,
               decoration: InputDecoration(
@@ -155,7 +154,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 filled: true,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextField(
               controller: _phoneController,
               decoration: InputDecoration(
@@ -170,7 +169,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 filled: true,
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             TextField(
               controller: _passwordController,
               obscureText: true,
@@ -186,23 +185,23 @@ class _RegisterFormState extends State<RegisterForm> {
                 filled: true,
               ),
             ),
-            SizedBox(height: 32),
+            const SizedBox(height: 32),
             ElevatedButton(
               style: ButtonStyle(
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16))),
                   backgroundColor: MaterialStatePropertyAll(
                       Theme.of(context).colorScheme.primary),
-                  fixedSize: MaterialStatePropertyAll(Size(200, 50))),
-              child: Text('Register'),
+                  fixedSize: const MaterialStatePropertyAll(Size(200, 50))),
+              child: const Text('Register'),
               onPressed: () async {
-                var _fullName =
-                    _firstNameController.text + " " + _lastNameController.text;
+                var fullName =
+                    "${_firstNameController.text} ${_lastNameController.text}";
 
                 if (widget.isAgent) {
                   context.read<AuthBloc>().add(AgentAuthRegisterBtnClicked(
                         email: _emailController.text,
-                        fullName: _fullName,
+                        fullName: fullName,
                         organization: _organizationController.text,
                         password: _passwordController.text,
                         phone: _phoneController.text,
@@ -210,7 +209,7 @@ class _RegisterFormState extends State<RegisterForm> {
                 } else {
                   context.read<AuthBloc>().add(StudentAuthRegisterBtnClicked(
                         email: _emailController.text,
-                        fullName: _fullName,
+                        fullName: fullName,
                         gender: _genderController,
                         password: _passwordController.text,
                         phone: _phoneController.text,
@@ -218,12 +217,12 @@ class _RegisterFormState extends State<RegisterForm> {
                 }
               },
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Have an account?"),
-                SizedBox(width: 10),
+                const Text("Have an account?"),
+                const SizedBox(width: 10),
                 TextButton(
                   onPressed: () {
                     if (widget.isAgent) {
@@ -234,7 +233,7 @@ class _RegisterFormState extends State<RegisterForm> {
                           isLoginMode: true, isForgotPass: false));
                     }
                   },
-                  child: Text('Sign In'),
+                  child: const Text('Sign In'),
                 ),
               ],
             ),

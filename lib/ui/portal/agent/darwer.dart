@@ -26,13 +26,13 @@ class AgentDrawer extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => AgentDashboardPage()));
+                      builder: (context) => const AgentDashboardPage()));
                 },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Icon(Icons.workspaces),
-                    SizedBox(width: 5),
+                    const Icon(Icons.workspaces),
+                    const SizedBox(width: 5),
                     Text(
                       'Dashboard',
                       style: Theme.of(context).textTheme.titleMedium,
@@ -48,8 +48,8 @@ class AgentDrawer extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Icon(Icons.person),
-                    SizedBox(width: 5),
+                    const Icon(Icons.person),
+                    const SizedBox(width: 5),
                     Text(
                       'Profile',
                       style: Theme.of(context).textTheme.titleMedium,
@@ -65,8 +65,8 @@ class AgentDrawer extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Icon(Icons.people),
-                    SizedBox(width: 5),
+                    const Icon(Icons.people),
+                    const SizedBox(width: 5),
                     Text(
                       'Sub Users',
                       style: Theme.of(context).textTheme.titleMedium,
@@ -77,13 +77,13 @@ class AgentDrawer extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => UniversitiesListPage()));
+                      builder: (context) => const UniversitiesListPage()));
                 },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Icon(Icons.school),
-                    SizedBox(width: 5),
+                    const Icon(Icons.school),
+                    const SizedBox(width: 5),
                     Text(
                       'Schools',
                       style: Theme.of(context).textTheme.titleMedium,
@@ -94,13 +94,13 @@ class AgentDrawer extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => StudentsPage()));
+                      MaterialPageRoute(builder: (context) => const StudentsPage()));
                 },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Icon(Icons.school),
-                    SizedBox(width: 5),
+                    const Icon(Icons.school),
+                    const SizedBox(width: 5),
                     Text(
                       'Students',
                       style: Theme.of(context).textTheme.titleMedium,
@@ -116,8 +116,8 @@ class AgentDrawer extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Icon(Icons.app_registration),
-                    SizedBox(width: 5),
+                    const Icon(Icons.app_registration),
+                    const SizedBox(width: 5),
                     Text(
                       'Applications',
                       style: Theme.of(context).textTheme.titleMedium,
@@ -128,13 +128,13 @@ class AgentDrawer extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   Navigator.of(context, rootNavigator: true).push(
-                      MaterialPageRoute(builder: (context) => SearchPage()));
+                      MaterialPageRoute(builder: (context) => const SearchPage()));
                 },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Icon(Icons.search),
-                    SizedBox(width: 5),
+                    const Icon(Icons.search),
+                    const SizedBox(width: 5),
                     Text(
                       'Program Search',
                       style: Theme.of(context).textTheme.titleMedium,
@@ -147,13 +147,13 @@ class AgentDrawer extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   Navigator.of(context, rootNavigator: true).pushReplacement(
-                      MaterialPageRoute(builder: (context) => RootScreen()));
+                      MaterialPageRoute(builder: (context) => const RootScreen()));
                 },
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Icon(Icons.logout, color: Colors.red),
-                    SizedBox(width: 5),
+                    const Icon(Icons.logout, color: Colors.red),
+                    const SizedBox(width: 5),
                     Text(
                       'Exit Portal',
                       style: Theme.of(context)
