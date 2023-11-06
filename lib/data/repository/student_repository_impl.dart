@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:applycamp/data/source/student_data_source.dart';
 import 'package:applycamp/domain/repository/student_repository.dart';
 
@@ -24,5 +26,10 @@ class StudentRepositoryImpl implements StudentRepository {
   @override
   Future deleteStudent(int studentId) async {
     return dataSource.deleteStudent(studentId);
+  }
+
+  @override
+  Future uploadStudentPhoto(File image) async {
+    return dataSource.uploadStudentPhoto(image);
   }
 }

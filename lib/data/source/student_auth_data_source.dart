@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/constant/remote_constant.dart';

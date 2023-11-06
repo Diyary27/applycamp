@@ -1,17 +1,19 @@
+import 'dart:io';
 import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/constant/remote_constant.dart';
-import 'package:applycamp/data/model/application_models/document_type.dart';
 import 'package:applycamp/data/model/program_search_models/degrees.dart';
 import 'package:applycamp/data/model/student_model/nationality.dart';
 import 'package:applycamp/data/model/student_model/student_document.dart';
 import 'package:applycamp/data/model/student_model/student_model.dart';
 import 'package:applycamp/domain/entity/student_create_fields.dart';
+import 'package:dio/dio.dart';
 
 abstract class StudentDataSource {
   Future getAllMyStudents();
   Future getStudentById(int studentId);
   Future getStudentCreateFields();
   Future deleteStudent(int studentId);
+  Future uploadStudentPhoto(File image);
 }
 
 class StudentDataSourceImpl implements StudentDataSource {
@@ -74,5 +76,17 @@ class StudentDataSourceImpl implements StudentDataSource {
     final response = await dioConsumer
         .delete(PortalRemoteConstants.getStudentById + studentId.toString());
     return response;
+  }
+
+  @override
+  Future uploadStudentPhoto(File image) async {
+    final String fileName = image.path.split('/').last;
+
+    final response = dioConsumer.post(
+      PortalRemoteConstants.uploadStudentPhoto,
+      body: {
+        "image": await MultipartFile.fromFile(image.path),
+      },
+    );
   }
 }

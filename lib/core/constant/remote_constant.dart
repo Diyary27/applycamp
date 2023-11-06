@@ -28,6 +28,9 @@ class PortalRemoteConstants {
       "/api/v1/student/get-fields-to-modify";
   static const String getStudentDocumentTypes =
       "/api/v1/student/document-types";
+  static const String uploadStudentPhoto = "/api/v1/student/upload-image";
+  ////  it should be like that /api/v1/student/document-type/3/upload
+  static const String uploadDocument = "/api/v1/student/document-type/";
 
   // applications
   static const String getMyApplications = "/api/v1/my-applications";

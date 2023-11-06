@@ -48,9 +48,7 @@ class HomePage extends StatelessWidget {
 //
 //
 class _ServicesList extends StatelessWidget {
-  const _ServicesList({
-    super.key,
-  });
+  const _ServicesList();
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +127,7 @@ class _ServicesList extends StatelessWidget {
 // cities list part
 
 class _CititesList extends StatelessWidget {
-  const _CititesList({super.key});
+  const _CititesList();
 
   @override
   Widget build(BuildContext context) {

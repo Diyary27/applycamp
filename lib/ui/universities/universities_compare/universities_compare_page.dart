@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:applycamp/ui/universities/bloc/universities_bloc.dart';
 import 'package:flutter/material.dart';

@@ -1,4 +1,4 @@
-import 'package:applycamp/data/model/file.dart';
+import 'package:applycamp/data/model/file_response.dart';
 import 'package:applycamp/data/model/program_search_models/degrees.dart';
 
 class StudentDocument {
@@ -10,7 +10,7 @@ class StudentDocument {
 
   final int id;
   final Degree? type;
-  final List<File> files;
+  final List<FileResponse> files;
 
   factory StudentDocument.fromJson(Map<String, dynamic> json) {
     return StudentDocument(
@@ -18,7 +18,8 @@ class StudentDocument {
       type: json["type"] == null ? null : Degree.fromJson(json["type"]),
       files: json["files"] == null
           ? []
-          : List<File>.from(json["files"]!.map((x) => File.fromJson(x))),
+          : List<FileResponse>.from(
+              json["files"]!.map((x) => FileResponse.fromJson(x))),
     );
   }
 

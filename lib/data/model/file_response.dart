@@ -1,5 +1,5 @@
-class File {
-  File({
+class FileResponse {
+  FileResponse({
     required this.id,
     required this.uuid,
     required this.name,
@@ -23,8 +23,8 @@ class File {
   final String? createdAt;
   final String? updatedAt;
 
-  factory File.fromJson(Map<String, dynamic> json) {
-    return File(
+  factory FileResponse.fromJson(Map<String, dynamic> json) {
+    return FileResponse(
       id: json["id"],
       uuid: json["uuid"],
       name: json["name"],

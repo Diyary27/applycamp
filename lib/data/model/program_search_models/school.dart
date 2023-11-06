@@ -1,4 +1,4 @@
-import 'package:applycamp/data/model/file.dart';
+import 'package:applycamp/data/model/file_response.dart';
 import 'package:applycamp/data/model/program_search_models/abilities.dart';
 import 'package:applycamp/data/model/program_search_models/city.dart';
 import 'package:applycamp/data/model/program_search_models/image.dart';
