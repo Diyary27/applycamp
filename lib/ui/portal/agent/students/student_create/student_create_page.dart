@@ -1,4 +1,9 @@
+import 'dart:io';
+
+import 'package:applycamp/di/service_locator.dart';
+import 'package:applycamp/domain/repository/student_repository.dart';
 import 'package:applycamp/ui/portal/agent/students/student_create/bloc/student_create_bloc.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,12 +15,32 @@ class StudentCreatePage extends StatefulWidget {
 }
 
 class _StudentCreatePageState extends State<StudentCreatePage> {
+  TextEditingController _fullNameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController();
+  // TextEditingController _birtDateController = TextEditingController();
   String? gender;
   String? maritalStatus;
+  TextEditingController _fatherNameController = TextEditingController();
+  TextEditingController _motherNameController = TextEditingController();
+  TextEditingController _fatherPhoneController = TextEditingController();
+  TextEditingController _addressAbroadController = TextEditingController();
+  TextEditingController _turekyAddressController = TextEditingController();
+  TextEditingController _passPortNumberController = TextEditingController();
+  TextEditingController _passPortDateofIssueController =
+      TextEditingController();
+  TextEditingController _passPortDateofExpiryController =
+      TextEditingController();
+  TextEditingController _nationalityController = TextEditingController();
+  TextEditingController _residenceController = TextEditingController();
   bool isVisaRequired = false;
   bool hasTCNumber = false;
   bool isTransfered = false;
   bool isTurkeyCitizen = false;
+  TextEditingController _highSchoolController = TextEditingController();
+  TextEditingController _degreeController = TextEditingController();
+  TextEditingController _gpaController = TextEditingController();
+  TextEditingController _highSchoolCountryController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -243,8 +268,160 @@ class _StudentCreatePageState extends State<StudentCreatePage> {
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          FilePickerResult? result = await FilePicker.platform
+                              .pickFiles(allowedExtensions: ['jpg, jpeg, png']);
+                          if (result != null) {
+                            File image = File(result.files.first.path!);
+                            instance<StudentRepository>()
+                                .uploadStudentPhoto(image);
+                          }
+                        },
                         child: const Text('Upload Photo *'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            File document = File(result.files.first.path!);
+                            instance<StudentRepository>().uploadStudentDocument(
+                                document,
+                                state.studentCreateFields.documentTypes[0].id);
+                          }
+                        },
+                        child: const Text('Upload Diploma'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            File document = File(result.files.first.path!);
+                            instance<StudentRepository>().uploadStudentDocument(
+                                document,
+                                state.studentCreateFields.documentTypes[1].id);
+                          }
+                        },
+                        child: const Text('Upload Transcript'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            File document = File(result.files.first.path!);
+                            instance<StudentRepository>().uploadStudentDocument(
+                                document,
+                                state.studentCreateFields.documentTypes[2].id);
+                          }
+                        },
+                        child: const Text('Upload Passport *'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            File document = File(result.files.first.path!);
+                            instance<StudentRepository>().uploadStudentDocument(
+                                document,
+                                state.studentCreateFields.documentTypes[3].id);
+                          }
+                        },
+                        child: const Text('Upload Skills'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            File document = File(result.files.first.path!);
+                            instance<StudentRepository>().uploadStudentDocument(
+                                document,
+                                state.studentCreateFields.documentTypes[4].id);
+                          }
+                        },
+                        child: const Text('Upload Recommendation Letter'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            File document = File(result.files.first.path!);
+                            instance<StudentRepository>().uploadStudentDocument(
+                                document,
+                                state.studentCreateFields.documentTypes[5].id);
+                          }
+                        },
+                        child: const Text('Upload Motivation Letter'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            File document = File(result.files.first.path!);
+                            instance<StudentRepository>().uploadStudentDocument(
+                                document,
+                                state.studentCreateFields.documentTypes[6].id);
+                          }
+                        },
+                        child: const Text('Upload Course Description'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            File document = File(result.files.first.path!);
+                            instance<StudentRepository>().uploadStudentDocument(
+                                document,
+                                state.studentCreateFields.documentTypes[7].id);
+                          }
+                        },
+                        child: const Text(
+                            'Upload Blue Card / Turkish Citizenship'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            File document = File(result.files.first.path!);
+                            instance<StudentRepository>().uploadStudentDocument(
+                                document,
+                                state.studentCreateFields.documentTypes[8].id);
+                          }
+                        },
+                        child: const Text('Upload TC Number'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          FilePickerResult? result =
+                              await FilePicker.platform.pickFiles();
+                          if (result != null) {
+                            File document = File(result.files.first.path!);
+                            instance<StudentRepository>().uploadStudentDocument(
+                                document,
+                                state.studentCreateFields.documentTypes[9].id);
+                          }
+                        },
+                        child: const Text('Upload Other Files'),
+                      ),
+                      SizedBox(height: 20),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStatePropertyAll(Colors.green),
+                            minimumSize: MaterialStatePropertyAll(Size(
+                                MediaQuery.of(context).size.width - 100, 60)),
+                          ),
+                          child: Text('Create Student'),
+                        ),
                       )
                     ],
                   ),

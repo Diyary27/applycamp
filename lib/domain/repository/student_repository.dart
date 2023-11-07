@@ -6,4 +6,5 @@ abstract class StudentRepository {
   Future getStudentCreateFields();
   Future deleteStudent(int studentId);
   Future uploadStudentPhoto(File image);
+  Future uploadStudentDocument(File document, int documentTypeId);
 }

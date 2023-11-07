@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/constant/remote_constant.dart';
+import 'package:applycamp/data/model/application_models/document_type.dart';
+import 'package:applycamp/data/model/file_response.dart';
 import 'package:applycamp/data/model/program_search_models/degrees.dart';
 import 'package:applycamp/data/model/student_model/nationality.dart';
 import 'package:applycamp/data/model/student_model/student_document.dart';
@@ -14,6 +16,7 @@ abstract class StudentDataSource {
   Future getStudentCreateFields();
   Future deleteStudent(int studentId);
   Future uploadStudentPhoto(File image);
+  Future uploadStudentDocument(File document, int documentTypeId);
 }
 
 class StudentDataSourceImpl implements StudentDataSource {
@@ -41,12 +44,12 @@ class StudentDataSourceImpl implements StudentDataSource {
     final createFieldsResponse =
         await dioConsumer.get(PortalRemoteConstants.getFieldsToModifyStudent);
 
-    final documentTypes = <StudentDocument>[];
+    final documentTypes = <DocumentType>[];
     final degrees = <Degree>[];
     final nations = <Nationality>[];
 
     for (var element in (documentTypesResponse.data["documentTypes"] as List)) {
-      documentTypes.add(StudentDocument.fromJson(element));
+      documentTypes.add(DocumentType.fromJson(element));
     }
     for (var element in (createFieldsResponse.data["degrees"] as List)) {
       degrees.add(Degree.fromJson(element));
@@ -56,7 +59,7 @@ class StudentDataSourceImpl implements StudentDataSource {
     }
 
     final StudentCreateFields studentCreateFields = StudentCreateFields(
-        studentDocuments: documentTypes, degrees: degrees, nations: nations);
+        documentTypes: documentTypes, degrees: degrees, nations: nations);
 
     return studentCreateFields;
   }
@@ -80,13 +83,37 @@ class StudentDataSourceImpl implements StudentDataSource {
 
   @override
   Future uploadStudentPhoto(File image) async {
-    final String fileName = image.path.split('/').last;
-
-    final response = dioConsumer.post(
+    final response = await dioConsumer.post(
       PortalRemoteConstants.uploadStudentPhoto,
-      body: {
-        "image": await MultipartFile.fromFile(image.path),
-      },
+      body: FormData.fromMap(
+        {
+          "image": await MultipartFile.fromFile(image.path),
+        },
+      ),
     );
+
+    final FileResponse imageResponse =
+        FileResponse.fromJson(response.data["image"]);
+
+    return imageResponse;
+  }
+
+  @override
+  Future uploadStudentDocument(File document, int documentTypeId) async {
+    final response = await dioConsumer.post(
+      PortalRemoteConstants.uploadDocument +
+          documentTypeId.toString() +
+          "/upload",
+      body: FormData.fromMap(
+        {
+          "file": await MultipartFile.fromFile(document.path),
+        },
+      ),
+    );
+
+    final FileResponse fileResponse =
+        FileResponse.fromJson(response.data["file"]);
+
+    return fileResponse;
   }
 }

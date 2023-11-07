@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:applycamp/data/source/student_data_source.dart';
 import 'package:applycamp/domain/repository/student_repository.dart';
+import 'package:file_picker/file_picker.dart';
 
 class StudentRepositoryImpl implements StudentRepository {
   final StudentDataSource dataSource;
@@ -31,5 +32,10 @@ class StudentRepositoryImpl implements StudentRepository {
   @override
   Future uploadStudentPhoto(File image) async {
     return dataSource.uploadStudentPhoto(image);
+  }
+
+  @override
+  Future uploadStudentDocument(File document, int documentTypeId) async {
+    return dataSource.uploadStudentDocument(document, documentTypeId);
   }
 }

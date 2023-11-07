@@ -15,7 +15,7 @@ class DocumentType {
   DocumentType.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
-    order = json['ordering'];
+    order = json['order'];
     slug = json['slug'];
     isRequired = json['isRequired'];
   }
