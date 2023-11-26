@@ -7,12 +7,14 @@ import 'package:applycamp/data/repository/student_auth_repository_impl.dart';
 import 'package:applycamp/data/repository/search_repository_impl.dart';
 import 'package:applycamp/data/repository/student_repository_impl.dart';
 import 'package:applycamp/data/repository/sub_user_repository_impl.dart';
+import 'package:applycamp/data/repository/user_repository_impl.dart';
 import 'package:applycamp/data/source/agent_auth_data_source.dart';
 import 'package:applycamp/data/source/application_data_source.dart';
 import 'package:applycamp/data/source/student_auth_data_source.dart';
 import 'package:applycamp/data/source/search_data_source.dart';
 import 'package:applycamp/data/source/student_data_source.dart';
 import 'package:applycamp/data/source/sub_user_data_source.dart';
+import 'package:applycamp/data/source/user_data_source.dart';
 import 'package:applycamp/domain/entity/auth_data.dart';
 import 'package:applycamp/domain/repository/agent_auth_repository.dart';
 import 'package:applycamp/domain/repository/application_repository.dart';
@@ -20,6 +22,7 @@ import 'package:applycamp/domain/repository/student_auth_repository.dart';
 import 'package:applycamp/domain/repository/search_repository.dart';
 import 'package:applycamp/domain/repository/student_repository.dart';
 import 'package:applycamp/domain/repository/sub_user_repository.dart';
+import 'package:applycamp/domain/repository/user_repository.dart';
 import 'package:applycamp/ui/auth/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -62,6 +65,8 @@ Future<void> initServices() async {
       () => StudentRepositoryImpl(instance()));
   instance.registerLazySingleton<ApplicationRepository>(
       () => ApplicationRepositoryImpl(instance()));
+  instance.registerLazySingleton<UserRepository>(
+      () => UserRepositoryImpl(instance()));
 
   // data sources
   instance.registerLazySingleton<StudentAuthDataSource>(
@@ -76,6 +81,8 @@ Future<void> initServices() async {
       () => StudentDataSourceImpl(instance()));
   instance.registerLazySingleton<ApplicationDataSource>(
       () => ApplicationDataSourceImpl(instance()));
+  instance.registerLazySingleton<UserDataSource>(
+      () => UserDataSourceImpl(instance()));
 
   // blocs
   instance.registerLazySingleton<AuthBloc>(() => AuthBloc(instance()));

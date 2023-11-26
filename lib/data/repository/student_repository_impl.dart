@@ -1,6 +1,7 @@
 import 'dart:io';
-
+import 'package:applycamp/data/model/student_model/student_model.dart';
 import 'package:applycamp/data/source/student_data_source.dart';
+import 'package:applycamp/domain/entity/student_create_params.dart';
 import 'package:applycamp/domain/repository/student_repository.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -37,5 +38,10 @@ class StudentRepositoryImpl implements StudentRepository {
   @override
   Future uploadStudentDocument(File document, int documentTypeId) async {
     return dataSource.uploadStudentDocument(document, documentTypeId);
+  }
+
+  @override
+  Future createStudent(StudentCreateParams studentCreateParams) async {
+    return dataSource.createStudent(studentCreateParams);
   }
 }

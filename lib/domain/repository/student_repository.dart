@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:applycamp/domain/entity/student_create_params.dart';
 
 abstract class StudentRepository {
   Future getAllMyStudents();
@@ -7,4 +8,5 @@ abstract class StudentRepository {
   Future deleteStudent(int studentId);
   Future uploadStudentPhoto(File image);
   Future uploadStudentDocument(File document, int documentTypeId);
+  Future createStudent(StudentCreateParams studentCreateParams);
 }

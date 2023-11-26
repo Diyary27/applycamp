@@ -1,3 +1,5 @@
+import 'package:applycamp/domain/entity/profile_fields.dart';
+
 abstract class AgentAuthRepository {
   Future register(
       {required String email,
@@ -11,6 +13,5 @@ abstract class AgentAuthRepository {
   Future loadAllAuthInfos();
   Future loadAuthInfo(String key);
   Future getProfile();
-  Future editProfile(String name, String organization, String phone,
-      String? password, Map? profileImage);
+  Future editProfile(ProfileFields profileFields);
 }

@@ -1,4 +1,8 @@
+import 'package:applycamp/data/model/application_models/application_create_fields.dart';
+
 abstract class ApplicationRepository {
+  Future createApplication(
+      ApplicationCreateFields applicationCreateFields, int studentId);
   Future getMyApplications();
   Future getMyApplicationsByFilter(
       {int? studentId, int? schoolId, int? statusId});

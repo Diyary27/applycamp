@@ -48,7 +48,9 @@ class StudentAuthRepositoryImpl implements StudentAuthRepository {
     final id = authResponse.student.id.toString();
     final infos = [
       authResponse.student.name!,
-      authResponse.loginInfo.accessToken
+      authResponse.loginInfo.accessToken,
+      '',
+      authResponse.student.profileImage!.path,
     ];
     await appPreferences.setAuthInfos(id, infos);
 

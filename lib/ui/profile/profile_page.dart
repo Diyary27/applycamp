@@ -52,7 +52,8 @@ class _ProfilePageState extends State<ProfilePage> {
           stateStreamSubscription = bloc.stream.listen((state) {
             if (state is ProfileAuthRequired) {
               Navigator.of(context, rootNavigator: true)
-                  .push(MaterialPageRoute(builder: (context) => const AuthPage()))
+                  .push(
+                      MaterialPageRoute(builder: (context) => const AuthPage()))
                   .then((value) => setState(() {}));
             }
           });
@@ -78,18 +79,24 @@ class _ProfilePageState extends State<ProfilePage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           // profile title
-                          Container(
-                            width: 80,
-                            height: 80,
-                            decoration: const BoxDecoration(
-                                shape: BoxShape.circle, color: Colors.white70),
-                            child: const CircleAvatar(
-                              minRadius: 40,
-                              maxRadius: 40,
-                              backgroundImage: NetworkImage(
-                                'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
-                              ),
-                            ),
+                          ValueListenableBuilder(
+                            valueListenable: loggedInUserNotifier,
+                            builder: (context, value, child) {
+                              return SizedBox(
+                                width: 80,
+                                height: 80,
+                                child: (value.profileImagePath != null &&
+                                        value.profileImagePath != '')
+                                    ? CircleAvatar(
+                                        minRadius: 40,
+                                        maxRadius: 40,
+                                        backgroundImage: NetworkImage(
+                                          value.profileImagePath!,
+                                        ),
+                                      )
+                                    : Container(),
+                              );
+                            },
                           ),
                           const SizedBox(width: 6),
                           Column(
@@ -120,104 +127,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.all(24),
                       child: Column(
                         children: [
-                          // Row(
-                          //   crossAxisAlignment: CrossAxisAlignment.end,
-                          //   children: [
-                          //     Icon(Icons.person),
-                          //     SizedBox(width: 10),
-                          //     Text(
-                          //       'Personal Information',
-                          //       style: Theme.of(context).textTheme.titleMedium,
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 28),
-                          // Row(
-                          //   crossAxisAlignment: CrossAxisAlignment.end,
-                          //   children: [
-                          //     Icon(Icons.school),
-                          //     SizedBox(width: 10),
-                          //     Text(
-                          //       'University Applications',
-                          //       style: Theme.of(context).textTheme.titleMedium,
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 28),
-                          // Row(
-                          //   crossAxisAlignment: CrossAxisAlignment.end,
-                          //   children: [
-                          //     Icon(Icons.topic_outlined),
-                          //     SizedBox(width: 10),
-                          //     Text(
-                          //       'Exam Applications',
-                          //       style: Theme.of(context).textTheme.titleMedium,
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 28),
-                          // Row(
-                          //   crossAxisAlignment: CrossAxisAlignment.end,
-                          //   children: [
-                          //     Icon(Icons.language),
-                          //     SizedBox(width: 10),
-                          //     Text(
-                          //       'Online Exams',
-                          //       style: Theme.of(context).textTheme.titleMedium,
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 28),
-                          // Row(
-                          //   crossAxisAlignment: CrossAxisAlignment.end,
-                          //   children: [
-                          //     Icon(Icons.hotel),
-                          //     SizedBox(width: 10),
-                          //     Text(
-                          //       'Services',
-                          //       style: Theme.of(context).textTheme.titleMedium,
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 28),
-                          // Row(
-                          //   crossAxisAlignment: CrossAxisAlignment.end,
-                          //   children: [
-                          //     Icon(Icons.mail),
-                          //     SizedBox(width: 10),
-                          //     Text(
-                          //       'Messages',
-                          //       style: Theme.of(context).textTheme.titleMedium,
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 28),
-                          // Row(
-                          //   crossAxisAlignment: CrossAxisAlignment.end,
-                          //   children: [
-                          //     Icon(Icons.password),
-                          //     SizedBox(width: 10),
-                          //     Text(
-                          //       'Change Password',
-                          //       style: Theme.of(context).textTheme.titleMedium,
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 28),
-                          // Row(
-                          //   crossAxisAlignment: CrossAxisAlignment.end,
-                          //   children: [
-                          //     Icon(Icons.favorite),
-                          //     SizedBox(width: 10),
-                          //     Text(
-                          //       'Favorites',
-                          //       style: Theme.of(context).textTheme.titleMedium,
-                          //     ),
-                          //   ],
-                          // ),
-                          // SizedBox(height: 28),
                           // for entering portal
-
                           ValueListenableBuilder(
                               valueListenable: loggedInUserNotifier,
                               builder: (context, value, child) {

@@ -32,7 +32,7 @@ class User {
   late final bool isSubUser;
   late final String name;
   late final String email;
-  late final String phone;
+  late final String? phone;
   late final String organization;
   late final bool canAddApplications;
   late final int canAddStudents;
@@ -55,7 +55,7 @@ class User {
     isSubUser = json['isSubUser'];
     name = json['name'];
     email = json['email'];
-    phone = json['phone'];
+    phone = json['phone'] != null ? json['phone'] : '';
     organization = json['organization'];
     canAddApplications = json['canAddApplications'];
     canAddStudents = json['canAddStudents'];

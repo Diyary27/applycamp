@@ -11,11 +11,15 @@ class SubUsersBloc extends Bloc<SubUsersEvent, SubUsersState> {
   SubUsersBloc() : super(SubUsersInitial()) {
     on<SubUsersEvent>((event, emit) async {
       if (event is SubUserStarted) {
+        emit(SubUsersInitial());
         final subUsers = await instance<SubUserRepository>().getAllSubUsers();
         emit(SubUsersLoaded(subUsers));
       } else if (event is SubUsersAddClicked) {
         final response = await instance<SubUserRepository>()
             .createSubUser(event.subUserEntity);
+      } else if (event is SubUserDeleteClicked) {
+        final response =
+            await instance<SubUserRepository>().deleteSubUser(event.id);
       }
     });
   }

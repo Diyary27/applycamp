@@ -13,14 +13,14 @@ class SubUserForm extends StatefulWidget {
 class _SubUserFormState extends State<SubUserForm> {
   @override
   void initState() {
-    _nameController.text = widget.subUserEntity!.name;
-    _emailController.text = widget.subUserEntity!.email;
-    _organizationController.text = widget.subUserEntity!.organization;
-    _phoneController.text = widget.subUserEntity!.phone;
+    _nameController.text = widget.subUserEntity?.name ?? '';
+    _emailController.text = widget.subUserEntity?.email ?? '';
+    _organizationController.text = widget.subUserEntity?.organization ?? '';
+    _phoneController.text = widget.subUserEntity?.phone ?? '';
     _commissionController.text =
-        widget.subUserEntity!.commissionPercentage.toString();
-    _canViewCommissions = widget.subUserEntity!.canViewCommissions;
-    _canAddSubUsers = widget.subUserEntity!.canAddSubUsers;
+        widget.subUserEntity?.commissionPercentage.toString() ?? '';
+    _canViewCommissions = widget.subUserEntity?.canViewCommissions ?? false;
+    _canAddSubUsers = widget.subUserEntity?.canAddSubUsers ?? false;
     super.initState();
   }
 

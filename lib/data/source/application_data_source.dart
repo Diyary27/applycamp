@@ -2,9 +2,12 @@ import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/constant/remote_constant.dart';
 import 'package:applycamp/data/model/application_models/application.dart';
 import 'package:applycamp/data/model/application_models/application_create_fields.dart';
+import 'package:applycamp/data/model/application_models/application_create_response.dart';
 import 'package:applycamp/data/model/application_models/application_status.dart';
 
 abstract class ApplicationDataSource {
+  Future createApplication(
+      ApplicationCreateFields applicationCreateFields, int studentId);
   Future getMyApplications();
   Future getMyApplicationsByFilter(
       {int? studentId, int? schoolId, int? statusId});
@@ -115,5 +118,17 @@ class ApplicationDataSourceImpl implements ApplicationDataSource {
           "subject": "demo",
           "body": "",
         });
+  }
+
+  @override
+  Future createApplication(
+      ApplicationCreateFields applicationCreateFields, int studentId) async {
+    final response = await dioConsumer
+        .post(PortalRemoteConstants.createApplication + "studentId=$studentId");
+
+    final ApplicationCreateResponse createResponse =
+        ApplicationCreateResponse.fromJson(response.data);
+
+    return createResponse;
   }
 }

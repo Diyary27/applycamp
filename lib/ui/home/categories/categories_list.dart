@@ -32,7 +32,7 @@ class CategoriesList extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context, rootNavigator: true).push(
                           MaterialPageRoute(
-                              builder: (context) => const CategoriesListPage()));
+                              builder: (context) => CategoriesListPage()));
                     },
                     child: Text(
                       'All',
@@ -50,58 +50,41 @@ class CategoriesList extends StatelessWidget {
                   } else if (state is CategoriesSuccess) {
                     return GridView.builder(
                         padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3),
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: 6,
                         itemBuilder: (context, index) {
                           final studyField = state.studyFields[index];
-                          return Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.primary,
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            margin: const EdgeInsets.all(4),
-                            child: Stack(
-                              children: [
-                                Center(
-                                  child: Padding(
-                                      padding: const EdgeInsets.all(15),
-                                      child: Text(
-                                        studyField.title,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelMedium!
-                                            .copyWith(color: Colors.white),
-                                        textAlign: TextAlign.center,
-                                      )),
-                                ),
-                                // Positioned(
-                                //   bottom: 0,
-                                //   left: 0,
-                                //   right: 0,
-                                //   child: Container(
-                                //     height: 30,
-                                //     decoration: BoxDecoration(
-                                //       color: Color.fromARGB(255, 37, 148, 41),
-                                //       borderRadius: BorderRadius.only(
-                                //         bottomLeft: Radius.circular(16),
-                                //         bottomRight: Radius.circular(16),
-                                //       ),
-                                //     ),
-                                //     child: Center(
-                                //       child: Text(
-                                //         studyField.title,
-                                //         style: Theme.of(context)
-                                //             .textTheme
-                                //             .labelMedium!
-                                //             .copyWith(color: Colors.white),
-                                //         textAlign: TextAlign.center,
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
-                              ],
+                          return GestureDetector(
+                            onTap: () async {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: ((context) => CategoriesListPage(
+                                      studyFieldId: studyField.id))));
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).colorScheme.primary,
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              margin: const EdgeInsets.all(4),
+                              child: Stack(
+                                children: [
+                                  Center(
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(15),
+                                        child: Text(
+                                          studyField.title,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .labelMedium!
+                                              .copyWith(color: Colors.white),
+                                          textAlign: TextAlign.center,
+                                        )),
+                                  ),
+                                ],
+                              ),
                             ),
                           );
                         });

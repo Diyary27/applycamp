@@ -1,5 +1,5 @@
 import 'package:applycamp/data/model/application_models/upload_slots.dart';
-import 'package:applycamp/data/model/file_response.dart';
+import 'package:applycamp/data/model/file_element.dart';
 
 class ApplicationDocument {
   ApplicationDocument({
@@ -14,7 +14,7 @@ class ApplicationDocument {
   final int? typeId;
   final int? applicationId;
   final UploadSlot? type;
-  final List<FileResponse> files;
+  final List<FileElement> files;
 
   factory ApplicationDocument.fromJson(Map<String, dynamic> json) {
     return ApplicationDocument(
@@ -24,8 +24,8 @@ class ApplicationDocument {
       type: json["type"] == null ? null : UploadSlot.fromJson(json["type"]),
       files: json["files"] == null
           ? []
-          : List<FileResponse>.from(
-              json["files"]!.map((x) => FileResponse.fromJson(x))),
+          : List<FileElement>.from(
+              json["files"]!.map((x) => FileElement.fromJson(x))),
     );
   }
 }

@@ -6,29 +6,6 @@ class AppPreferences {
 
   AppPreferences(this._sharedPreferences);
 
-  // Future setFullName(
-  //     {required String fullNameKey, required String fullName}) async {
-  //   return _sharedPreferences.setString(fullNameKey, fullName);
-  // }
-
-  // Future getFullName(fullNameKey) async {
-  //   return _sharedPreferences.getString(fullNameKey) ?? null;
-  // }
-
-  // Future saveAccessToken(
-  //     {required String accessTokenKey, required String accessToken}) async {
-  //   return _sharedPreferences.setString(accessTokenKey, accessToken);
-  // }
-
-  // Future loadAccessToken(accessTokenKey) async {
-  //   return _sharedPreferences.getString(accessTokenKey) ?? null;
-  // }
-
-  Future setAuthInfos(String id, List<String> infos) async {
-    final keyId = 'auth_$id';
-    return _sharedPreferences.setStringList(keyId, infos);
-  }
-
   // موقت
   Future setLoginInfo(String id, List<String> infos) async {
     final keyId = 'login_$id';
@@ -43,10 +20,26 @@ class AppPreferences {
     return loginInfo;
   }
 
-  Future getAuthInfos(String key) async {
+  Future setprofileImagePath(String id, String profileImagePath) async {
+    final keyId = 'image_$id';
+    return _sharedPreferences.setString(keyId, profileImagePath);
+  }
+
+  Future getProfileImagePath(String id) async {
+    final keyId = 'image_$id';
+    return _sharedPreferences.getString(keyId);
+  }
+
+  Future setAuthInfos(String id, List<String> infos) async {
+    final keyId = 'auth_$id';
+    return _sharedPreferences.setStringList(keyId, infos);
+  }
+
+  Future getAuthInfos(String id) async {
     // in the list first one is name and second one is accessToken
-    // we have a model like this "auth_id" -> [[0]name, [1]accessToken]
-    final List? authInfos = _sharedPreferences.getStringList(key);
+    // we have a model like this "auth_id" -> [[0]name, [1]accessToken, [2]role id, [3] profileImage Path]
+    final keyId = 'auth_$id';
+    final List? authInfos = _sharedPreferences.getStringList(keyId);
 
     return authInfos;
   }
@@ -58,9 +51,14 @@ class AppPreferences {
     final List<AuthData> authData = [];
     for (var key in authKeys) {
       authData.add(AuthData(
-          key: key,
-          name: _sharedPreferences.getStringList(key)?[0],
-          accessToken: _sharedPreferences.getStringList(key)?[1]));
+        key: key,
+        name: _sharedPreferences.getStringList(key)?[0],
+        accessToken: _sharedPreferences.getStringList(key)?[1],
+        userRoleId: _sharedPreferences.getStringList(key)?[2] != null
+            ? int.parse(_sharedPreferences.getStringList(key)![2])
+            : null,
+        profileImagePath: _sharedPreferences.getStringList(key)?[3],
+      ));
     }
 
     return authData;

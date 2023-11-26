@@ -1,4 +1,5 @@
 import 'package:applycamp/data/model/program_search_models/abilities.dart';
+import 'package:applycamp/data/model/user_model/profile_image.dart';
 import 'package:applycamp/data/model/user_model/role.dart';
 import 'package:applycamp/data/model/user_model/user_can.dart';
 
@@ -30,7 +31,7 @@ class Maker {
   late final bool isSubUser;
   late final String name;
   late final String email;
-  late final String phone;
+  late final String? phone;
   late final String organization;
   late final bool canAddApplications;
   late final int canAddStudents;
@@ -44,7 +45,7 @@ class Maker {
   late final String createdAt;
   late final String updatedAt;
   late final Role? role;
-  late final List<dynamic> profileImage;
+  late final ProfileImage? profileImage;
 
   Maker.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -52,7 +53,7 @@ class Maker {
     isSubUser = json['isSubUser'];
     name = json['name'];
     email = json['email'];
-    phone = json['phone'];
+    phone = json['phone'] != null ? json['phone'] : null;
     organization = json['organization'];
     canAddApplications = json['canAddApplications'];
     canAddStudents = json['canAddStudents'];
@@ -66,7 +67,7 @@ class Maker {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     role = json['role'] == null ? null : Role.fromJson(json['role']);
-    profileImage = List.castFrom<dynamic, dynamic>(json['profileImage']);
+    profileImage = ProfileImage.fromJson(json['profileImage']);
   }
 
   Map<String, dynamic> toJson() {

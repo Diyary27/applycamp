@@ -54,7 +54,7 @@ class Student {
     required this.applications,
   });
 
-  final int id;
+  final int? id;
   final int? makerId;
   final int? nationalityId;
   final int? residenceId;

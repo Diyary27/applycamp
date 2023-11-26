@@ -1,5 +1,6 @@
 import 'package:applycamp/data/model/program_search_models/city.dart';
 import 'package:applycamp/data/model/program_search_models/school.dart';
+import 'package:applycamp/ui/search/programs_list_page.dart';
 import 'package:flutter/material.dart';
 
 class UniversityDetailsPage extends StatelessWidget {
@@ -149,21 +150,7 @@ class UniversityDetailsPage extends StatelessWidget {
                               ),
                             ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.all(12),
-                      child: 'schoolProgram.school.aboutSchool' != null
-                          ? Text('schoolProgram.school.aboutSchool.toString()')
-                          : Center(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.info, size: 38),
-                                  SizedBox(height: 10),
-                                  Text('No Information Found')
-                                ],
-                              ),
-                            ),
-                    ),
+                    Container(),
                     const Padding(
                       padding: EdgeInsets.all(12),
                       child: 'schoolProgram.admissionRequirements' != null

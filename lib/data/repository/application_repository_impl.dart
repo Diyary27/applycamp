@@ -1,3 +1,4 @@
+import 'package:applycamp/data/model/application_models/application_create_fields.dart';
 import 'package:applycamp/data/source/application_data_source.dart';
 import 'package:applycamp/domain/repository/application_repository.dart';
 
@@ -47,4 +48,10 @@ class ApplicationRepositoryImpl implements ApplicationRepository {
 
   @override
   Future proceedToNextStep(int Id) async => dataSource.proceedToNextStep(Id);
+
+  @override
+  Future createApplication(
+      ApplicationCreateFields applicationCreateFields, int studentId) async {
+    return dataSource.createApplication(applicationCreateFields, studentId);
+  }
 }

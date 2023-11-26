@@ -31,4 +31,14 @@ class SearchRepositoryImpl implements SearchRepository {
   Future searchSchools(SearchParams searchParams) {
     return dataSource.searchSchools(searchParams.toJson());
   }
+
+  @override
+  Future getProgramsByStudyField(int id) async {
+    return dataSource.getProgramsByStudyField(id);
+  }
+
+  @override
+  Future getSchoolsByCity(int id) async {
+    return dataSource.getSchoolsByCity(id);
+  }
 }

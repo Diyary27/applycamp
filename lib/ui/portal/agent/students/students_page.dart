@@ -47,7 +47,7 @@ class StudentsPage extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const StudentCreatePage()));
+                            builder: (context) => StudentCreatePage()));
                       },
                       child: const Text('+ Add Student'),
                     ),
@@ -61,7 +61,7 @@ class StudentsPage extends StatelessWidget {
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: ((context) => StudentDetailsPage(
-                                      studentId: student.id))));
+                                      studentId: student.id!))));
                             },
                             child: Container(
                               padding: const EdgeInsets.all(8),
@@ -72,12 +72,20 @@ class StudentsPage extends StatelessWidget {
                               ),
                               child: Row(
                                 children: [
-                                  const CircleAvatar(
-                                    minRadius: 40,
-                                    maxRadius: 40,
-                                    backgroundImage: NetworkImage(
-                                      'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
-                                    ),
+                                  SizedBox(
+                                    width: 80,
+                                    height: 80,
+                                    child: (student.profileImage?.path !=
+                                                null &&
+                                            student.profileImage?.path != '')
+                                        ? CircleAvatar(
+                                            minRadius: 40,
+                                            maxRadius: 40,
+                                            backgroundImage: NetworkImage(
+                                              student.profileImage!.path,
+                                            ),
+                                          )
+                                        : Container(),
                                   ),
                                   const SizedBox(width: 10),
                                   Expanded(
@@ -96,7 +104,8 @@ class StudentsPage extends StatelessWidget {
                                         (student.phone != null)
                                             ? Text('Phone: ${student.phone}')
                                             : const Text('Phone: '),
-                                        Text('Nationality: ${student.nationality!.name}'),
+                                        Text(
+                                            'Nationality: ${student.nationality!.name}'),
                                       ],
                                     ),
                                   ),
@@ -122,7 +131,7 @@ class StudentsPage extends StatelessWidget {
                                                     builder: (context) =>
                                                         StudentApplicationsPage(
                                                             StudentId:
-                                                                student.id)));
+                                                                student.id!)));
                                           },
                                           child: const Text('Applications'),
                                         ),
@@ -139,7 +148,8 @@ class StudentsPage extends StatelessWidget {
                                       GestureDetector(
                                         onTap: () {
                                           context.read<StudentsBloc>().add(
-                                              StudentDeleteClicked(student.id));
+                                              StudentDeleteClicked(
+                                                  student.id!));
                                         },
                                         child: const Icon(
                                           Icons.delete,

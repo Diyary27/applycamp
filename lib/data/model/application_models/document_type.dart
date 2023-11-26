@@ -1,23 +1,25 @@
 class DocumentType {
   DocumentType({
-    required this.id,
-    required this.title,
-    required this.order,
-    required this.slug,
-    required this.isRequired,
+    this.id,
+    this.title,
+    this.order,
+    this.slug,
+    this.isRequired,
   });
-  late final int id;
-  late final String title;
-  late final int order;
-  late final String slug;
-  late final bool isRequired;
+  final int? id;
+  final String? title;
+  final int? order;
+  final String? slug;
+  final bool? isRequired;
 
-  DocumentType.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    order = json['order'];
-    slug = json['slug'];
-    isRequired = json['isRequired'];
+  factory DocumentType.fromJson(Map<String, dynamic> json) {
+    return DocumentType(
+      id: json['id'],
+      title: json['title'],
+      order: json['order'],
+      slug: json['slug'],
+      isRequired: json['isRequired'],
+    );
   }
 
   Map<String, dynamic> toJson() {

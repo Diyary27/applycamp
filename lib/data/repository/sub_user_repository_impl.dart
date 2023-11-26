@@ -12,9 +12,8 @@ class SubUserRepositoryImpl implements SubUserRepository {
   }
 
   @override
-  Future deleteSubUser(int id) {
-    // TODO: implement deleteSubUser
-    throw UnimplementedError();
+  Future deleteSubUser(int id) async {
+    return await dataSource.deleteSubUser(id);
   }
 
   @override

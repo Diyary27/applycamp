@@ -10,4 +10,6 @@ class StudentCreateLoaded extends StudentCreateState {
   StudentCreateLoaded(this.studentCreateFields);
 }
 
+class StudentCreateSuccess extends StudentCreateState {}
+
 class StudentCreateError extends StudentCreateState {}

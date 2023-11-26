@@ -4,3 +4,9 @@ part of 'cities_bloc.dart';
 abstract class CitiesEvent {}
 
 class CitiesStarted extends CitiesEvent {}
+
+class CityClicked extends CitiesEvent {
+  final int id;
+
+  CityClicked(this.id);
+}

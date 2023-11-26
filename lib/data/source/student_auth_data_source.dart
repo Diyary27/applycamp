@@ -1,4 +1,3 @@
-
 import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/constant/remote_constant.dart';
 import 'package:applycamp/data/model/student_model/student_auth_response.dart';
@@ -29,7 +28,7 @@ class StudentAuthDataSourceImpl implements StudentAuthDataSource {
   Future<StudentAuthResponse> register(String fullName, String email,
       String password, String gender, String phone) async {
     final response = await dioConsumer
-        .post(PortalRemoteConstants.minimalRegisteration, queryParameters: {
+        .post(PortalRemoteConstants.minimalRegisteration, body: {
       "fullName": fullName,
       "email": email,
       "password": password,

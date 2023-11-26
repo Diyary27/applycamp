@@ -11,10 +11,17 @@ class CitiesSuccess extends CitiesState {
   CitiesSuccess(this.cities);
 }
 
-class CitiesError extends CitiesState {}
-
 class CityPageSuccess extends CitiesState {
   final City city;
 
   CityPageSuccess(this.city);
 }
+
+class CitySchoolsSuccess extends CitiesState {
+  final List<School> schools;
+  final List<City> cities;
+
+  CitySchoolsSuccess({required this.schools, required this.cities});
+}
+
+class CitiesError extends CitiesState {}

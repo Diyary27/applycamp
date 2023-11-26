@@ -1,25 +1,25 @@
-import 'package:applycamp/data/model/file_response.dart';
-import 'package:applycamp/data/model/program_search_models/degrees.dart';
+import 'package:applycamp/data/model/application_models/document_type.dart';
+import 'package:applycamp/data/model/file_element.dart';
 
 class StudentDocument {
   StudentDocument({
-    required this.id,
-    required this.type,
+    this.id,
+    this.type,
     required this.files,
   });
 
-  final int id;
-  final Degree? type;
-  final List<FileResponse> files;
+  final int? id;
+  final DocumentType? type;
+  final List<FileElement> files;
 
   factory StudentDocument.fromJson(Map<String, dynamic> json) {
     return StudentDocument(
       id: json["id"],
-      type: json["type"] == null ? null : Degree.fromJson(json["type"]),
+      type: json["type"] == null ? null : DocumentType.fromJson(json["type"]),
       files: json["files"] == null
           ? []
-          : List<FileResponse>.from(
-              json["files"]!.map((x) => FileResponse.fromJson(x))),
+          : List<FileElement>.from(
+              json["files"]!.map((x) => FileElement.fromJson(x))),
     );
   }
 

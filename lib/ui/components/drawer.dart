@@ -33,7 +33,8 @@ class _AppDrawerState extends State<AppDrawer> {
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.fromLTRB(24, 50, 24, 24),
+                              padding:
+                                  const EdgeInsets.fromLTRB(24, 50, 24, 24),
                               height: 200,
                               color: Theme.of(context).colorScheme.primary,
                               child: Row(
@@ -42,12 +43,13 @@ class _AppDrawerState extends State<AppDrawer> {
                                   SizedBox(
                                     width: 80,
                                     height: 80,
-                                    child: value.key != null
-                                        ? const CircleAvatar(
+                                    child: (value.profileImagePath != null &&
+                                            value.profileImagePath != '')
+                                        ? CircleAvatar(
                                             minRadius: 40,
                                             maxRadius: 40,
                                             backgroundImage: NetworkImage(
-                                              'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
+                                              value.profileImagePath!,
                                             ),
                                           )
                                         : Container(),
@@ -156,7 +158,8 @@ class _AppDrawerState extends State<AppDrawer> {
                                 onTap: () {
                                   Navigator.of(context, rootNavigator: true)
                                       .pushReplacement(MaterialPageRoute(
-                                    builder: (context) => const AgentDashboardPage(),
+                                    builder: (context) =>
+                                        const AgentDashboardPage(),
                                   ));
                                 },
                                 child: Padding(

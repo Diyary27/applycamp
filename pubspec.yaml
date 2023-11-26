@@ -46,6 +46,8 @@ dependencies:
   permission_handler: ^11.0.1
   dropdown_textfield: ^1.0.8
   file_picker: ^5.3.1
+  intl: ^0.18.1
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_test:

@@ -2,6 +2,7 @@ import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/constant/remote_constant.dart';
 import 'package:applycamp/data/model/user_model/user.dart';
 import 'package:applycamp/data/model/user_model/user_auth_response.dart';
+import 'package:applycamp/domain/entity/profile_fields.dart';
 
 abstract class AgentAuthDataSource {
   Future register(
@@ -13,8 +14,7 @@ abstract class AgentAuthDataSource {
   Future login(String email, String password);
   Future sendForgotPassEmail(String email);
   Future getProfile();
-  Future editProfile(String name, String organization, String phone,
-      String? password, Map? profileImage);
+  Future editProfile(ProfileFields profileFields);
 }
 
 class AgentAuthDataSourceImpl implements AgentAuthDataSource {
@@ -39,8 +39,8 @@ class AgentAuthDataSourceImpl implements AgentAuthDataSource {
       required String name,
       required String organization,
       required String phone}) async {
-    final response = await dioConsumer
-        .post(PortalRemoteConstants.agentRegisteration, queryParameters: {
+    final response =
+        await dioConsumer.post(PortalRemoteConstants.agentRegisteration, body: {
       "name": name,
       "email": email,
       "password": password,
@@ -59,20 +59,10 @@ class AgentAuthDataSourceImpl implements AgentAuthDataSource {
   }
 
   @override
-  Future editProfile(String name, String organization, String phone,
-      String? password, Map? profileImage) async {
+  Future editProfile(ProfileFields profileFields) async {
     final response = await dioConsumer.put(
       PortalRemoteConstants.editProfile,
-      body: {
-        "password": password,
-        "name": name,
-        "phone": phone,
-        "organization": organization,
-        "profileImage": {
-          "id": 3399,
-          "uuid": "e582cd5f-c129-4b20-9335-ce355d2617dc"
-        }
-      },
+      body: profileFields.toJson(),
     );
     final bool updated = response.data['updated'];
 

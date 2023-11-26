@@ -36,9 +36,11 @@ class SubUserDataSourceImpl implements SubUserDataSource {
   }
 
   @override
-  Future deleteSubUser(int id) {
-    // TODO: implement deleteSubUser
-    throw UnimplementedError();
+  Future deleteSubUser(int id) async {
+    final response = await dioConsumer
+        .delete(PortalRemoteConstants.deleteSubUser + id.toString());
+
+    return response;
   }
 
   @override

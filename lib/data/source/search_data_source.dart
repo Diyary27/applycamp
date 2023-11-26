@@ -1,4 +1,3 @@
-
 import 'package:applycamp/core/common/dio_consumer.dart';
 import 'package:applycamp/core/constant/remote_constant.dart';
 import 'package:applycamp/data/model/program_search_models/city.dart';
@@ -10,8 +9,10 @@ import 'package:applycamp/data/model/program_search_models/study_fields.dart';
 
 abstract class SearchDataSource {
   Future<List<City>> getAllCities();
+  Future getSchoolsByCity(int id);
   Future<List<School>> getAllSchools();
   Future<List<StudyField>> getAllStudyFields();
+  Future getProgramsByStudyField(int id);
   Future getFieldsToSearch();
   Future searchPrograms(Map<String, dynamic> searchParams);
   Future searchSchools(Map<String, dynamic> searchParams);
@@ -82,7 +83,8 @@ class SearchDataSourceImpl implements SearchDataSource {
   Future searchPrograms(Map<String, dynamic> searchParams) async {
     final response = await dioConsumer.get(PortalRemoteConstants.searchPrograms,
         queryParameters: searchParams);
-
+    print(response.data);
+    print('cc');
     final schoolPrograms = SchoolPrograms.fromJson(response.data);
 
     return schoolPrograms;
@@ -99,6 +101,30 @@ class SearchDataSourceImpl implements SearchDataSource {
       schools.add(School.fromJson(element));
     }
 
+    return schools;
+  }
+
+  @override
+  Future getProgramsByStudyField(int id) async {
+    final response = await dioConsumer.get(
+        PortalRemoteConstants.getProgramsByStudyField +
+            id.toString() +
+            "/programs?list=paginate&perPage=20");
+
+    final schoolPrograms = SchoolPrograms.fromJson(response.data);
+
+    return schoolPrograms;
+  }
+
+  @override
+  Future getSchoolsByCity(int id) async {
+    final response = await dioConsumer.get(
+        PortalRemoteConstants.getSchoolsByCity + id.toString() + "/schools");
+
+    final List<School> schools = [];
+    (response.data["schools"] as List).forEach((element) {
+      schools.add(School.fromJson(element));
+    });
     return schools;
   }
 }

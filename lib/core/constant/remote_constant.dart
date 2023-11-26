@@ -15,10 +15,13 @@ class PortalRemoteConstants {
 
   // user
   static const String dashboard = "/api/v1/user/dashboard";
+  static const String uploadProfileImage = "/api/v1/user/upload-profile-image";
 
   // subUsers
   static const String getAllSubUsers = "/api/v1/user/sub-users";
   static const String createSubUser = "/api/v1/user/sub-user/create?";
+  //// for delete  /api/v1/user/sub-user/{id}
+  static const String deleteSubUser = "/api/v1/user/sub-user/";
 
   // students
   static const String getLoggedInUserStudents = "/api/v1/user/my-students";
@@ -31,6 +34,7 @@ class PortalRemoteConstants {
   static const String uploadStudentPhoto = "/api/v1/student/upload-image";
   ////  it should be like that /api/v1/student/document-type/3/upload
   static const String uploadDocument = "/api/v1/student/document-type/";
+  static const String createStudent = "/api/v1/student/create";
 
   // applications
   static const String getMyApplications = "/api/v1/my-applications";
@@ -39,9 +43,14 @@ class PortalRemoteConstants {
   static const String getAnApplication = "/api/v1/application/";
   static const String getCreateApplicationFields =
       "/api/v1/application/get-fields";
+  //// api/v1/application/add?studentId=212
+  static const String createApplication = "/api/v1/application/add?";
 
   // programs
   static const String getPrograms = "/api/v1/programs";
+  // // "/api/v1/content-items/study-fields/36/programs"
+  static const String getProgramsByStudyField =
+      "/api/v1/content-items/study-fields/";
 
   // Search Programs
   static const String getProgramSearchFields =
@@ -53,4 +62,7 @@ class PortalRemoteConstants {
   static const String getAllCities = "/api/v1/content-items/cities";
   static const String getAllStudyFields = "/api/v1/content-items/study-fields";
   static const String getSchoolsNormalUser = "/api/v1/schools/normal-users";
+
+  // // /api/v1/content-items/cities/1/schools
+  static const String getSchoolsByCity = "/api/v1/content-items/cities/";
 }

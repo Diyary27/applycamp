@@ -1,15 +1,15 @@
-class FileResponse {
-  FileResponse({
-    required this.id,
-    required this.uuid,
-    required this.name,
-    required this.path,
-    required this.realPath,
-    required this.mime,
-    required this.extension,
-    required this.note,
-    required this.createdAt,
-    required this.updatedAt,
+class FileElement {
+  FileElement({
+    this.id,
+    this.uuid,
+    this.name,
+    this.path,
+    this.realPath,
+    this.mime,
+    this.extension,
+    this.note,
+    this.createdAt,
+    this.updatedAt,
   });
 
   final int? id;
@@ -23,8 +23,8 @@ class FileResponse {
   final String? createdAt;
   final String? updatedAt;
 
-  factory FileResponse.fromJson(Map<String, dynamic> json) {
-    return FileResponse(
+  factory FileElement.fromJson(Map<String, dynamic> json) {
+    return FileElement(
       id: json["id"],
       uuid: json["uuid"],
       name: json["name"],

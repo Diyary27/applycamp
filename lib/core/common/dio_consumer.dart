@@ -30,13 +30,17 @@ class PortalDioConsumer implements ApiConsumer {
   }
 
   @override
-  Future post(String path,
-      {Object? body, Map<String, dynamic>? queryParameters}) async {
+  Future post(
+    String path, {
+    Object? body,
+    Map<String, dynamic>? queryParameters,
+    String? contentType,
+  }) async {
     final response = await httpClient.post(
       path,
       data: body,
       options: Options(
-        contentType: "multipart/form-data",
+        contentType: contentType != null ? contentType : "application/json",
         headers: {},
       ),
     );

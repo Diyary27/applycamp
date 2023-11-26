@@ -4,6 +4,7 @@ import 'package:applycamp/data/model/user_model/user_auth_response.dart';
 import 'package:applycamp/data/source/agent_auth_data_source.dart';
 import 'package:applycamp/di/service_locator.dart';
 import 'package:applycamp/domain/entity/auth_data.dart';
+import 'package:applycamp/domain/entity/profile_fields.dart';
 import 'package:applycamp/domain/repository/agent_auth_repository.dart';
 
 class AgentAuthRepositoryImpl implements AgentAuthRepository {
@@ -18,8 +19,14 @@ class AgentAuthRepositoryImpl implements AgentAuthRepository {
 
     await persistAuth(authResponse);
     // موقت
-    await appPreferences.setLoginInfo(
-        authResponse.user.id.toString(), [authResponse.user.email, password]);
+    await appPreferences.setLoginInfo(authResponse.user.id.toString(), [
+      authResponse.user.email,
+      password,
+      authResponse.user.roleId.toString(),
+      authResponse.user.profileImage?.path != null
+          ? authResponse.user.profileImage!.path
+          : '',
+    ]);
 
     return authResponse;
   }
@@ -55,7 +62,10 @@ class AgentAuthRepositoryImpl implements AgentAuthRepository {
       authResponse.user.name,
       authResponse.loginInfo.accessToken,
       // agents have role id
-      authResponse.user.roleId.toString()
+      authResponse.user.roleId.toString(),
+      authResponse.user.profileImage?.path != null
+          ? authResponse.user.profileImage!.path
+          : '',
     ];
     await appPreferences.setAuthInfos(id, infos);
 
@@ -64,15 +74,20 @@ class AgentAuthRepositoryImpl implements AgentAuthRepository {
   }
 
   @override
-  Future loadAuthInfo(String id) async {
+  Future loadAuthInfo(String key) async {
+    // ex. key : "auth_{id}""
+    // we want to remove the keyword auth and pass id
+    final id = key.replaceAll("auth_", '');
     final authInfos = await appPreferences.getAuthInfos(id);
 
     if (authInfos != null) {
       loggedInUserNotifier.value = AuthData(
-          key: id,
-          name: authInfos[0],
-          accessToken: authInfos[1],
-          userRoleId: int.tryParse(authInfos[2]));
+        key: key,
+        name: authInfos[0],
+        accessToken: authInfos[1],
+        userRoleId: int.tryParse(authInfos[2]),
+        profileImagePath: authInfos[3],
+      );
     }
   }
 
@@ -84,10 +99,12 @@ class AgentAuthRepositoryImpl implements AgentAuthRepository {
     loggedInUserNotifier.value = AuthData();
     if (loggedInUsers.isNotEmpty) {
       loggedInUserNotifier.value = AuthData(
-          key: loggedInUsers[0].key,
-          name: loggedInUsers[0].name,
-          accessToken: loggedInUsers[0].accessToken,
-          userRoleId: loggedInUsers[0].userRoleId);
+        key: loggedInUsers[0].key,
+        name: loggedInUsers[0].name,
+        accessToken: loggedInUsers[0].accessToken,
+        userRoleId: loggedInUsers[0].userRoleId,
+        profileImagePath: loggedInUsers[0].profileImagePath,
+      );
     }
   }
 
@@ -103,10 +120,8 @@ class AgentAuthRepositoryImpl implements AgentAuthRepository {
   }
 
   @override
-  Future editProfile(String name, String organization, String phone,
-      String? password, Map? profileImage) async {
-    final response = await dataSource.editProfile(
-        name, organization, phone, password, profileImage);
+  Future editProfile(ProfileFields profileFields) async {
+    final response = await dataSource.editProfile(profileFields);
 
     // اینجا باید از حافظه داحلی هم اطلاعات رو اپدیت کرد
     final User profile = await getProfile();

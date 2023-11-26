@@ -43,6 +43,7 @@ class SubUsersPage extends StatelessWidget {
                           context
                               .read<SubUsersBloc>()
                               .add(SubUsersAddClicked(result));
+                          context.read<SubUsersBloc>().add(SubUserStarted());
                         }
                       },
                       child: const Text('+ Add SubUser'),
@@ -62,13 +63,18 @@ class SubUsersPage extends StatelessWidget {
                             ),
                             child: Row(
                               children: [
-                                const CircleAvatar(
-                                  minRadius: 40,
-                                  maxRadius: 40,
-                                  backgroundImage: NetworkImage(
-                                    'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
-                                  ),
-                                ),
+                                (subUser.profileImage?.path != null &&
+                                        subUser.profileImage?.path != '')
+                                    ? CircleAvatar(
+                                        minRadius: 55,
+                                        maxRadius: 55,
+                                        backgroundImage: NetworkImage(
+                                            subUser.profileImage!.path),
+                                      )
+                                    : Container(
+                                        width: 55,
+                                        height: 55,
+                                      ),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: Column(
@@ -84,7 +90,8 @@ class SubUsersPage extends StatelessWidget {
                                       const SizedBox(height: 3),
                                       Text('Email: ${subUser.email}'),
                                       Text('Phone: ${subUser.phone}'),
-                                      Text('Organization: ${subUser.organization}'),
+                                      Text(
+                                          'Organization: ${subUser.organization}'),
                                     ],
                                   ),
                                 ),
@@ -122,9 +129,18 @@ class SubUsersPage extends StatelessWidget {
                                       child: const Icon(Icons.edit),
                                     ),
                                     const SizedBox(height: 10),
-                                    const Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
+                                    GestureDetector(
+                                      onTap: () async {
+                                        context.read<SubUsersBloc>().add(
+                                            SubUserDeleteClicked(subUser.id));
+                                        context
+                                            .read<SubUsersBloc>()
+                                            .add(SubUserStarted());
+                                      },
+                                      child: const Icon(
+                                        Icons.delete,
+                                        color: Colors.red,
+                                      ),
                                     ),
                                   ],
                                 ),

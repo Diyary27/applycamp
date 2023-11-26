@@ -11,10 +11,10 @@ class PaginationInfo {
   late final int total;
   late final int count;
   late final int currentPage;
-  late final int firstItem;
-  late final int lastItem;
+  late final int? firstItem;
+  late final int? lastItem;
   late final int lastPage;
-  late final int perPage;
+  late final dynamic perPage;
 
   PaginationInfo.fromJson(Map<String, dynamic> json) {
     total = json['total'];

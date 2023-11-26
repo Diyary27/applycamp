@@ -152,7 +152,7 @@ class _CititesList extends StatelessWidget {
                   TextButton(
                     onPressed: () {
                       Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const CitiesListPage()));
+                          builder: (context) => CitiesListPage()));
                     },
                     child: Text(
                       'All',
@@ -174,31 +174,39 @@ class _CititesList extends StatelessWidget {
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
                         final city = state.cities[index];
-                        return Container(
-                          margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                          width: 165,
-                          height: 220,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(12),
-                            child: Container(
-                              color: Theme.of(context).colorScheme.primary,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Icon(
-                                    Icons.location_on,
-                                    color:
-                                        Theme.of(context).colorScheme.onPrimary,
-                                  ),
-                                  Text(
-                                    city.title!,
-                                    style: TextStyle(
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    CitiesListPage(cityId: city.id)));
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                            width: 165,
+                            height: 220,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Container(
+                                color: Theme.of(context).colorScheme.primary,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.location_on,
                                       color: Theme.of(context)
                                           .colorScheme
                                           .onPrimary,
                                     ),
-                                  )
-                                ],
+                                    Text(
+                                      city.title!,
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary,
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),

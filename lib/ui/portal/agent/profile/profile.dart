@@ -1,5 +1,12 @@
+import 'dart:io';
+
+import 'package:applycamp/data/model/file_element.dart';
+import 'package:applycamp/di/service_locator.dart';
+import 'package:applycamp/domain/entity/profile_fields.dart';
+import 'package:applycamp/domain/repository/user_repository.dart';
 import 'package:applycamp/ui/portal/agent/darwer.dart';
 import 'package:applycamp/ui/portal/agent/profile/bloc/user_profile_bloc.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,6 +17,8 @@ class PortalProfilePage extends StatelessWidget {
   final TextEditingController _organizationController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+
+  late final UploadedImage uploadedImage;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +50,7 @@ class PortalProfilePage extends StatelessWidget {
             } else if (state is UserProfilLoaded) {
               _nameController.text = state.user.name;
               _organizationController.text = state.user.organization;
-              _phoneController.text = state.user.phone;
+              _phoneController.text = state.user.phone!;
               return SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.all(24),
@@ -49,19 +58,32 @@ class PortalProfilePage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // avatar
-                      const Center(
-                        child: CircleAvatar(
-                          minRadius: 55,
-                          maxRadius: 55,
-                          backgroundImage: NetworkImage(
-                            'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
-                          ),
-                        ),
+                      Center(
+                        child: (state.user.profileImage?.path != null &&
+                                state.user.profileImage?.path != '')
+                            ? CircleAvatar(
+                                minRadius: 55,
+                                maxRadius: 55,
+                                backgroundImage:
+                                    NetworkImage(state.user.profileImage!.path),
+                              )
+                            : Container(),
                       ),
                       const SizedBox(height: 16),
                       Center(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            FilePickerResult? result =
+                                await FilePicker.platform.pickFiles();
+                            FileElement response = FileElement();
+                            if (result != null) {
+                              File photo = File(result.files.first.path!);
+                              response = await instance<UserRepository>()
+                                  .uploadProfilePhoto(photo);
+                              uploadedImage = UploadedImage(
+                                  id: response.id!, uuid: response.uuid!);
+                            }
+                          },
                           child: const Text('Upload Photo'),
                         ),
                       ),
@@ -104,12 +126,15 @@ class PortalProfilePage extends StatelessWidget {
                       Center(
                         child: ElevatedButton(
                           onPressed: () {
-                            context.read<UserProfileBloc>().add(
-                                UserProfileUpdateClicked(
-                                    name: _nameController.text,
-                                    organization: _organizationController.text,
-                                    phone: _phoneController.text,
-                                    password: _passwordController.text));
+                            context
+                                .read<UserProfileBloc>()
+                                .add(UserProfileUpdateClicked(
+                                  name: _nameController.text,
+                                  organization: _organizationController.text,
+                                  phone: _phoneController.text,
+                                  password: _passwordController.text,
+                                  uploadedImage: uploadedImage,
+                                ));
                           },
                           style: ButtonStyle(
                             backgroundColor:

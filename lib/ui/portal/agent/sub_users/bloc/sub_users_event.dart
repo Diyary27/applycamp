@@ -15,3 +15,9 @@ class SubUsersUpdateClicked extends SubUsersEvent {
 
   SubUsersUpdateClicked(this.subUserEntity);
 }
+
+class SubUserDeleteClicked extends SubUsersEvent {
+  final int id;
+
+  SubUserDeleteClicked(this.id);
+}

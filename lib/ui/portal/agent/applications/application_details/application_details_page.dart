@@ -131,7 +131,7 @@ class ApplicationDetailsPage extends StatelessWidget {
                                 Navigator.of(context).push(MaterialPageRoute(
                                     builder: (context) => StudentDetailsPage(
                                           studentId:
-                                              state.application.student!.id,
+                                              state.application.student!.id!,
                                         )));
                               },
                               child: const Text('View Student'),

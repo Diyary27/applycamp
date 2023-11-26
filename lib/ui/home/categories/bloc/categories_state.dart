@@ -11,4 +11,10 @@ class CategoriesSuccess extends CategoriesState {
   CategoriesSuccess(this.studyFields);
 }
 
+class CategoryProgramSuccess extends CategoriesState {
+  final SchoolPrograms schoolPrograms;
+
+  CategoryProgramSuccess(this.schoolPrograms);
+}
+
 class CategoriesError extends CategoriesState {}

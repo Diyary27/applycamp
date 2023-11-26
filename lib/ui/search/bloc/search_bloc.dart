@@ -122,6 +122,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           emit(SearchUniSuccess(schools: schools, cities: cities));
         }
       } catch (e) {
+        print(e);
         emit(SearchError());
       }
     });

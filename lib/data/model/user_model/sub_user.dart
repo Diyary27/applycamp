@@ -1,5 +1,6 @@
 import 'package:applycamp/data/model/program_search_models/abilities.dart';
 import 'package:applycamp/data/model/user_model/parent.dart';
+import 'package:applycamp/data/model/user_model/profile_image.dart';
 import 'package:applycamp/data/model/user_model/role.dart';
 
 class SubUser {
@@ -45,7 +46,7 @@ class SubUser {
   late final String createdAt;
   late final String updatedAt;
   late final Role role;
-  late final List<dynamic> profileImage;
+  late final ProfileImage? profileImage;
   late final Parent parent;
 
   SubUser.fromJson(Map<String, dynamic> json) {
@@ -68,7 +69,9 @@ class SubUser {
     createdAt = json['createdAt'];
     updatedAt = json['updatedAt'];
     role = Role.fromJson(json['role']);
-    profileImage = List.castFrom<dynamic, dynamic>(json['profileImage']);
+    profileImage = (json['profileImage'] as List).isNotEmpty
+        ? ProfileImage.fromJson(json['profileImage'])
+        : null;
     parent = Parent.fromJson(json['parent']);
   }
 

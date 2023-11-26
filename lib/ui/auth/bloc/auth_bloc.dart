@@ -77,6 +77,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           emit(AgentAuthForgotPassEmailSent(response));
         }
       } catch (e) {
+        print(e);
         emit(AuthError("Error"));
       }
     });
