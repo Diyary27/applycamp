@@ -197,24 +197,24 @@ class _ProfilePageState extends State<ProfilePage> {
                             ],
                           ),
                           const SizedBox(height: 28),
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              const Icon(
-                                Icons.delete_forever,
-                                color: Colors.red,
-                              ),
-                              const SizedBox(width: 10),
-                              Text(
-                                'Delete Account',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(color: Colors.red),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 28),
+                          // Row(
+                          //   crossAxisAlignment: CrossAxisAlignment.end,
+                          //   children: [
+                          //     const Icon(
+                          //       Icons.delete_forever,
+                          //       color: Colors.red,
+                          //     ),
+                          //     const SizedBox(width: 10),
+                          //     Text(
+                          //       'Delete Account',
+                          //       style: Theme.of(context)
+                          //           .textTheme
+                          //           .titleMedium!
+                          //           .copyWith(color: Colors.red),
+                          //     ),
+                          //   ],
+                          // ),
+                          // const SizedBox(height: 28),
                         ],
                       ),
                     )

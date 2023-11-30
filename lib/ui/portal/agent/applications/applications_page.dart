@@ -24,6 +24,14 @@ class ApplicationsPage extends StatelessWidget {
         create: (context) {
           final bloc = ApplicationsBloc();
           bloc.add(ApplicationsStarted());
+          bloc.stream.listen((state) {
+            if (state is ApplicationEditLoaded) {
+              if (state.message != null) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(state.message!)));
+              }
+            }
+          });
           applicationsBloc = bloc;
           return bloc;
         },
@@ -132,12 +140,24 @@ class ApplicationsPage extends StatelessWidget {
                                 children: [
                                   Column(
                                     children: [
-                                      const CircleAvatar(
-                                        minRadius: 40,
-                                        maxRadius: 40,
-                                        backgroundImage: NetworkImage(
-                                          'https://wisehealthynwealthy.com/wp-content/uploads/2022/01/CreativecaptionsforFacebookprofilepictures.jpg',
-                                        ),
+                                      SizedBox(
+                                        width: 80,
+                                        height: 80,
+                                        child: (application.student!
+                                                        .profileImage?.path !=
+                                                    null &&
+                                                application.student!
+                                                        .profileImage?.path !=
+                                                    '')
+                                            ? CircleAvatar(
+                                                minRadius: 40,
+                                                maxRadius: 40,
+                                                backgroundImage: NetworkImage(
+                                                  application.student!
+                                                      .profileImage!.path,
+                                                ),
+                                              )
+                                            : Container(),
                                       ),
                                       const SizedBox(height: 12),
                                       Container(
@@ -169,13 +189,16 @@ class ApplicationsPage extends StatelessWidget {
                                               .titleMedium,
                                         ),
                                         const SizedBox(height: 3),
-                                        Text('Program:  \n${application
-                                                .schoolProgram!.program.title}'),
+                                        Text(
+                                            'Program:  \n${application.schoolProgram!.program.title}'),
                                         (application.assignedTo.isNotEmpty)
-                                            ? Text('Assignee: ${application.assignedTo}')
+                                            ? Text(
+                                                'Assignee: ${application.assignedTo}')
                                             : const Text('Assignee: '),
-                                        Text('School: \n${application.school!.title}'),
-                                        Text('Maker: \n${application.maker!.name}'),
+                                        Text(
+                                            'School: \n${application.school!.title}'),
+                                        Text(
+                                            'Maker: \n${application.maker!.name}'),
                                       ],
                                     ),
                                   ),

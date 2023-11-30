@@ -5,9 +5,9 @@ abstract class UniversitiesCompareEvent {}
 class UniversitiesCompareStarted extends UniversitiesCompareEvent {}
 
 class UniversitiesCompareClicked extends UniversitiesCompareEvent {
-  final int firstSchool;
-  final int secondSchool;
+  final int firstSchoolId;
+  final int secondSchoold;
 
   UniversitiesCompareClicked(
-      {required this.firstSchool, required this.secondSchool});
+      {required this.firstSchoolId, required this.secondSchoold});
 }

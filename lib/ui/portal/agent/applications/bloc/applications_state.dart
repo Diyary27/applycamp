@@ -23,15 +23,23 @@ class ApplicationsLoaded extends ApplicationsState {
 class ApplicationEditLoaded extends ApplicationsState {
   final ApplicationCreateFields createFields;
   final Application application;
+  final String? message;
 
-  ApplicationEditLoaded(
-      {required this.createFields, required this.application});
+  ApplicationEditLoaded({
+    required this.createFields,
+    required this.application,
+    this.message,
+  });
 }
 
 class ApplicationCreateLoaded extends ApplicationsState {
   final ApplicationCreateFields createFields;
+  final String? message;
 
-  ApplicationCreateLoaded(this.createFields);
+  ApplicationCreateLoaded({
+    required this.createFields,
+    this.message,
+  });
 }
 
 class ApplicationsError extends ApplicationsState {}

@@ -1,5 +1,5 @@
-
 import 'package:applycamp/ui/universities/bloc/universities_bloc.dart';
+import 'package:applycamp/ui/universities/universities_compare/bloc/universities_compare_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,7 +15,8 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UniversitiesBloc(),
+      create: (context) =>
+          UniversitiesCompareBloc()..add(UniversitiesCompareStarted()),
       child: Scaffold(
         appBar: AppBar(
           centerTitle: false,
@@ -25,7 +26,7 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
           child: Column(
             children: [
               const SizedBox(height: 10),
-              BlocListener<UniversitiesBloc, UniversitiesState>(
+              BlocListener<UniversitiesCompareBloc, UniversitiesCompareState>(
                 listener: (context, state) {
                   // TODO: implement listener
                 },
@@ -222,13 +223,13 @@ class _UniversitiesComparePageState extends State<UniversitiesComparePage> {
                 ),
               ),
               const SizedBox(height: 20),
-              BlocBuilder<UniversitiesBloc, UniversitiesState>(
+              BlocBuilder<UniversitiesCompareBloc, UniversitiesCompareState>(
                 builder: (context, state) {
                   return Column(
                     children: [
                       Container(
-                        margin:
-                            const EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                        margin: const EdgeInsets.only(
+                            left: 10, right: 10, bottom: 10),
                         padding: const EdgeInsets.only(top: 10, bottom: 20),
                         height: 100,
                         width: MediaQuery.of(context).size.width,

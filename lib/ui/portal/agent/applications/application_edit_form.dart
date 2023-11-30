@@ -15,23 +15,6 @@ class ApplicationEditForm extends StatelessWidget {
   final Application application;
   final ApplicationCreateFields createFields;
 
-  final SingleValueDropDownController _countryController =
-      SingleValueDropDownController();
-  final SingleValueDropDownController _schoolTypeController =
-      SingleValueDropDownController();
-  final SingleValueDropDownController _schoolController =
-      SingleValueDropDownController();
-  final SingleValueDropDownController _studyLanguageController =
-      SingleValueDropDownController();
-  final SingleValueDropDownController _degreeController =
-      SingleValueDropDownController();
-  final SingleValueDropDownController _programController =
-      SingleValueDropDownController();
-  final SingleValueDropDownController _semesterController =
-      SingleValueDropDownController();
-  final TextEditingController _applicationIdController =
-      TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     // lists
@@ -61,11 +44,44 @@ class ApplicationEditForm extends StatelessWidget {
     for (var element in (createFields.programs)) {
       programs.add(DropDownValueModel(name: element.title, value: element.id));
     }
-    final List<DropDownValueModel> semesters = [];
-    for (var element in (createFields.academicYears)) {
-      semesters
-          .add(DropDownValueModel(name: element.slug, value: element.slug));
-    }
+    final List<DropDownValueModel> semesters = [
+      DropDownValueModel(name: '2018-2019 fall', value: "20181"),
+      DropDownValueModel(name: '2018-2019 spring', value: "20182"),
+      DropDownValueModel(name: '2018-2019 summer', value: "20183"),
+      DropDownValueModel(name: '2019-2020 fall', value: "20191"),
+    ];
+
+    // controllers
+    final SingleValueDropDownController _countryController =
+        SingleValueDropDownController(
+            data: countries.firstWhere((element) =>
+                element.value == application.school!.city!.countryId!));
+    final SingleValueDropDownController _schoolTypeController =
+        SingleValueDropDownController(
+            data: schoolTypes.firstWhere((element) =>
+                element.value == application.school!.schoolTypeId));
+    final SingleValueDropDownController _schoolController =
+        SingleValueDropDownController(
+            data: schools.firstWhere(
+                (element) => element.value == application.school!.id));
+    final SingleValueDropDownController _studyLanguageController =
+        SingleValueDropDownController(
+            data: countries.firstWhere((element) =>
+                element.value == application.school!.city!.countryId!));
+    final SingleValueDropDownController _degreeController =
+        SingleValueDropDownController(
+            data: degrees.firstWhere(
+                (element) => element.value == application.degreeId));
+    final SingleValueDropDownController _programController =
+        SingleValueDropDownController(
+            data: programs.firstWhere(
+                (element) => element.value == application.programId));
+    final SingleValueDropDownController _semesterController =
+        SingleValueDropDownController(
+            data: semesters.firstWhere(
+                (element) => element.value == application.semesterId));
+    final TextEditingController _applicationIdController =
+        TextEditingController();
 
     return SingleChildScrollView(
       child: Padding(
@@ -79,13 +95,15 @@ class ApplicationEditForm extends StatelessWidget {
             ),
             const SizedBox(height: 18),
             DropDownTextField(
-              textFieldDecoration: const InputDecoration(label: Text("Country")),
+              textFieldDecoration:
+                  const InputDecoration(label: Text("Country")),
               controller: _countryController,
               dropDownList: countries,
             ),
             const SizedBox(height: 18),
             DropDownTextField(
-              textFieldDecoration: const InputDecoration(label: Text("School Type")),
+              textFieldDecoration:
+                  const InputDecoration(label: Text("School Type")),
               controller: _schoolTypeController,
               dropDownList: schoolTypes,
             ),
@@ -110,20 +128,23 @@ class ApplicationEditForm extends StatelessWidget {
             ),
             const SizedBox(height: 18),
             DropDownTextField(
-              textFieldDecoration: const InputDecoration(label: Text("Program")),
+              textFieldDecoration:
+                  const InputDecoration(label: Text("Program")),
               controller: _programController,
               dropDownList: programs,
             ),
             const SizedBox(height: 18),
             DropDownTextField(
-              textFieldDecoration: const InputDecoration(label: Text("Semester")),
+              textFieldDecoration:
+                  const InputDecoration(label: Text("Semester")),
               controller: _semesterController,
               dropDownList: semesters,
             ),
             const SizedBox(height: 18),
             TextField(
                 controller: _applicationIdController,
-                decoration: const InputDecoration(label: Text("Application ID"))),
+                decoration:
+                    const InputDecoration(label: Text("Application ID"))),
             const SizedBox(height: 18),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -140,6 +161,7 @@ class ApplicationEditForm extends StatelessWidget {
                     context
                         .read<ApplicationsBloc>()
                         .add(ApplicationEditBtnClicked(
+                          applicationId: application.id,
                           studentId: application.studentId!,
                           schoolId: _schoolController.dropDownValue?.value,
                           programId: _programController.dropDownValue?.value,

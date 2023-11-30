@@ -1,4 +1,5 @@
 import 'package:applycamp/domain/repository/agent_auth_repository.dart';
+import 'package:applycamp/domain/repository/school_repository.dart';
 import 'package:applycamp/domain/repository/student_auth_repository.dart';
 import 'package:applycamp/ui/root.dart';
 import 'package:applycamp/ui/theme.dart';

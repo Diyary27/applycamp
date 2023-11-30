@@ -65,4 +65,7 @@ class PortalRemoteConstants {
 
   // // /api/v1/content-items/cities/1/schools
   static const String getSchoolsByCity = "/api/v1/content-items/cities/";
+
+  // schools
+  static const String getSchoolById = "/api/v1/school/";
 }

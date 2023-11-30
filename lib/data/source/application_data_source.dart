@@ -4,24 +4,19 @@ import 'package:applycamp/data/model/application_models/application.dart';
 import 'package:applycamp/data/model/application_models/application_create_fields.dart';
 import 'package:applycamp/data/model/application_models/application_create_response.dart';
 import 'package:applycamp/data/model/application_models/application_status.dart';
+import 'package:applycamp/domain/entity/application_create_params.dart';
 
 abstract class ApplicationDataSource {
   Future createApplication(
-      ApplicationCreateFields applicationCreateFields, int studentId);
+      ApplicationCreateParams applicationCreateParams, int studentId);
   Future getMyApplications();
   Future getMyApplicationsByFilter(
       {int? studentId, int? schoolId, int? statusId});
   Future getAnApplication(int id);
   Future getCreateApplicationFields(int studentId);
   Future getAllStatus();
-  Future editApplication({
-    required int studentId,
-    int? schoolId,
-    int? programId,
-    int? degreeId,
-    String? externalId,
-    int? semesterId,
-  });
+  Future editApplication(
+      ApplicationCreateParams applicationCreateParams, int applicationId);
   Future proceedToNextStep(int Id);
 }
 
@@ -99,15 +94,16 @@ class ApplicationDataSourceImpl implements ApplicationDataSource {
   }
 
   @override
-  Future editApplication(
-      {required int studentId,
-      int? schoolId,
-      int? programId,
-      int? degreeId,
-      String? externalId,
-      int? semesterId}) {
-    // TODO: implement editApplication
-    throw UnimplementedError();
+  Future editApplication(ApplicationCreateParams applicationCreateParams,
+      int applicationId) async {
+    final response = await dioConsumer.put(
+      PortalRemoteConstants.getAnApplication + applicationId.toString(),
+      body: applicationCreateParams.toJson(),
+    );
+
+    final createResponse = ApplicationCreateResponse.fromJson(response.data);
+
+    return createResponse;
   }
 
   @override
@@ -122,9 +118,11 @@ class ApplicationDataSourceImpl implements ApplicationDataSource {
 
   @override
   Future createApplication(
-      ApplicationCreateFields applicationCreateFields, int studentId) async {
-    final response = await dioConsumer
-        .post(PortalRemoteConstants.createApplication + "studentId=$studentId");
+      ApplicationCreateParams applicationCreateParams, int studentId) async {
+    final response = await dioConsumer.post(
+      PortalRemoteConstants.createApplication + "studentId=$studentId",
+      body: applicationCreateParams.toJson(),
+    );
 
     final ApplicationCreateResponse createResponse =
         ApplicationCreateResponse.fromJson(response.data);

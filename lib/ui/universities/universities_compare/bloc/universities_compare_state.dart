@@ -9,5 +9,9 @@ class UniversitiesCompareSuccess extends UniversitiesCompareState {
   final School secondSchool;
   final List<City> cities;
 
-  UniversitiesCompareSuccess(this.firstSchool, this.secondSchool, this.cities);
+  UniversitiesCompareSuccess({
+    required this.firstSchool,
+    required this.secondSchool,
+    required this.cities,
+  });
 }

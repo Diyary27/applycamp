@@ -1,5 +1,6 @@
 import 'package:applycamp/data/model/application_models/application_create_fields.dart';
 import 'package:applycamp/data/source/application_data_source.dart';
+import 'package:applycamp/domain/entity/application_create_params.dart';
 import 'package:applycamp/domain/repository/application_repository.dart';
 
 class ApplicationRepositoryImpl implements ApplicationRepository {
@@ -35,15 +36,9 @@ class ApplicationRepositoryImpl implements ApplicationRepository {
   }
 
   @override
-  Future editApplication(
-      {required int studentId,
-      int? schoolId,
-      int? programId,
-      int? degreeId,
-      String? externalId,
-      int? semesterId}) async {
-    // TODO: implement editApplication
-    throw UnimplementedError();
+  Future editApplication(ApplicationCreateParams applicationCreateParams,
+      int applicationId) async {
+    return dataSource.editApplication(applicationCreateParams, applicationId);
   }
 
   @override
@@ -51,7 +46,7 @@ class ApplicationRepositoryImpl implements ApplicationRepository {
 
   @override
   Future createApplication(
-      ApplicationCreateFields applicationCreateFields, int studentId) async {
-    return dataSource.createApplication(applicationCreateFields, studentId);
+      ApplicationCreateParams applicationCreateParams, int studentId) async {
+    return dataSource.createApplication(applicationCreateParams, studentId);
   }
 }

@@ -1,3 +1,4 @@
+import 'package:applycamp/ui/home/faq.dart';
 import 'package:applycamp/ui/universities/universities_compare/universities_compare_page.dart';
 import 'package:flutter/material.dart';
 
@@ -55,8 +56,7 @@ class HomePageUtilsList extends StatelessWidget {
             child: GestureDetector(
               onTap: () {
                 Navigator.of(context, rootNavigator: true).push(
-                    MaterialPageRoute(
-                        builder: (context) => const UniversitiesComparePage()));
+                    MaterialPageRoute(builder: (context) => const FAQPage()));
               },
               child: Container(
                 margin: const EdgeInsets.only(left: 6, right: 6),
